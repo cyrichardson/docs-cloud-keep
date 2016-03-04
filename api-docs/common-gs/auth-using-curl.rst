@@ -71,6 +71,14 @@ Rackspace Support to get valid credentials.
 .. code::
 
    401 Unable to authenticate user with credentials provided.
+
+If you see the following message, verify that your user has the correct service catalog entries and/or
+roles to access the service. If necessary, contact your Rackspace Cloud Administrator or 
+Rackspace Support to verify your authorization.
+
+.. code::
+   
+   403 Forbidden. Not Authorized.
    
    
 ..  note::
@@ -100,7 +108,7 @@ token ID
 
 tenant ID
     The tenant ID value provides your account number. For most Rackspace Cloud service APIs, the
-    tenant ID is appended to the API endpoint in the service catalog automatically. You
+    tenant ID is appended to the API endpoint in the service catalog automatically.
 
 endpoints
 	 The endpoints object provides the URLs that you can use to access the API service. 
