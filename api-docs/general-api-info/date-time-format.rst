@@ -8,17 +8,17 @@ use a date format that complies with ISO 8601.
 
 The system time is expressed as UTC.
 
-**Example: Autoscale date and time format**
+**Example: |product name| date and time format**
 
 .. code::
 
     yyyy-MM-dd'T'HH:mm:ssZ
 
-For example, the UTC-5 format for May 19, 2014 at 8:07:08 a.m. is
+For example, the UTC-5 format for May 19, 2016 at 8:07:08 a.m. is
 
 .. code::
 
-    2014-05-19T08:07:08-05:00
+    2016-05-19T08:07:08-05:00
 
 **Date and time format codes**
 

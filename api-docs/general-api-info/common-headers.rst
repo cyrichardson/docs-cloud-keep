@@ -16,24 +16,11 @@ The following table describes the common headers used by the API.
 |                       | ``X-Auth-Token`` grants access. The unique ID is   |
 |                       | your account ID.                                   |
 +-----------------------+----------------------------------------------------+
-| Accept                | Media type. Initially, only ``application/json``   |
-|                       | is supported.                                      |
+| Accept                | Media type. Initially, only text and binary types  |
+|                       | are supported.                                     |
 +-----------------------+----------------------------------------------------+
 | Accept-Encoding       | Specifies that the agent accepts gzip-encoded      |
 |                       | response bodies                                    |
-+-----------------------+----------------------------------------------------+
-| Client-ID             | A unique ID for each client instance. The          |
-|                       | ``Client-ID`` is used to avoid echoing a sender's  |
-|                       | messages back to the same instance, and it can be  |
-|                       | logged by the server for future use. The client    |
-|                       | generates the ``Client-ID`` once, and it persists  |
-|                       | between restarts of the client. The client should  |
-|                       | reuse the same ``Client-ID``. **Note**: All        |
-|                       | message-related operations require that            |
-|                       | ``Client-ID`` is included in the headers to ensure |
-|                       | that messages are not echoed back to the client    |
-|                       | that posted them, unless the client explicitly     |
-|                       | requests this.                                     |
 +-----------------------+----------------------------------------------------+
 | Content-Length        | For **POST** or **PUT** requests, the length in    |
 |                       | bytes of the message document being submitted      |

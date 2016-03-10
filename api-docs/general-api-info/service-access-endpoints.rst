@@ -1,7 +1,7 @@
 .. _barbican-dg-service-access-endpoints:
 
-Service access endpoints
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Regionalized service access endpoints
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Rackspace Cloud Keep service is a regionalized service. The user
 of the service is therefore responsible for selecting the appropriate
