@@ -69,5 +69,4 @@ For subsequent API calls requiring a secret ID, you should set an environment va
       without specifying the secret payload and then submitting a subsequent
       **PUT** request with the payload. This storage mode enables you to
       upload a a binary file to Cloud Keep directly for encrypted
-      storage. For more information, read Two-step call flow for binary
-      secrets.
+      storage. For more information, read :ref:`gsg-two-step-secret-creation`.

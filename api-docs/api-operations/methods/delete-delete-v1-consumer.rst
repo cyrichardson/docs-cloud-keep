@@ -36,14 +36,26 @@ The following table shows the URI parameters for the request:
 |consumerID                  | string  | The UUID for the consumer       | None       |
 +----------------------------+---------+---------------------------------+------------+
 
-This operation does not require a response body.
+The following table shows the body parameters for the request:
+
++-------------------+---------+--------------------------------------------+------------+
+| Parameter name    | Type    | Description                                | Default    |
++===================+=========+============================================+============+
+|name               | string  | The name of the consumer set by the user.  | None       |
++-------------------+---------+--------------------------------------------+------------+
+|URL                | string  | The url for the user or service using the  | None       |
+|                   |         | container.                                 |            |
++-------------------+---------+--------------------------------------------+------------+
 
 **Example: Delete consumer cURL request**
 
 .. code::
 
    curl -X DELETE -H 'X-Auth-Token: $AUTH-TOKEN' \
+        -d '{"name": "consumername", "URL": "consumerURL"}' \
         $ENDPOINT/v1/containers/{containerID}/consumers/{consumerID}
+
+where ``name`` and ``URL`` must match the name and URL that were used when the consumer was created.
 
 
 Response

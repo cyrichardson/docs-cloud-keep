@@ -40,7 +40,7 @@ The following table shows the body parameters for the request:
 +===================+=========+============================================+============+
 |name               | string  | The name of the consumer set by the user.  | None       |
 +-------------------+---------+--------------------------------------------+------------+
-|url                | string  | The url for the user or service using the  | None       |
+|URL                | string  | The url for the user or service using the  | None       |
 |                   |         | container.                                 |            |
 +-------------------+---------+--------------------------------------------+------------+
 |containerID        | string  | The UUID for the container                 | None       |
@@ -56,7 +56,7 @@ The following table shows the body parameters for the request:
            -H 'Content-Type: application/json' \
            -d '{
                  "name": "your consumer name",
-                  "url": "{consumerURL}"
+                  "URL": "{consumerURL}"
               }' \
            $ENDPOINT/v1/containers/{containerID}/consumers
            
