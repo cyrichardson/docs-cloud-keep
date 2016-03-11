@@ -3,7 +3,7 @@
 Concepts
 ----------
 
-Review the following key concepts and architectural overview to learn how Cloud Keep 
+Review the following key concepts and architectural overview to learn how |product name| 
 enables secure life-cycle management for keys and credentials.
 
 
@@ -12,12 +12,10 @@ enables secure life-cycle management for keys and credentials.
 Secrets
 ~~~~~~~~~~~~~~~~~~
 
-A secret can be any data that requires security conscious storage. This
-may be reflected as a key, credentials, config file, etc.
-
-A secret is a singular item that is stored within Barbican. A secret is
-anything you want it to be; however, the formal use case is a key that you wish
-to store away from prying eyes.
+A secret is a singular item that is stored within |product name|. It is
+any data that requires security conscious storage such as a key,
+credential, configuration file, etc.  The typical use case for a secret
+is an encryption key that you wish to store away from prying eyes.
 
 Some examples of a secret may include:
   * Private Key
@@ -26,53 +24,62 @@ Some examples of a secret may include:
   * SSH Keys
 
 The secret schema represents the actual secret or key that is presented
-to the application. Currently secrets can be in any format, but
-additional functionality may become available in the future for known
-types of symmetric or asymmetric keys, like SSL certificates.
+to the |product name| service.  Secrets themselves can be any format.
 
-The
-following shows an example of a secret:
+The following example shows the specification for a secret that has been added to |product name|:
 
 .. code::
 
     {
         "uuid": "e2b633c7-fda5-4be8-b42c-9a2c9280284d",
         "name": "AES key",
-        "expiration": "2014-02-28T19:14:44.180394",
+        "expiration": "2018-02-28T19:14:44.180394",
         "secret": "b7990b786ee9659b43e6b1cd6136de07d9c5…",
         "secret_type": "application/aes-256-cbc",
       }
 
 A secret consists of the following elements:
 
-+------------+---------------------------------------------------------------+
-| Element    | Description                                                   |
-+============+===============================================================+
-| uuid       | Unique identifier for the secret. This value is assigned by   |
-|            | the API.                                                      |
-+------------+---------------------------------------------------------------+
-| name       | Human readable name for the secret.                           |
-+------------+---------------------------------------------------------------+
-| expiration | The expiration date for the secret in ISO-8601 format. Once   |
-|            | the secret has expired, it will no longer be returned by the  |
-|            | API or agent.                                                 |
-+------------+---------------------------------------------------------------+
-| secret     | The base64-encoded value of the secret.                       |
-+------------+---------------------------------------------------------------+
-| secret\_ty | An indication of the type of the file presenting the secret.  |
-| pe         |                                                               |
-+------------+---------------------------------------------------------------+
++--------------+---------------------------------------------------------------+
+| Element      | Description                                                   |
++==============+===============================================================+
+| uuid         | Unique identifier for the secret. This value is assigned by   |
+|              | the API.                                                      |
++--------------+---------------------------------------------------------------+
+| name         | Human readable name for the secret.                           |
++--------------+---------------------------------------------------------------+
+| expiration   | The expiration date for the secret in ISO-8601 format. Once   |
+|              | the secret has expired, it will no longer be returned by the  |
+|              | API or agent.                                                 |
++--------------+---------------------------------------------------------------+
+| secret       | The base64-encoded value of the secret.                       |
++--------------+---------------------------------------------------------------+
+| secret\_type | (optional) The secret type. The possible secret types are:    |
+|              |                                                               |
+|              |         - symmetric: Used for storing byte arrays such as     |
+|              |           keys suitable for symmetric encryption.             |
+|              |         - public: Used for storing the public key of an       |
+|              |           asymmetric keypair.                                 |
+|              |         - private: Used for storing the private key of an     |
+|              |           asymmetric keypair.                                 |
+|              |         - passphrase: Used for storing plain text             |
+|              |           passphrases.                                        |
+|              |         - certificate: Used for storing cryptographic         |
+|              |           certificates such as X.509 certificates.            |
+|              |                                                               |
++--------------+---------------------------------------------------------------+
 
 
 You can use one of the following methods to store a secret:
 
--  Submit a **POST** request against the secrets resource and include
-   the secret metadata in the ``payload`` parameter.
+-  Submit a **POST** request against the secrets resource. Include
+   the secret metadata in the JSON body and include the secret itself
+   in the ``payload`` parameter.
 
 -  Submit a **POST** request without a ``payload`` parameter against the
    secrets resource and then include the payload in a subsequent **PUT**
    request. This mode enables you to upload a binary file to the
-   Barbican database directly for encrypted storage.
+   |product name| database directly for encrypted storage.
 
 ..  note::
         Note
@@ -81,36 +88,22 @@ You can use one of the following methods to store a secret:
         then linked with this metadata. If no payload is included with the
         **POST** request, it must be provided with a subsequent **PUT** request.
         The secret resource encrypts and stores client-provided secret
-        information and metadata. In contrast, the orders resource generats
-        actual secret information on behalf of clients.
+        information and metadata.
 
-.. _Barbican-dg-orders:
-
-Order
-~~~~~~~~~~~~~~~~~~
-
-An order is a request to Barbican to create a secret of a particular
-type. This may include specifying an encryption algorithm or bit length,
-for example.
-An order allows for the generation of secret material by
-Barbican. The ordering object encapsulates the workflow and history for
-the creation of a secret. This interface is implemented as an
-asynchronous process since the time to generate a secret can vary
-depending on the type of secret.
 
 .. _Barbican-dg-containers:
 
 Container
 ~~~~~~~~~~~~~~~~~~
 
-A container is a way to logically group secrets that may be of a similar
-type; for example, grouping a private key, certificate, and bundle for
-an SSL certificate in a single container.
-The containers resource is the organizational center piece of Barbican. It
-creates a logical object that can be used to hold secret references. This is helpful
-when having to deal with tracking and having access to hundreds of secrets.
+The containers resource is the organizational center piece of |product name| that simplifies secrets management
+in environments that have large numbers of secrets.
 
-Barbican supports 3 types of containers:
+A container is a logical object that can be used to store secret references that are related by relationship or type. 
+For example you can create a single container to group a private key, certificate, and bundle for
+an SSL certificate. Containers simplify the task of managing large numbers of secrets resources.
+
+|product name| supports 3 types of containers:
   * :ref:`Generic <generic_containers>`
   * :ref:`Certificate <certificate_containers>`
   * :ref:`RSA <rsa_containers>`
@@ -118,7 +111,7 @@ Barbican supports 3 types of containers:
 Each of these types have explicit restrictions as to what type of secrets should be
 held within. These will be broken down in their respective sections.
 
-This guide will assume you will be using a local running development environment of Cloud keep_warnings.
+This guide assumes that you are running |product name| in a local development environment.
 
 
 .. _generic_containers:
@@ -139,15 +132,15 @@ in the same container reference:
         "status": "ACTIVE",
         "name": "Test Environment User Passwords",
         "consumers": [],
-        "container_ref": "https://{barbican_host}/v1/containers/{uuid}",
+        "container_ref": "https://{cloudkeep_host}/v1/containers/{container_uuid}",
         "secret_refs": [
             {
                 "name": "test_admin_user",
-                "secret_ref": "https://{barbican_host}/v1/secrets/{uuid}"
+                "secret_ref": "https://{cloudkeep_host}/v1/secrets/{secret1_uuid}"
             },
             {
                 "name": "test_audit_user",
-                "secret_ref": "https://{barbican_host}/v1/secrets/{uuid}"
+                "secret_ref": "https://{cloudkeep_host}/v1/secrets/{secret2_uuid}"
             }
         ],
         "created": "2015-03-30T21:10:45.417835",
@@ -175,23 +168,23 @@ certificates:
         "status": "ACTIVE",
         "name": "Example.com Certificates",
         "consumers": [],
-        "container_ref": "https://{barbican_host}/v1/containers/{uuid}",
+        "container_ref": "https://{cloudkeep_host}/v1/containers/{container_uuid}",
         "secret_refs": [
             {
                 "name": "certificate",
-                "secret_ref": "https://{barbican_host}/v1/secrets/{uuid}"
+                "secret_ref": "https://{cloudkeep_host}/v1/secrets/{cert_uuid}"
             },
             {
                 "name": "private_key",
-                "secret_ref": "https://{barbican_host}/v1/secrets/{uuid}"
+                "secret_ref": "https://{cloudkeep_host}/v1/secrets/{pk_uuid}"
             },
             {
                 "name": "private_key_passphrase",
-                "secret_ref": "https://{barbican_host}/v1/secrets/{uuid}"
+                "secret_ref": "https://{cloudkeep_host}/v1/secrets/{pass_uuid}"
             },
             {
                 "name": "intermediates",
-                "secret_ref": "https://{barbican_host}/v1/secrets/{uuid}"
+                "secret_ref": "https://{cloudkeep_host}/v1/secrets/{inters_uuid}"
             }
 
         ],
@@ -221,19 +214,19 @@ key pass phrases.
         "status": "ACTIVE",
         "name": "John Smith RSA",
         "consumers": [],
-        "container_ref": "https://{barbican_host}/v1/containers/{uuid}",
+        "container_ref": "https://{cloudkeep_host}/v1/containers/{container_uuid}",
         "secret_refs": [
             {
                 "name": "private_key",
-                "secret_ref": "https://{barbican_host}/v1/secrets/{uuid}"
+                "secret_ref": "https://{cloudkeep_host}/v1/secrets/{pk_uuid}"
             },
             {
                 "name": "private_key_passphrase",
-                "secret_ref": "https://{barbican_host}/v1/secrets/{uuid}"
+                "secret_ref": "https://{cloudkeep_host}/v1/secrets/{pass_uuid}"
             },
             {
                 "name": "public_key",
-                "secret_ref": "https://{barbican_host}/v1/secrets/{uuid}"
+                "secret_ref": "https://{cloudkeep_host}/v1/secrets/{pubkey_uuid}"
             }
 
         ],
@@ -242,34 +235,29 @@ key pass phrases.
     }
 
 
-.. _Barbican-dg-certificates:
-
-Certificate
-~~~~~~~~~~~~~~~~~~
-
-Certificates are requested using the Orders interface.  Detailed description of this interface
-is deferred to the Orders API reference.  This reference identifies the parameters that are specific
-to each of the certificate order types i.e. those orders for which the parameter *type*
-is "certificate".
-
 .. _Barbican-dg-quotas:
 
 Quotas
 ~~~~~~~~~~~~~~~~~~
 
-All users authenticated with Cloud Keep are able to read the effective quota values
-that apply to their project. Cloud Keep can derive the project that a user belongs
+All users authenticated with |product name| are able to read the effective quota values
+that apply to their project. |product name| can derive the project that a user belongs
 to by reading the project scope from the authentication token.
 
 Service administrators can read, set, and delete quota configurations for each
-project known to Barbican.  The service administrator is recognized by his authenticated
-role.  The service administrator's role is defined in Barbican's policy.json file.
-The default role for a service admin is "key-manager:service-admin".
+project known to |product name|.  These operations are available to an authenticated user
+that has the service administrator role. This role is defined in the |product name| policy.json configuration file.
 
-Quotas can be enforced for the following Cloud Keep resources: secrets, containers,
-orders, consumers, and CAs.  The configured quota value can be None (use the default),
--1 (unlimited), 0 (disabled), or a positive integer defining the maximum number
-allowed for a project.
+The name for a service administrator role is "keep:service-admin".
+
+Quotas can be enforced for the following |product name| resources: secrets, containers,
+and consumers.  The configured quota value can be 
+
+- -1 meaning no limit to the number of resources you can create
+- 0 meaning this resource has been disabled
+- positive integer defining the maximum number allowed for a project
+  
+If no value is specified, |product name| uses the default setting, and the quota value is set to None.
 
 .. _default_project_quotas:
 
@@ -278,7 +266,7 @@ Default Quotas
 
 When no project quotas have been set for a project, the default
 project quotas are enforced for that project.  Default quotas are specified
-in the Cloud Keep configuration file (barbican.conf).  The defaults provided
+in the |product name| configuration file (barbican.conf).  The defaults provided
 in the standard configuration file are as follows.
 
 .. code-block:: none
@@ -286,17 +274,12 @@ in the standard configuration file are as follows.
     # default number of secrets allowed per project
     quota_secrets = -1
 
-    # default number of orders allowed per project
-    quota_orders = -1
-
     # default number of containers allowed per project
     quota_containers = -1
 
     # default number of consumers allowed per project
     quota_consumers = -1
 
-    # default number of CAs allowed per project
-    quota_cas = -1
 
 The default quotas are returned via a **GET** on the **quotas** resource when no
 explicit project quotas have been set for the current project.
@@ -310,5 +293,6 @@ Consumer
 ~~~~~~~~~~~~~~~~~~
 
 A consumer is a way to to register as an interested party for a container.
-All of the registered consumers can be viewed by performing a GET on the {container_ref}/consumers. The idea being that before a container is deleted all consumers
+All of the registered consumers can be viewed by performing a **GET** on the
+{container_ref}/consumers resource. Before a container is deleted, all consumers
 should be notified of the delete.

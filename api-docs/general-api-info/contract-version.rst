@@ -3,7 +3,7 @@
 Rackspace Cloud Keep contract version
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Rackspace Cloud Keep version defines the contract and build
+The |product name| version defines the contract and build
 information for the API.
 
 The contract version denotes the data model and behavior that the API
@@ -16,7 +16,7 @@ given time and are not guaranteed to be compatible with one another.
 
 .. code::
 
-  https://ord.keep.api.rackspacecloud.com
+  https://iad.keep.api.rackspacecloud.com/v1/secrets
 
 ..  note::
     This document pertains to contract version 1.0.
