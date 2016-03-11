@@ -6,10 +6,10 @@ Update configured project quotas
 
 .. code::
 
-    GET /{version}/{tenantId}/project-quotas/{uuid}
+    PUT /{version}/project-quotas/{project_id}
 
 
-Create or update the configured project quotas for the project with the specified UUID.
+Create or update the configured project quotas for the project with the specified project ID.
 
 
 
@@ -36,13 +36,8 @@ The following table shows the URI parameters for the request:
 +--------------------------+-------------------------+-------------------------+
 |Name                      |Type                     |Description              |
 +==========================+=========================+=========================+
-|{tenantId}                |String *(Required)*      |This parameter specifies |
-|                          |                         |the tenant ID of the     |
-|                          |                         |client subscribing to    |
-|                          |                         |the Cloud Keep service.  |
-+--------------------------+-------------------------+-------------------------+
-|{uuid}                    |String *(Required)*      |This parameter specifies |
-|                          |                         |the UUID for the         |
+|{project_id}              |String *(Required)*      |This parameter specifies |
+|                          |                         |the ID for the           |
 |                          |                         |specified project.       |
 +--------------------------+-------------------------+-------------------------+
 
@@ -56,8 +51,7 @@ The following table shows the body parameters for the request:
 | secrets        | integer | The value to set for this project's secret   |
 |                |         | quota.                                       |
 +----------------+---------+----------------------------------------------+
-| orders         | integer | The value to set for this project's order    |
-|                |         | quota.                                       |
+| orders         | integer | Reserved for future use.                     |
 +----------------+---------+----------------------------------------------+
 | containers     | integer | The value to set for this project's          |
 |                |         | container quota.                             |
@@ -65,9 +59,20 @@ The following table shows the body parameters for the request:
 | consumers      | integer | The value to set for this project's          |
 |                |         | consumer quota.                              |
 +----------------+---------+----------------------------------------------+
-| cas            | integer | The value to set for this project's          |
-|                |         | CA quota.                                    |
+| cas            | integer | Reserved for future use.                     |
 +----------------+---------+----------------------------------------------+
+
+You only need to specify the values that you want to override.  For example, if
+you are only interested in changing the ``secrets`` quota then your project-quotas
+dict should only contain an entry for ``secrets``:
+
+.. code::
+
+    {
+        "project_quotas": {
+                "secrets": 200,
+            }
+    }
 
 Configured project quota values are specified as follows:
 
@@ -90,16 +95,16 @@ Configured project quota values are specified as follows:
 
 .. code::
 
-      curl -s $ENDPOINT/v1/12345/project-quotas/{uuid} \
-      -X PUT \
-      -d '{
-            "project_quotas": {
-                "secrets": 50,
-                "orders": 10,
-                "containers": 20
-            }
-          }
-          ' \
+      curl -s $ENDPOINT/v1/project-quotas/{projectID} \
+           -X PUT \
+           -d '{
+                 "project_quotas": {
+                     "secrets": 50,
+                     "orders": 10,
+                     "containers": 20
+                 }
+               }
+               ' \
           -H 'X-Auth-Token: $AUTH_TOKEN' \
           -H 'Content-Type: application/json'
 

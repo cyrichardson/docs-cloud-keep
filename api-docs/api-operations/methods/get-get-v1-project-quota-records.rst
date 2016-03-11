@@ -6,7 +6,7 @@ Get Project quota records
 
 .. code::
 
-  GET /v1/project-quotas
+  GET /{version}/project-quotas
 
 Gets a list of configured project quota records.  Paging is supported using the
 optional parameters offset and limit.
@@ -27,20 +27,11 @@ The following table shows the possible response codes for this operation:
 Request
 """"""""""""""""
 
-The following table shows the URI parameters for the request:
 
-+--------------------------+-------------------------+-------------------------+
-|Name                      |Type                     |Description              |
-+==========================+=========================+=========================+
-|{tenantId}                |String *(Required)*      |This parameter specifies |
-|                          |                         |the tenant ID of the     |
-|                          |                         |client subscribing to    |
-|                          |                         |the Cloud Keep service.  |
-+--------------------------+-------------------------+-------------------------+
+There are no URI parameters for this operation.
 
 
 The following table shows the body parameters for the request:
-
 
 +--------+---------+----------------------------------------------------------------+
 | Name   | Type    | Description                                                    |
@@ -57,9 +48,9 @@ The following table shows the body parameters for the request:
 
 .. code::
 
-   curl -H 'Accept: application/json' \
-        -H 'X-Auth-Token:<token>'\
-        $ENDPOINT/{version}/project-quotas
+   curl -H 'Accept: application/json' -H 'X-Auth-Token:$AUTH_TOKEN'\
+        $ENDPOINT/v1/project-quotas/?offset={offset}&limit={limit}
+
 
 
 Response
@@ -67,17 +58,15 @@ Response
 
 The following table shows the response parameters for the request.
 
-
 +------------------+---------+-----------------------------------------------------------+
 | Name             | Type    | Description                                               |
 +==================+=========+===========================================================+
+|**project_id      | string  | The uuid of the project associated with the project quota.|
++------------------+---------+-----------------------------------------------------------+
 |**project-quotas**| list    | Returns a list of project quota configurations            |
 +------------------+---------+-----------------------------------------------------------+
 |**project-quotas**| dict    | Contains a dictionary with project quota information.     |
 +------------------+---------+-----------------------------------------------------------+
-|project-quotas.\ | integer | The ID of the project associated with the project quota    |
-|**project_id**   |         |                                                            |
-+-----------------+---------+------------------------------------------------------------+
 |project-quotas.\ | integer | Contains the effective quota value of the current project  |
 |*secrets*        |         | for the secret resource.                                   |
 +-----------------+---------+------------------------------------------------------------+
@@ -100,7 +89,7 @@ The following table shows the response parameters for the request.
 |                 |         | available when the total number of secrets is greater than |
 |                 |         | offset and limit parameter combined.                       |
 +-----------------+---------+------------------------------------------------------------+
-| previous        | string  | A HATEOAS url to retrieve the previous set of quotas based |
+|**previous**     | string  | A HATEOAS url to retrieve the previous set of quotas based |
 |                 |         | on the offset and limit parameters. This attribute is only |
 |                 |         | available when the request offset is greater than 0.       |
 +-----------------+---------+------------------------------------------------------------+
@@ -128,32 +117,28 @@ Configured project quota values are interpreted as follows:
 
 .. code::
 
-      200 OK
-
-      Content-Type: application/json
-
       {
         "project_quotas": [
           {
-              "project_id": "1234",
+              "project_id": "123123",
               "project_quotas": {
                   "secrets": 2000,
                   "orders": 0,
                   "containers": -1,
-                  "consumers": null,
-                  "cas": null
+                  "consumers": 1000,
+                  "cas": 0
             }
           },
           {
-              "project_id": "5678",
+              "project_id": "789789",
               "project_quotas": {
                   "secrets": 200,
-                  "orders": 100,
+                  "orders": 0,
                   "containers": -1,
-                  "consumers": null,
-                  "cas": null
+                  "consumers": 1000,
+                  "cas": 0
             }
           },
         ],
-        "total" : 30,
+        "total" : 2,
       }
