@@ -9,13 +9,9 @@ service stores a reference to a policy JSON file in its configuration file,
 :file:`/etc/barbican/barbican.conf`.  Typically, this file is named
 ``policy.json`` and stored in :file:`/etc/barbican/policy.json`.
 
-<<<<<<< HEAD
-Each Key Manager API operation has a line in the policy file that dictates which
-level of access applies as shown in the following example. 
-=======
+
 Each |product name| API call has a line in the policy file that dictates which
-level of access applies:
->>>>>>> master
+level of access applies as shown in the following example:
 
 .. code-block:: ini
 
@@ -39,20 +35,11 @@ in your token.
     "secrets:post": "role:admin or role:creator"
 
 
-<<<<<<< HEAD
-.. warning:: 
-    
-    The Key Manager service scopes the ownership of a secret at
-    the project level.  This means that many calls in the API perform an
-    additional check to ensure that the ``project_id`` of the token matches the
-    ``project_id`` stored as the secret owner.
-    
-=======
 .. warning:: The |product name| service scopes the ownership of a secret at
     the project level.  This means that many calls in the API will perform an
     additional check to ensure that the project_id of the token matches the
     project_id stored as the secret owner.
->>>>>>> master
+
 
 Default Policy
 ~~~~~~~~~~~~~~
