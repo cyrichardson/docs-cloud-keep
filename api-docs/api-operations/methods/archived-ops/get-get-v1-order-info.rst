@@ -10,11 +10,11 @@ Get Order Information
 
 This method retrieves information about a specified order.
 
-This method retrieves information for the specified order including g a link to the secret that was stored as a result of the order (if available).
+This method retrieves information for the specified order including g a link to the 
+secret that was stored as a result of the order (if available).
 
 
-This table shows the possible response codes for this operation:
-
+The following table shows the possible response codes for this operation:
 
 +--------------------------+-------------------------+-------------------------+
 |Response Code             |Name                     |Description              |
@@ -36,9 +36,7 @@ This table shows the possible response codes for this operation:
 Request
 """"""""""""""""
 
-
-
-This table shows the URI parameters for the request:
+The following table shows the URI parameters for the request:
 
 +--------------------------+-------------------------+-------------------------+
 |Name                      |Type                     |Description              |
@@ -55,20 +53,18 @@ This table shows the URI parameters for the request:
 
 
 
-
-
 This operation does not accept a request body.
 
 
 
 
-**Example Get Order Information: JSON request**
+**Example: Get Order Information cURL request**
 
 
 .. code::
 
    curl -H 'Accept: application/json'\
-   https://endpointURL/v1/12345/orders/62d57f53-ecfe-4ae4-87bd-fab2f24e29bc
+        $ENDPOINT/v1/12345/orders/62d57f53-ecfe-4ae4-87bd-fab2f24e29bc
 
 
 
@@ -76,7 +72,7 @@ Response
 """"""""""""""""
 
 
-**Example Get Order Information: JSON response**
+**Example: Get order information JSON response**
 
 
 .. code::

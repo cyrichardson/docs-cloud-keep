@@ -6,11 +6,11 @@ Delete a container
 
 .. code::
 
-    DELETE /v1/containers/{uuid}
+    DELETE /{version}/containers/{container_id}
 
 Deletes a container.
 
-This table shows the possible response codes for this operation:
+The following table shows the possible response codes for this operation:
 
 +------+-----------------------------------------------------------------------------+
 | Code | Description                                                                 |
@@ -27,18 +27,28 @@ This table shows the possible response codes for this operation:
 Request
 """"""""""""""""
 
-This operation does not accept a request body.
+The following table shows the URI parameters for the request:
 
-**Example Delete container: JSON request**
++----------------------------+---------+---------------------------------+------------+
+| Parameter name             | Type    | Description                     | Default    |
++============================+=========+=================================+============+
+|containerID                 | string  | The UUID for the container      | None       |
++----------------------------+---------+---------------------------------+------------+
+
+This operation does not require a response body.
+
+
+**Example: Delete container cURL request**
 
 
 .. code::
 
-      DELETE /v1/containers/{container_uuid}
-      Headers:
-      X-Project-Id: {project_id}
+   curl -X DELETE -H 'X-Auth-Token: $AUTH-TOKEN' \
+        $ENDPOINT/v1/containers/{containerID}
+
 
 Response
 """"""""""""""""
 
-The operation does not return a response body.
+The operation returns an HTTP 204 Accepted response code, if successful. 
+It does not return a response body.

@@ -6,13 +6,13 @@ Delete a secret
 
 .. code::
 
-    DELETE /v1/secrets/{uuid}
+    DELETE /{version}/secrets/{secret_id}
 
 
 
-Deletes a secret by UUId.
+Deletes the specified secret.
 
-This table shows the possible response codes for this operation:
+The following table shows the possible response codes for this operation:
 
 
 +------+-----------------------------------------------------------------------------+
@@ -22,24 +22,34 @@ This table shows the possible response codes for this operation:
 +------+-----------------------------------------------------------------------------+
 | 401  | Invalid X-Auth-Token or the token doesn't have permissions to this resource |
 +------+-----------------------------------------------------------------------------+
-| 404  | Not Found                                                                   |
+| 404  | Secret not found                                                            |
 +------+-----------------------------------------------------------------------------+
 
 
 Request
 """"""""""""""""
 
+The following table shows the URI parameter for the request:
+
++----------------------------+---------+---------------------------------+------------+
+| Parameter name             | Type    | Description                     | Default    |
++============================+=========+=================================+============+
+| secretID                   | string  | The UUID for the secret         | None       |
++----------------------------+---------+---------------------------------+------------+
+
 This operation doesn't take a request body.
 
-**Example Delete secret: JSON request**
+**Example: Delete secret cURL request**
 
 
 .. code::
 
-   DELETE /v1/secrets/{uuid}
-   Headers: X-Project-Id: {project_id}
+   curl -X DELETE -H 'X-Auth-Token: $AUTH-TOKEN' \
+        $ENDPOINT/v1/secrets/{secretID}
+
 
 Response
 """"""""""""""""
 
-This operation doesn't return a response body.
+The operation returns an HTTP 204 Accepted response code, if successful. 
+It does not return a response body.

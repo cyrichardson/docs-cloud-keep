@@ -8,11 +8,11 @@ Delete the project quotas configuration
 
     DELETE /v1/project-quotas/{uuid}
 
-Delete the project quotas configuration for the project with the requested UUID. When
-the project quota configuration is deleted, then the default quotas will be used for
+Delete the project quotas configuration for the project with the requested UUID. After 
+the project quota configuration is deleted, the default quotas are used for 
 the specified project.
 
-This table shows the possible response codes for this operation:
+The following table shows the possible response codes for this operation:
 
 
 +------+-----------------------------------------------------------------------------+
@@ -29,20 +29,29 @@ This table shows the possible response codes for this operation:
 Request
 """"""""""""""""
 
+The following table shows the URI parameter for the request:
+
++----------------------------+---------+---------------------------------+------------+
+| Parameter name             | Type    | Description                     | Default    |
++============================+=========+=================================+============+
+| uuid                       | string  | The UUID for the container      | None       |
++----------------------------+---------+---------------------------------+------------+
+
+
 This operation does not accept a request body.
 
 
-**Example Delete project quota: JSON request**
+**Example: Delete container cURL request**
 
 
 .. code::
 
-      DELETE v1/project-quotas/{uuid}
-      Headers:
-      X-Auth-Token:<token>
+   curl -X DELETE -H 'X-Auth-Token: $AUTH-TOKEN' \
+        $ENDPOINT/v1/project-quotas/{uuid}
 
 
 Response
 """"""""""""""""
 
-This operation does not return a response body.
+The operation returns an HTTP 204 Accepted response code, if successful. 
+It does not return a response body.

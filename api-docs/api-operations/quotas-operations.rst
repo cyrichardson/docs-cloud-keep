@@ -3,9 +3,9 @@
 Quota API Operations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+This section describes the Quota API operations for |product name|:
 
-This section describes the Quota API operations for Rackspace Cloud Keep:
-
+.. include:: ../common-gs/env_variables_in_examples.rst
 
 .. include:: methods/get-get-v1-project-quotas.rst
 .. include:: methods/get-get-v1-project-quota-records.rst

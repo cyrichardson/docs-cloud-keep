@@ -12,7 +12,7 @@ Gets a list of configured project quota records.  Paging is supported using the
 optional parameters offset and limit.
 
 
-This table shows the possible response codes for this operation:
+The following table shows the possible response codes for this operation:
 
 
 +------+-----------------------------------------------------------------------------+
@@ -27,7 +27,7 @@ This table shows the possible response codes for this operation:
 Request
 """"""""""""""""
 
-This table shows the URI parameters for the request:
+The following table shows the URI parameters for the request:
 
 +--------------------------+-------------------------+-------------------------+
 |Name                      |Type                     |Description              |
@@ -39,7 +39,7 @@ This table shows the URI parameters for the request:
 +--------------------------+-------------------------+-------------------------+
 
 
-This table shows the body parameters for the request:
+The following table shows the body parameters for the request:
 
 
 +--------+---------+----------------------------------------------------------------+
@@ -52,54 +52,58 @@ This table shows the body parameters for the request:
 +--------+---------+----------------------------------------------------------------+
 
 
-**Example Get project quotas: JSON request**
+**Example: Get project quotas cURL request**
 
 
 .. code::
 
-   curl -H 'Accept: application/json' -H 'X-Auth-Token:<token>'\
-   https://endpointURL/v1/project-quotas
+   curl -H 'Accept: application/json' \
+        -H 'X-Auth-Token:<token>'\
+        $ENDPOINT/{version}/project-quotas
 
 
 Response
 """"""""""""""""
 
-This table shows the response parameters for the request.
+The following table shows the response parameters for the request.
 
 
-+----------------+---------+--------------------------------------------------------------+
-| Name           | Type    | Description                                                  |
-+================+=========+==============================================================+
-| project-id     | string  | The UUID of a project with configured quota information.     |
-+----------------+---------+--------------------------------------------------------------+
-| project-quotas | dict    | Contains a dictionary with project quota information.        |
-+----------------+---------+--------------------------------------------------------------+
-| secrets        | integer | Contains the effective quota value of the current project    |
-|                |         | for the secret resource.                                     |
-+----------------+---------+--------------------------------------------------------------+
-| orders         | integer | Contains the effective quota value of the current project    |
-|                |         | for the orders resource.                                     |
-+----------------+---------+--------------------------------------------------------------+
-| containers     | integer | Contains the effective quota value of the current project    |
-|                |         | for the containers resource.                                 |
-+----------------+---------+--------------------------------------------------------------+
-| consumers      | integer | Contains the effective quota value of the current project    |
-|                |         | for the consumers resource.                                  |
-+----------------+---------+--------------------------------------------------------------+
-| cas            | integer | Contains the effective quota value of the current project    |
-|                |         | for the CAs resource.                                        |
-+----------------+---------+--------------------------------------------------------------+
-| total          | integer | The total number of configured project quotas records.       |
-+----------------+---------+--------------------------------------------------------------+
-| next           | string  | A HATEOAS url to retrieve the next set of quotas based on    |
-|                |         | the offset and limit parameters. This attribute is only      |
-|                |         | available when the total number of secrets is greater than   |
-|                |         | offset and limit parameter combined.                         |
-+----------------+---------+--------------------------------------------------------------+
-| previous       | string  | A HATEOAS url to retrieve the previous set of quotas based   |
-|                |         | on the offset and limit parameters. This attribute is only   |
-|                |         | available when the request offset is greater than 0.         |
-+----------------+---------+--------------------------------------------------------------+
++------------------+---------+-----------------------------------------------------------+
+| Name             | Type    | Description                                               |
++==================+=========+===========================================================+
+|**project-quotas**| list    | Returns a list of project quota configurations            |
++------------------+---------+-----------------------------------------------------------+
+|**project-quotas**| dict    | Contains a dictionary with project quota information.     |
++------------------+---------+-----------------------------------------------------------+
+|project-quotas.\ | integer | The ID of the project associated with the project quota    |
+|**project_id**   |         |                                                            |
++-----------------+---------+------------------------------------------------------------+
+|project-quotas.\ | integer | Contains the effective quota value of the current project  |
+|*secrets*        |         | for the secret resource.                                   |
++-----------------+---------+------------------------------------------------------------+
+|project-quotas.\ | integer | Contains the effective quota value of the current project  |
+|**orders**       |         | for the orders resource.                                   |
++-----------------+---------+------------------------------------------------------------+
+|project-quotas.\ | integer | Contains the effective quota value of the current project  |
+|**containers**   |         | for the containers resource.                               |
++-----------------+---------+------------------------------------------------------------+
+|project-quotas.\ | integer | Contains the effective quota value of the current project  |
+|**consumers**    |         | for the consumers resource.                                |
++-----------------+---------+------------------------------------------------------------+
+|project-quotas.\ | integer | Contains the effective quota value of the current project  |
+|**cas**          |         | for the CAs resource.                                      |
++-----------------+---------+------------------------------------------------------------+
+|**total**        | integer | The total number of configured project quotas records.     |
++-----------------+---------+------------------------------------------------------------+
+|**next**         | string  | A HATEOAS url to retrieve the next set of quotas based on  |
+|                 |         | the offset and limit parameters. This attribute is only    |
+|                 |         | available when the total number of secrets is greater than |
+|                 |         | offset and limit parameter combined.                       |
++-----------------+---------+------------------------------------------------------------+
+| previous        | string  | A HATEOAS url to retrieve the previous set of quotas based |
+|                 |         | on the offset and limit parameters. This attribute is only |
+|                 |         | available when the request offset is greater than 0.       |
++-----------------+---------+------------------------------------------------------------+
 
 
 Configured project quota values are interpreted as follows:
@@ -119,7 +123,7 @@ Configured project quota values are interpreted as follows:
 +-------+-----------------------------------------------------------------------------+
 
 
-**Example Get project quotas: JSON response**
+**Example: Get project quotas JSON response**
 
 
 .. code::

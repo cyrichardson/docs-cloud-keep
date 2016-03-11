@@ -13,7 +13,7 @@ of the requester is derived from the authentication token provided in the
 X-Auth-Token header.
 
 
-This table shows the possible response codes for this operation:
+The following table shows the possible response codes for this operation:
 
 
 +------+-----------------------------------------------------------------------------+
@@ -29,7 +29,7 @@ Request
 """"""""""""""""
 
 
-This table shows the URI parameters for the request:
+The following table shows the URI parameter for the request:
 
 +--------------------------+-------------------------+-------------------------+
 |Name                      |Type                     |Description              |
@@ -44,40 +44,41 @@ This table shows the URI parameters for the request:
 This operation does not accept a request body.
 
 
-**Example Get project quotas: JSON request**
+**Example: Get project quotas cURL request**
 
 
 .. code::
 
-   curl -H 'Accept: application/json' -H 'X-Auth-Token:<token>'\
-   https://endpointURL/v1/quotas
+   curl -H 'Accept: application/json' \
+        -H 'X-Auth-Token:$AUTH-TOKEN'\
+        $ENDPOINT/v1/quotas
 
 
 Response
 """"""""""""""""
 
-This table shows the response attributes for this request.
+The following table shows the response attributes for this request.
 
-+------------+---------+--------------------------------------------------------------+
-| Name       | Type    | Description                                                  |
-+============+=========+==============================================================+
-| quotas     | dict    | Contains a dictionary with quota information                 |
-+------------+---------+--------------------------------------------------------------+
-| secrets    | integer | Contains the effective quota value of the current project    |
-|            |         | for the secret resource.                                     |
-+------------+---------+--------------------------------------------------------------+
-| orders     | integer | Contains the effective quota value of the current project    |
-|            |         | for the orders resource.                                     |
-+------------+---------+--------------------------------------------------------------+
-| containers | integer | Contains the effective quota value of the current project    |
-|            |         | for the containers resource.                                 |
-+------------+---------+--------------------------------------------------------------+
-| consumers  | integer | Contains the effective quota value of the current project    |
-|            |         | for the consumers resource.                                  |
-+------------+---------+--------------------------------------------------------------+
-| cas        | integer | Contains the effective quota value of the current project    |
-|            |         | for the CAs resource.                                        |
-+------------+---------+--------------------------------------------------------------+
++--------------+---------+--------------------------------------------------------------+
+| Name         | Type    | Description                                                  |
++==============+=========+==============================================================+
+|**quotas**    | dict    | Returns a dictionary with quota information                  |
++--------------+---------+--------------------------------------------------------------+
+|quotas.\      | integer | Returns the effective quota value of the current project     |
+|**secrets**   |         | for the secret resource.                                     |
++--------------+---------+--------------------------------------------------------------+
+|quotas.\      | integer | Returns the effective quota value of the current project     |
+|**orders**    |         | for the orders resource.                                     |
++--------------+---------+--------------------------------------------------------------+
+|quotas.\      | integer | Returns the effective quota value of the current project     |
+|**containers**|         | for the containers resource.                                 |
++--------------+---------+--------------------------------------------------------------+
+|quotas.\      | integer | Returns the effective quota value of the current project     |
+|**consumers** |         | for the consumers resource.                                  |
++--------------+---------+--------------------------------------------------------------+
+|quotas.\      | integer | Returns the effective quota value of the current project     |
+|**cas**       |         | for the CAs resource.                                        |
++--------------+---------+--------------------------------------------------------------+
 
 Effective quota values are interpreted as follows:
 
@@ -92,7 +93,7 @@ Effective quota values are interpreted as follows:
 |       | created for the current project.                                            |
 +-------+-----------------------------------------------------------------------------+
 
-**Example Get project quotas: JSON response**
+**Example: Get project quotas HTTP header and JSON response**
 
 
 .. code::

@@ -13,7 +13,7 @@ review the |product name| :ref:`concepts<concepts>` to understand the
 API workflow and use cases.  
 
 .. note:: 
-     These examples use the ``$API_ENDPOINT`` and ``$AUTH_TOKEN`` environment 
+     These examples use the ``$ENDPOINT`` and ``$AUTH_TOKEN`` environment 
      variables to specify the API endpoint and authentication token  
      for accessing the service. Be sure to 
      :ref:`configure these variables<configure-environment-variables>` before running the 

@@ -13,7 +13,7 @@ Create or update the configured project quotas for the project with the specifie
 
 
 
-This table shows the possible response codes for this operation:
+The following table shows the possible response codes for this operation:
 
 
 +------+-----------------------------------------------------------------------------+
@@ -31,7 +31,7 @@ Request
 """"""""""""""""
 
 
-This table shows the URI parameters for the request:
+The following table shows the URI parameters for the request:
 
 +--------------------------+-------------------------+-------------------------+
 |Name                      |Type                     |Description              |
@@ -46,10 +46,7 @@ This table shows the URI parameters for the request:
 |                          |                         |specified project.       |
 +--------------------------+-------------------------+-------------------------+
 
-This table shows the parameters for the request:
-
-Request Attributes
-******************
+The following table shows the body parameters for the request:
 
 +----------------+---------+----------------------------------------------+
 | Attribute Name | Type    | Description                                  |
@@ -88,12 +85,12 @@ Configured project quota values are specified as follows:
 |       | quota should be used for that resource for the specified project.           |
 +-------+-----------------------------------------------------------------------------+
 
-**Example update project quotas: JSON request**
+**Example: Update project quotas cURL request**
 
 
 .. code::
 
-      curl -s https://endpointURL/v1/12345/project-quotas/{uuid} \
+      curl -s $ENDPOINT/v1/12345/project-quotas/{uuid} \
       -X PUT \
       -d '{
             "project_quotas": {
@@ -103,11 +100,12 @@ Configured project quota values are specified as follows:
             }
           }
           ' \
-          -H 'X-Auth-Token: your_auth_token' \
+          -H 'X-Auth-Token: $AUTH_TOKEN' \
           -H 'Content-Type: application/json'
 
 
 Response
 """"""""""""""""
 
-This request does not return a response body.
+The operation returns an HTTP 204 Accepted response code, if successful. 
+It does not return a response body.

@@ -117,9 +117,9 @@ endpoints
 
 To make it easier to include these and other values in API requests, use the ``export`` 
 command to create environment variables that can be substituted for the actual values. 
-For example, you can create an ``API_ENDPOINT`` variable to store the URL for accessing 
+For example, you can create an ``ENDPOINT`` variable to store the URL for accessing 
 an API service. To reference the value in an API request, prefix the variable name with a $, 
-for example ``ENDPOINT``.
+for example ``$ENDPOINT``.
 
 
 .. include:: ../common-gs/using-env-variables.rst
@@ -127,7 +127,7 @@ for example ``ENDPOINT``.
 **Create environment variables**
 
 #. In the ``token`` section of the authentication response, copy the token ``id`` and
-   tenant ``id`` values from the token object. The following example shows example values 
+   tenant ``id`` values from the token object. The following example shows sample values 
    only.
 
       .. include:: ../common-gs/samples/auth-token-object.rst
@@ -155,7 +155,7 @@ for example ``ENDPOINT``.
 #. In the ``service catalog`` section of the authentication response, copy the ``publicURL``
    value for the |apiservice|, version, and region that you want to access.
 
-   The following example shows the endpoint available for the |apiservice|.
+   The following Example:shows the endpoint available for the |apiservice|.
 
    .. include:: ../common-gs/samples/service-catalog-endpoint.rst
    

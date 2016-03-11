@@ -18,7 +18,7 @@ The |product name| API supports JSON data serialization request and response for
 .. toctree:: :hidden:
    :maxdepth: 2
 
-   authenticate
+   authenticate-general-api
    role-based-access-control
    service-access-endpoints
    Rackspace Cloud Keep contract version <contract-version>

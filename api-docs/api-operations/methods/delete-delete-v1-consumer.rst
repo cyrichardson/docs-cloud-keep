@@ -6,10 +6,10 @@ Delete a consumer
 
 .. code::
 
-    DELETE {container_ref}/consumers
+    DELETE /{version}/{container_ref}/consumers/{consumer_id}
 
 
-Deletes a consumer.
+Deletes the specified consumer for the specified container.
 
 
 +------+-----------------------------------------------------------------------------+
@@ -26,19 +26,28 @@ Deletes a consumer.
 Request
 """"""""""""""""
 
-This operation does not accept a request body.
+The following table shows the URI parameters for the request:
 
-**Example Delete consumer: JSON request**
++----------------------------+---------+---------------------------------+------------+
+| Parameter name             | Type    | Description                     | Default    |
++============================+=========+=================================+============+
+|containerID                 | string  | The UUID for the container      | None       |
++----------------------------+---------+---------------------------------+------------+
+|consumerID                  | string  | The UUID for the consumer       | None       |
++----------------------------+---------+---------------------------------+------------+
 
+This operation does not require a response body.
+
+**Example: Delete consumer cURL request**
 
 .. code::
 
-    DELETE {container_ref}/consumers
-    Headers: X-Project-Id: {project_id}
-
+   curl -X DELETE -H 'X-Auth-Token: $AUTH-TOKEN' \
+        $ENDPOINT/v1/containers/{containerID}/consumers/{consumerID}
 
 
 Response
 """"""""""""""""
 
-This operation does not return a response body.
+The operation returns an HTTP 204 Accepted response code, if successful. 
+It does not return a response body.

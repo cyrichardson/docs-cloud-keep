@@ -6,30 +6,40 @@ Get Containers
 
 .. code::
 
-    GET /{version}/{tenantId}/containers
+    GET /{version}/containers
 
-Lists a project's containers.
+Returns a list of a project's containers.
 
-Returned containers will be ordered by creation date; oldest to newest.
+Returned containers are ordered by creation date; oldest to newest.
 
-This table shows the possible response codes for this operation:
+The following table shows the possible response codes for this operation:
 
-
-
-+------+-----------------------------------------------------------------------------+
-| Code | Description                                                                 |
-+======+=============================================================================+
-| 200  | Successful Request                                                          |
-+------+-----------------------------------------------------------------------------+
-| 401  | Invalid X-Auth-Token or the token doesn't have permissions to this resource |
-+------+-----------------------------------------------------------------------------+
++--------------------------+-------------------------+-------------------------+
+|Response Code             |Name                     |Description              |
++==========================+=========================+=========================+
+|200                       |OK                       |This status code is      |
+|                          |                         |returned when the        |
+|                          |                         |containers have been     |
+|                          |                         |successfully retrieved   |
+|                          |                         |for the tenant.          |
++--------------------------+-------------------------+-------------------------+
+|401                       |Unauthorized             |This status code is      |
+|                          |                         |returned when the        |
+|                          |                         |user was not succesfully |
+|                          |                         |authenticated.           |
++--------------------------+-------------------------+-------------------------+
+|403                       |Forbidden                |This status code is      |
+|                          |                         |returned when the        |
+|                          |                         |user does not have the   |
+|                          |                         |correct RBAC role(s).    |
++--------------------------+-------------------------+-------------------------+
 
 
 Request
 """"""""""""""""
 
 
-This table shows the URI parameters for the request:
+The following table shows the URI parameters for the request:
 
 +--------+---------+------------------------------------------------------------+
 | Name   | Type    | Description                                                |
@@ -45,42 +55,43 @@ This table shows the URI parameters for the request:
 This operation does not accept a request body.
 
 
-**Example Get Containers: JSON request**
+**Example: Get containers cURL request**
 
 
 .. code::
 
-    curl -H 'Accept: application/json' -H 'X-Project-Id:12345'\
-    https://endpointURL/v1/containers
+    curl -H 'Accept: application/json' \
+         -H 'X-Auth-Token:$AUTH-TOKEN' \
+         $ENDPOINT/v1/containers?offset={offset}&limit={limit}
 
 
 Response
 """"""""""""""""
 
-This table shows the response parameters for the request:
+The following table shows the response parameters for the request:
 
 +------------+---------+--------------------------------------------------------+
 | Name       | Type    | Description                                            |
 +============+=========+========================================================+
-| containers | list    | Contains a list of dictionaries filled with container  |
-|            |         | data                                                   |
+|containers  | list    | Returns a list of dictionaries with information about  |
+|            |         | each container that has been created in Cloud Keep.    |
 +------------+---------+--------------------------------------------------------+
-| total      | integer | The total number of containers available to the user   |
+|total       | integer | The total number of containers available to the user   |
 +------------+---------+--------------------------------------------------------+
-| next       | string  | A HATEOAS url to retrieve the next set of containers   |
+|next        | string  | A HATEOAS url to retrieve the next set of containers   |
 |            |         | based on the offset and limit parameters. This         |
 |            |         | attribute is only available when the total number of   |
 |            |         | containers is greater than offset and limit parameter  |
 |            |         | combined.                                              |
 +------------+---------+--------------------------------------------------------+
-| previous   | string  | A HATEOAS url to retrieve the previous set of          |
+|previous    | string  | A HATEOAS url to retrieve the previous set of          |
 |            |         | containers based on the offset and limit parameters.   |
 |            |         | This attribute is only available when the request      |
 |            |         | offset is greater than 0.                              |
 +------------+---------+--------------------------------------------------------+
 
 
-**Example Get Containers: JSON response**
+**Example: Get containers JSON response**
 
 
 .. code::
@@ -89,13 +100,13 @@ This table shows the response parameters for the request:
         "containers": [
             {
                 "consumers": [],
-                "container_ref": "https://{barbican_host}/v1/containers/{uuid}",
+                "container_ref": "https://iad.keep.api.rackspacecloud.com/v1/containers/6ad67bc0-17fd-45ce-b84a-a9be44fe069b",
                 "created": "2015-03-26T21:10:45.417835",
                 "name": "container name",
                 "secret_refs": [
                     {
                         "name": "private_key",
-                        "secret_ref": "https://{barbican_host}/v1/secrets/{uuid}"
+                        "secret_ref": "https://iad.keep.api.rackspacecloud.com/v1/secrets/485950f0-37a5-4ba4-b1d6-413f79b849ef"
                     }
                 ],
                 "status": "ACTIVE",
@@ -105,3 +116,4 @@ This table shows the response parameters for the request:
         ],
         "total": 1
       }
+

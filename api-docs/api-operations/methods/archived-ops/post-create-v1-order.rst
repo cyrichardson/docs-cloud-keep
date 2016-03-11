@@ -13,7 +13,7 @@ This method creates an order.
 This method creates a new order.
 
 
-This table shows the possible response codes for this operation:
+The following table shows the possible response codes for this operation:
 
 
 +--------------------------+-------------------------+-------------------------+
@@ -49,7 +49,7 @@ Request
 """"""""""""""""
 
 
-This table shows the URI parameters for the request:
+The following table shows the URI parameters for the request:
 
 +--------------------------+-------------------------+-------------------------+
 |Name                      |Type                     |Description              |
@@ -61,7 +61,7 @@ This table shows the URI parameters for the request:
 +--------------------------+-------------------------+-------------------------+
 
 
-This table shows the body parameters for the request:
+The following table shows the body parameters for the request:
 
 +--------------------------+-------------------------+-------------------------+
 |Name                      |Type                     |Description              |
@@ -91,7 +91,7 @@ This table shows the body parameters for the request:
 +--------------------------+-------------------------+-------------------------+
 
 
-**Example Create Order: JSON request**
+**Example:Create Order: JSON request**
 
 
 .. code::
@@ -114,7 +114,7 @@ Response
 """"""""""""""""
 
 
-**Example Create Order: JSON response**
+**Example:Create Order: JSON response**
 
 
 .. code::

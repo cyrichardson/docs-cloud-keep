@@ -10,7 +10,7 @@ Get Project quota details
 
 Retrieves a project's configured project quota information.
 
-This table shows the possible response codes for this operation:
+The following table shows the possible response codes for this operation:
 
 +------+-----------------------------------------------------------------------------+
 | Code | Description                                                                 |
@@ -26,8 +26,7 @@ This table shows the possible response codes for this operation:
 Request
 """"""""""""""""
 
-
-This table shows the URI parameters for the request:
+The following table shows the URI parameters for the request:
 
 +--------------------------+-------------------------+-------------------------+
 |Name                      |Type                     |Description              |
@@ -46,13 +45,14 @@ This table shows the URI parameters for the request:
 This operation does not accept a request body.
 
 
-**Example Get project quota details: JSON request**
+**Example: Get project quota details cURL request**
 
 
 .. code::
 
-   curl -H 'Accept: application/json' -H 'X-Auth-Token:<token>'\
-   https://endpointURL/v1/project-quotas/{uuid}
+   curl -H 'Accept: application/json' \
+        -H 'X-Auth-Token:<token>'\
+        $ENDPOINT/project-quotas/{uuid}
 
 
 Response
@@ -82,7 +82,7 @@ The following table shows the response attributes for this request.
 +----------------+---------+--------------------------------------------------------------+
 
 
-**Example Get Project quota details: JSON response**
+**Example: Get project quota details JSON response**
 
 
 .. code::

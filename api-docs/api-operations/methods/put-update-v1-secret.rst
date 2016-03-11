@@ -6,21 +6,29 @@ Update Secret
 
 .. code::
 
-    PUT /{version}/{tenantId}/secrets/{secret_id}
+    PUT /{version}/secrets/{secret_id}
 
-This method updates a specified secret.
+This method stores the payload for an existing secret that was created without a payload.
+To provide secret information after the secret is created, submit a PUT request to the 
+URI that contains the secret ID of the secret you want to update. The PUT request should 
+include the payload, as well as the appropriate Content-Type and Content-Encoding 
+definitions.
 
-This method updates a secret. To provide secret information after the secret is created, submit a PUT request to the URI that contains the secret ID of the secret you want to update. Note that you can only make PUT request once after a POST call that does not include a payload. Also note that no other attributes of a secret can be modified via PUT.. 				The PUT request should include the payload, as well as the appropriate Content-Type and Content-Encoding definitions.
+
+.. note::
+
+   You can only make PUT request once after a POST operation that does not 
+   include a payload. Also note that you cannot modify any other attributes for 
+   a secret resource by using the PUT operation.
 
 
-
-This table shows the possible response codes for this operation:
+The following table shows the possible response codes for this operation:
 
 
 +--------------------------+-------------------------+-------------------------+
 |Response Code             |Name                     |Description              |
 +==========================+=========================+=========================+
-|200                       |Success                  |This status code is      |
+|204                       |No Content               |This status code is      |
 |                          |                         |returned when the secret |
 |                          |                         |has been successfully    |
 |                          |                         |updated.                 |
@@ -40,7 +48,7 @@ This table shows the possible response codes for this operation:
 |404                       |Error                    |This error code is       |
 |                          |                         |returned when the        |
 |                          |                         |supplied UUID doesn't    |
-|                          |                         |match the secret in the  |
+|                          |                         |match a secret in the    |
 |                          |                         |datastore for the        |
 |                          |                         |specified tenant.        |
 +--------------------------+-------------------------+-------------------------+
@@ -63,48 +71,43 @@ Request
 """"""""""""""""
 
 
-This table shows the URI parameters for the request:
+The following table shows the URI parameters for the request:
 
 +--------------------------+-------------------------+-------------------------+
 |Name                      |Type                     |Description              |
 +==========================+=========================+=========================+
-|{tenantId}                |String *(Required)*      |This parameter specifies |
-|                          |                         |the tenant ID of the     |
-|                          |                         |client subscribing to    |
-|                          |                         |the Barbican service     |
-+--------------------------+-------------------------+-------------------------+
 |{secret_id}               |String                   |This parameter specifies |
 |                          |                         |the unique identifier of |
 |                          |                         |a secret that has been   |
 |                          |                         |stored.                  |
 +--------------------------+-------------------------+-------------------------+
-
-
+|{secretDataFile}          |Binary                   |A file containing the    |
+|                          |                         |binary data to be stored | 
+|                          |                         |as the secret payload.   |
++--------------------------+-------------------------+-------------------------+
 
 
 
 This operation does not accept a request body.
 
 
-**Example Update Secret: JSON request**
+**Example: Update secret cURL request**
 
 
 .. code::
 
-   curl -i -X PUT -H 'Content-Type: application/octet-stream' \
-        -T ./secret_key_file https://endpointURL/v1/12345/secrets/a83018d1-e657-4957-9ddd-42a479753e6b
+   curl -X PUT -H 'Content-Type: application/octet-stream' \
+        -H 'X-Auth-Token: $AUTH-TOKEN' \
+        -T {secretDataFile} $ENDPOINT/v1/secrets/a83018d1-e657-4957-9ddd-42a479753e6b
 
+
+..  note::
+    The -T option to curl is used to send the contents of the specified file as the 
+    body of the request.  For more information see https://curl.haxx.se/docs/manual.html.
 
 
 Response
 """"""""""""""""
 
-
-**Example Update Secret: JSON response**
-
-
-.. code::
-
-   HTTP/1.1 200 OK
-   Content-Length: 0
-   x-openstack-request-id: req-ab107dce-adfd-4b8d-b9eb-7095f8cf9b15
+The operation returns an HTTP 204 Accepted response code, if successful. 
+It does not return a response body.

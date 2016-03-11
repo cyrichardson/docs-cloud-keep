@@ -8,14 +8,13 @@ Get Orders
 
     GET /{version}/{tenantId}/orders
 
-This method retrieves all orders for a given tenant.
+This method lists all orders for a specified tenant. Performing a GET on the secrets 
+resource with no UUID retrieves a batch of the most recent orders per the requesting 
+tenant. 				
 
-This method lists all orders for a specified tenant. Performing a GET on the secrets resource with no UUID retrieves a batch of the most recent orders per the requesting tenant. 				The retrieved list of orders is ordered by oldest to newest created date.
+The retrieved list of orders is ordered by oldest to newest created date.
 
-
-
-This table shows the possible response codes for this operation:
-
+The following table shows the possible response codes for this operation:
 
 +--------------------------+-------------------------+-------------------------+
 |Response Code             |Name                     |Description              |
@@ -31,7 +30,7 @@ Request
 """"""""""""""""
 
 
-This table shows the URI parameters for the request:
+The following table shows the URI parameters for the request:
 
 +--------------------------+-------------------------+-------------------------+
 |Name                      |Type                     |Description              |
@@ -46,19 +45,20 @@ This table shows the URI parameters for the request:
 This operation does not accept a request body.
 
 
-**Example Get Orders: JSON request**
+**Example: Get orders cURL request**
 
 
 .. code::
 
-   curl -H 'Accept: application/json' -H 'X-Project-Id:12345'\
-   https://endpointURL/v1/orders
+   curl -H 'Accept: application/json' \
+        -H 'X-Project-Id:12345'\
+        $ENDPOINT/orders
 
 
 Response
 """"""""""""""""
 
-**Example Get Orders: JSON response**
+**Example: Get order JSON response**
 
 
 .. code::
