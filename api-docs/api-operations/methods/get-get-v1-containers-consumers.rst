@@ -62,13 +62,13 @@ The following table shows the URI parameters for the request:
 .. code::
 
     curl -H 'Accept: application/json' -H 'X-Auth-Token:$AUTH-TOKEN'\
-    $ENDPOINT/v1/containers/{containerID}/consumers/?offset={offset}&limit={limit}
+         $ENDPOINT/v1/containers/{containerID}/consumers/?offset={offset}&limit={limit}
 
 
 Response
 """"""""""""""""
 
-The following table shows the response parameters for this request.
+The following table shows the response attributes for this request.
 
 +-------------+---------+---------------------------------------------------------------+
 | Name        | Type    | Description                                                   |

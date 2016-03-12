@@ -10,6 +10,12 @@ Delete a container
 
 Deletes a container.
 
+.. note:: 
+    To prevent unexpected service issues, ensure that you notify all 
+    consumers registered for the container before you delete it. 
+    Use the :ref:`retrieve consumers <get-containers-consumers>` operation 
+    to get a list of consumers.
+
 The following table shows the possible response codes for this operation:
 
 +------+-----------------------------------------------------------------------------+

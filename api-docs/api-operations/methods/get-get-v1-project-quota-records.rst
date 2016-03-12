@@ -56,7 +56,7 @@ The following table shows the body parameters for the request:
 Response
 """"""""""""""""
 
-The following table shows the response parameters for the request.
+The following table shows the response atttributes for the request.
 
 +------------------+---------+-----------------------------------------------------------+
 | Name             | Type    | Description                                               |

@@ -68,7 +68,7 @@ This operation does not accept a request body.
 Response
 """"""""""""""""
 
-The following table shows the response parameters for the request:
+The following table shows the response atttributes for the request:
 
 +------------+---------+--------------------------------------------------------+
 | Name       | Type    | Description                                            |
