@@ -8,6 +8,7 @@ Learn about the available |product name| API resources and methods and see reque
 response examples.
 
 ..  note::
-    This document refers to version "v1" of the API.  This means that you should use 
-    "v1" in the examples
-    where you see {version}.
+    This document refers to version "v1" of the API. When you submit a request to the 
+    |apiservice|, append the version number to the API endpoint in the URI, for example 
+    ``$ENDPOINT/v1/containers/{containerID}/consumers``. In the examples, replace any 
+    *{version}* place holder values with ``v1``.
