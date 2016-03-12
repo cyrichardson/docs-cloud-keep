@@ -37,7 +37,7 @@ easily provided inside the JSON data in a one-step secret storage.
    The secret metadata is now stored in Cloud Keep with a secret ID of ``943c8f98-e980-4cc4-0da1-8ed0993bcf55``. Note that you have only created secret metadata, not the actual secret
    itself.  You need to remember the secret ID for the subsequent **PUT** which will store the payload itself.
 
-.. code::
+   .. code::
 
         $ export SECRET_ID=943c8f98-e980-4cc4-0da1-8ed0993bcf55
 

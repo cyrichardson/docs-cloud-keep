@@ -139,7 +139,6 @@ release='v1.'
 #keep_warnings = False
 
 # -- Options for HTML output ----------------------------------------------
-# -- Options for HTML output ----------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
@@ -222,7 +221,7 @@ html_static_path = []
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'RackspaceCloudApiCloudKeepDeveloperDoc'
+htmlhelp_basename = 'RackspaceCloudKeepAPIDeveloperDoc'
 
 # this will change the 'paragraph' character to '#'
 html_add_permalinks = '#'

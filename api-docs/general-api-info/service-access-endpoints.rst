@@ -11,7 +11,7 @@ services.
 .. tip::
    To help you decide which regionalized endpoint to use, read about
    special considerations for choosing a data center at
-   http://www.rackspace.com/knowledge_center/article/about-regions.
+   :how-to:`About regions <about-regions>`.
 
 If you are working with cloud services that are in one of the Rackspace
 data centers, using the ServiceNet endpoint in the same data center has
@@ -30,7 +30,7 @@ environments.
    You should copy the base URLs directly from the catalog rather than
    trying to construct them manually.
 
-   Rackspace Cloud Identity returns a service catalog, which includes
+   Rackspace Cloud Identity returns a :ref:<service catalog, which includes
    regional endpoints with your account ID. Your account ID, also known as
    project ID or tenant ID, refers to your Rackspace account number.
 
