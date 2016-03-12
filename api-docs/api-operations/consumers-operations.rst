@@ -3,7 +3,12 @@
 Consumers API Operations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This section describes the Consumers API operations for |product name|.
+The consumer resource provides a method to register as 
+an interested party for a container. 
+
+Use the Consumers API operations to view and manage registered 
+consumers. 
+
 
 .. include:: ../common-gs/env_variables_in_examples.rst
 
