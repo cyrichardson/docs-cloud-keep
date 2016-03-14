@@ -3,6 +3,6 @@
   "githubUrl": "https://github.com/rackerlabs/docs-barbican/",
   "githubBranch": "master",
   "meta": {
-    "preferGithubIssues": false
+    "preferGithubIssues": yes
   }
 }
