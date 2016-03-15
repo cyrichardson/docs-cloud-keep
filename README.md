@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/rackerlabs/docs-barbican.svg?branch=master)](https://travis-ci.org/rackerlabs/docs-barbican)
+[![build badge](https://build.developer.rackspace.com/rackerlabs/docs-barbican/badge?branch=master)](https://build.developer.rackspace.com/rackerlabs/docs-barbican/)
 
 
 # Rackspace Cloud Keep API documentation
