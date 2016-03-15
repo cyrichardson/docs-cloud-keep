@@ -29,6 +29,14 @@ The following table shows the possible response codes for this operation:
 Request
 """"""""""""""""
 
+The following table shows the URI parameters for this request.
+
++-------------------+---------+--------------------------------------------+------------+
+|Parameter name     |Type     |Description                                 |Default     |
++===================+=========+============================================+============+
+|containerID        | string  | The UUID for the container                 | None       |
++-------------------+---------+--------------------------------------------+------------+
+
 
 There are no URL parameters for this request.
 
@@ -36,14 +44,12 @@ There are no URL parameters for this request.
 The following table shows the body parameters for the request:
 
 +-------------------+---------+--------------------------------------------+------------+
-| Parameter name    | Type    | Description                                | Default    |
+|Parameter name     |Type     |Description                                 |Default     |
 +===================+=========+============================================+============+
 |name               | string  | The name of the consumer set by the user.  | None       |
 +-------------------+---------+--------------------------------------------+------------+
-|consumerURL        | string  | The url for the user or service using the  | None       |
+|URL                | string  | The url for the user or service using the  | None       |
 |                   |         | container.                                 |            |
-+-------------------+---------+--------------------------------------------+------------+
-|containerID        | string  | The UUID for the container                 | None       |
 +-------------------+---------+--------------------------------------------+------------+
 
 

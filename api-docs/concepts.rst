@@ -117,7 +117,7 @@ This guide assumes that you are running |product name| in a local development en
 .. _generic_containers:
 
 Generic Containers
-######################
+^^^^^^^^^^^^^^^^^^^^^
 
 A generic container is used for any type of container that a user may wish to create.
 There are no restrictions on the type or amount of secrets that can be held within a container.
@@ -151,7 +151,7 @@ in the same container reference:
 .. _certificate_containers:
 
 Certificate Containers
-##########################
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A certificate container is used for storing the following secrets that are relevant to
 certificates:
@@ -202,7 +202,7 @@ PEM formatted PKCS7 certificate chain.
 .. _rsa_containers:
 
 RSA Containers
-#######################
+^^^^^^^^^^^^^^^^^^
 
 An RSA container is used for storing RSA public keys, private keys, and private
 key pass phrases.
@@ -242,7 +242,7 @@ Quotas
 
 All users authenticated with |product name| can read the effective quota values
 that apply to their project. |product name| identifies the project for a user based on 
-the project scope data include in the authentication token. 
+the project scope data included in the authentication token. 
 
 Service administrators can read, set, and delete quota configurations for each
 project known to |product name|.  These operations are available to an authenticated user
@@ -268,7 +268,7 @@ and consumers.  The following table describes the possible values for the quota 
 .. _default_project_quotas:
 
 Default Quotas
-################
+^^^^^^^^^^^^^^^^^
 
 When no project quotas have been set for a project, the default
 project quotas are enforced for that project.  Default quotas are specified
