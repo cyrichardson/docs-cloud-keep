@@ -29,6 +29,14 @@ The following table shows the possible response codes for this operation:
 Request
 """"""""""""""""
 
+The following table shows the URI parameters for this request.
+
++-------------------+---------+--------------------------------------------+------------+
+|Parameter name     |Type     |Description                                 |Default     |
++===================+=========+============================================+============+
+|containerID        | string  | The UUID for the container                 | None       |
++-------------------+---------+--------------------------------------------+------------+
+
 
 There are no URL parameters for this request.
 
@@ -36,14 +44,12 @@ There are no URL parameters for this request.
 The following table shows the body parameters for the request:
 
 +-------------------+---------+--------------------------------------------+------------+
-| Parameter name    | Type    | Description                                | Default    |
+|Parameter name     |Type     |Description                                 |Default     |
 +===================+=========+============================================+============+
 |name               | string  | The name of the consumer set by the user.  | None       |
 +-------------------+---------+--------------------------------------------+------------+
 |URL                | string  | The url for the user or service using the  | None       |
 |                   |         | container.                                 |            |
-+-------------------+---------+--------------------------------------------+------------+
-|containerID        | string  | The UUID for the container                 | None       |
 +-------------------+---------+--------------------------------------------+------------+
 
 
@@ -64,6 +70,27 @@ The following table shows the body parameters for the request:
 Response
 """"""""""""""""
 
+The following table shows the response attribute for this request.
+
++-------------+---------+---------------------------------------------------------------+
+| Name        | Type    | Description                                                   |
++=============+=========+===============================================================+
+|**status**   | string  | Returns the current state for the specified consumer          |
++-------------+---------+---------------------------------------------------------------+    
+|**updated**  | date    | The date and time that the consumer was last updated.         |
++-------------+---------+---------------------------------------------------------------+    
+|**name**     | string  | The name of the container that the user is registering for    |
++-------------+---------+---------------------------------------------------------------+ 
+|**consumers**| dict    | Returns a dictionary of information for the                   |
+|             |         | consumer resource.                                            |
++-------------+---------+---------------------------------------------------------------+   
+|consumers.\  | string  | Returns the URL for the user or service using the container.  |
+|**URL**      |         | for the containers resource. In the response example, the     |
+|             |         | consumer URL is ``https://consum.er``.                        |
++-------------+---------+---------------------------------------------------------------+
+|consumers.\  | string  | The name of the consumer set by the user.                     |
+|**name**     |         |                                                               |
++-------------+---------+---------------------------------------------------------------+
 
 
 **Example: Create Consumer JSON response**
@@ -82,6 +109,4 @@ Response
             }
     }
 
-where:
 
-- the consumer URL is https://consum.er

@@ -14,21 +14,18 @@ There are three different types of containers that can be created: generic,
 rsa, and certificate.
 
 **Generic**
-
-This type of container holds any number of references to secrets. Each secret
-reference is accompanied by a name. Unlike other container types, no specific
-restrictions are enforced on the contents name attribute.
+   This type of container holds any number of references to secrets. Each secret
+   reference is accompanied by a name. Unlike other container types, no specific
+   restrictions are enforced on the contents name attribute.
 
 **RSA**
-
-This type of container is designed to hold references to only three different
-secrets. These secrets are enforced by the their accompanied names: public_key,
-private_key, and private_key_passphrase.
+   This type of container is designed to hold references to only three different
+   secrets. These secrets are enforced by the their accompanied names: public_key,
+   private_key, and private_key_passphrase.
 
 **Certificate**
-
-This type of container is designed to hold a reference to a certificate and
-optionally private_key, private_key_passphrase, and intermediates.
+   This type of container is designed to hold a reference to a certificate and
+   optionally private_key, private_key_passphrase, and intermediates.
 
 
 The following table shows the possible response codes for this operation:
@@ -97,7 +94,7 @@ The following table shows the body parameters for the request:
 Response
 """"""""""""""""
 
-The following table shows the response parameters for this request.
+The following table shows the response atttributes for this request.
 
 +-------------------+---------+----------------------------------------------------+
 | Parameter name    | Type    | Description                                        |

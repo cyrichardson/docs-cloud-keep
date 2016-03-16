@@ -11,7 +11,10 @@ Create Secret
 This method creates and stores a secret.
 
 ..  note::
-    The POST request always creates and stores secret metadata. If a payload is provided with the POST request, it is encrypted and stored, and then linked with this metadata. If no payload is provided in the POST request, it must be provided in a subsequent PUT request.
+    The POST request always creates and stores secret metadata. If a payload is provided 
+    with the POST request, it is encrypted and stored, and then linked with this metadata. 
+    If no payload is provided in the POST request, it must be provided in a subsequent 
+    PUT request.
 
 
 The following table shows possible response codes for this operation:
@@ -223,26 +226,35 @@ The following table shows the body parameters for the request:
 .. code::
 
    curl -X POST $ENDPOINT/v1/secrets -H 'Content-Type: application/json'\
-   -H 'Accept: application/json -H 'X-Auth-Token: $AUTH-TOKEN' -d \
-   '{
-     "name": "key",
-     "expiration": "2014-09-01T19:14:44.180394",
-     "algorithm": "aes",
-     "bit_length": 256,
-     "mode": "cbc",
-     "payload": "secretsecretsecret",
-     "payload_content_type": "text/plain"
-     }'
+        -H 'Accept: application/json -H 'X-Auth-Token: $AUTH-TOKEN' -d \
+        '{
+          "name": "key",
+          "expiration": "2014-09-01T19:14:44.180394",
+          "algorithm": "aes",
+          "bit_length": 256,
+          "mode": "cbc",
+          "payload": "secretsecretsecret",
+          "payload_content_type": "text/plain"
+         }'
 
-where:
-
-- {endpoint} is the endpoint for the service
-- $AUTH-TOKEN is the authentication token returned by the identity service
 
 Response
 """"""""""""""""
 
-**Example:Create Secret: JSON response**
+The following table shows the response attribute for this request.
+
++---------------+---------+-------------------------------------------------------------+
+| Name          | Type    | Description                                                 |
++===============+=========+=============================================================+
+|secret_ref     | URI     | Returns a HATEOAS url to retrieve information about the     |
+|               |         | the specified secret. The reference URL concatenates the    |
+|               |         | URI for the 'retrieve secrets` API operation and the        |
+|               |         | and the system-generated ``secretID`` assigned automatically|
+|               |         | when the secret is created. In the example, the *secretID*  |
+|               |         | value is ``485950f0-37a5-4ba4-b1d6-413f79b849ef``.          |
++---------------+---------+-------------------------------------------------------------+
+
+**Example: Create Secret JSON response**
 
 
 .. code::
@@ -251,7 +263,3 @@ Response
        "secret_ref": "https://iad.keep.api.rackspacecloud.com/v1/secrets/485950f0-37a5-4ba4-b1d6-413f79b849ef"
    }
 
-where:
-
-- the secret ID is 485950f0-37a5-4ba4-b1d6-413f79b849ef
-- the endpoint is iad.keep.api.rackspacecloud.com

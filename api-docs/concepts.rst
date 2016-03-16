@@ -91,7 +91,7 @@ You can use one of the following methods to store a secret:
         information and metadata.
 
 
-.. _Barbican-dg-containers:
+.. _containers-concept:
 
 Container
 ~~~~~~~~~~~~~~~~~~
@@ -117,7 +117,7 @@ This guide assumes that you are running |product name| in a local development en
 .. _generic_containers:
 
 Generic Containers
-######################
+^^^^^^^^^^^^^^^^^^^^^
 
 A generic container is used for any type of container that a user may wish to create.
 There are no restrictions on the type or amount of secrets that can be held within a container.
@@ -151,7 +151,7 @@ in the same container reference:
 .. _certificate_containers:
 
 Certificate Containers
-##########################
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A certificate container is used for storing the following secrets that are relevant to
 certificates:
@@ -202,7 +202,7 @@ PEM formatted PKCS7 certificate chain.
 .. _rsa_containers:
 
 RSA Containers
-#######################
+^^^^^^^^^^^^^^^^^^
 
 An RSA container is used for storing RSA public keys, private keys, and private
 key pass phrases.
@@ -235,14 +235,14 @@ key pass phrases.
     }
 
 
-.. _Barbican-dg-quotas:
+.. _quotas-concept:
 
 Quotas
 ~~~~~~~~~~~~~~~~~~
 
-All users authenticated with |product name| are able to read the effective quota values
-that apply to their project. |product name| can derive the project that a user belongs
-to by reading the project scope from the authentication token.
+All users authenticated with |product name| can read the effective quota values
+that apply to their project. |product name| identifies the project for a user based on 
+the project scope data included in the authentication token. 
 
 Service administrators can read, set, and delete quota configurations for each
 project known to |product name|.  These operations are available to an authenticated user
@@ -251,18 +251,24 @@ that has the service administrator role. This role is defined in the |product na
 The name for a service administrator role is "keep:service-admin".
 
 Quotas can be enforced for the following |product name| resources: secrets, containers,
-and consumers.  The configured quota value can be 
+and consumers.  The following table describes the possible values for the quota attribute. 
 
-- -1 meaning no limit to the number of resources you can create
-- 0 meaning this resource has been disabled
-- positive integer defining the maximum number allowed for a project
+.. csv-table:: 
+   :header: "Value", "Description"
+   :widths: 15, 40
+
+   "-1", "Indicates that the project has no limits on the number of resources you can 
+   create."
+   "0", "Indicates that a resource has been disabled?"
+   "Any positive integer", "Defines the maximum number of resources allowed for a project"
+   "Not specified or None", "If no value is specified for ``quota``, |product name| uses 
+   the default quota setting, and the quota value is set to ``None``."
+
   
-If no value is specified, |product name| uses the default setting, and the quota value is set to None.
-
 .. _default_project_quotas:
 
 Default Quotas
-################
+^^^^^^^^^^^^^^^^^
 
 When no project quotas have been set for a project, the default
 project quotas are enforced for that project.  Default quotas are specified
@@ -286,13 +292,15 @@ explicit project quotas have been set for the current project.
 
 
 
-.. _Barbican-dg-consumer:
+.. _consumer_concept:
 
 
 Consumer
 ~~~~~~~~~~~~~~~~~~
 
-A consumer is a way to to register as an interested party for a container.
-All of the registered consumers can be viewed by performing a **GET** on the
-{container_ref}/consumers resource. Before a container is deleted, all consumers
-should be notified of the delete.
+A consumer provides a method to register as an interested party for a container.
+You can get a list of consumers for a container by submitting a 
+:ref:`retrieve consumers <get-containers-consumers>` API request 
+
+To prevent unexpected service problems, ensure that you notify all 
+consumers before you delete a container. 
