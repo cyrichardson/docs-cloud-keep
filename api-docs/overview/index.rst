@@ -7,9 +7,7 @@ About the API
 management of keys and credentials, called secrets, on behalf of
 customers. It is based on OpenStack Barbican, a community-led open-source platform.
 
-Using the API, you can securely store and retrieve credentials systematically 
-and enable users to have keys generated on their behalf based on their requested 
-encryption algorithm and bit length.
+Using the API, you can securely store and retrieve credentials systematically.
 
 |product name| provides the following APIs:
 

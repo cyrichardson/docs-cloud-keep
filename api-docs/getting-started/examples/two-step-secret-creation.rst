@@ -13,29 +13,25 @@ easily provided inside the JSON data in a one-step secret storage.
 
    .. code::
 
-        $ curl -i -X POST -H 'Content-Type: application/json' -H 'X-Auth-Token: '$AUTH_TOKEN -d \ '{"name": "Binary Key File"}' $API_ENDPOINT/v1/secrets
+        $ curl -X POST -H 'Content-Type: application/json' \
+            -H 'X-Auth-Token: '$AUTH_TOKEN -d '
+            {
+              "name": "Binary Key File"
+            }' $ENDPOINT/v1/secrets
 
-   If the call is successfull, you receive a ``201 Created`` response as
-   shown in the following example:
+   If the call is successfull, you receive a ``201 Created`` response that
+   includes the reference to the newly created secret as shown in the
+   following example:
 
    .. code::
 
-        HTTP/1.1 201 Created
-        Date: Tue, 01 Mar 2016 23:04:16 GMT
-        Location: https://iad.keep.api.rackspacecloud.com:443/v1/secrets/e56fbf98-e670-41b4-96a1-8ed095df2345
-        Via: 1.1 Repose (Repose/7.3.1.0)
-        Date: Tue, 01 Mar 2016 23:04:16 GMT
-        x-trans-id: 09skcXF1ZXN0SWQiOijkms8yYTQ4MS1hOWEBABABOOEYEtYWZlOC0pl97sYzRhYTI3NmUiLCJvcmlnaW4iOm51bGx9
-        X-NewRelic-App-Data: 0skclp8xDgoTVVBaBAYGXlwTGhE1AwE2QgNWEVlbQFtcCxY0QwgcFFUZRAQFEV1HQ0ZNUhsBGVZXBAUGUF9WNCJUS81UNAAMLH1cBTRMDBQFRV1JYUFUAAAgABQBV9k8jsV1FVj8=
-        x-openstack-request-id: req-01be5361-b1a8-4da5-bff3-683cb10f62dc
-        Content-Type: application/json; charset=UTF-8
-        Content-Length: 105
-        Server: Jetty(9.2.z-SNAPSHOT)
+    {"secret_ref": "https://iad.keep.api.rackspacecloud.com/v1/secrets/943c8f98-e980-4cc4-0da1-8ed0993bcf55"}
 
-        {"secret_ref": "https://iad.keep.api.rackspacecloud.com/v1/secrets/943c8f98-e980-4cc4-0da1-8ed0993bcf55"}
-
-   The secret metadata is now stored in Cloud Keep with a secret ID of ``943c8f98-e980-4cc4-0da1-8ed0993bcf55``. Note that you have only created secret metadata, not the actual secret
-   itself.  You need to remember the secret ID for the subsequent **PUT** which will store the payload itself.
+   The secret metadata is now stored in Cloud Keep with a secret ID of
+   ``943c8f98-e980-4cc4-0da1-8ed0993bcf55``. Note that you have only stored
+   the metadata, not the actual secret data itself.  You need to remember the
+   secret ID for the subsequent **PUT** request which will add the payload
+   to this secret.
 
    .. code::
 
@@ -56,7 +52,7 @@ easily provided inside the JSON data in a one-step secret storage.
 
         $ curl -i -X PUT -H 'Content-Type: application/octet-stream'\
              -H 'X-Auth-Token: '$AUTH_TOKEN \
-             -T ./secret_key_file $API_ENDPOINT/v1/secrets/$SECRET_ID
+             -T ./secret_key_file $ENDPOINT/v1/secrets/$SECRET_ID
 
 #. Cloud Keep encrypts and stores the contents of the secret key file, associates
    it with the previously created metadata, and responds with an empty

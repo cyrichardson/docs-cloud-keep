@@ -6,43 +6,45 @@ Store a secret
 
 
 You can store a secret by submitting a **POST** request against the
-secrets resource and include the secret in the *``payload``* parameter.
-You specify the secret payload type in the ``payload_content_type``
-parameter:
+secrets resource and include the secret data in the ``payload`` attribute in
+the json body of the request.
+You must also specify the media type of secret payload in the
+``payload_content_type`` attribute of the json body:
 
--  For text-based secrets, set the ``payload_content_type`` parameter
+-  For ``passphrase`` type secrets, set the ``payload_content_type`` parameter
    to ``text/plain``.
 
--  For binary secrets, set the ``payload_content_type`` parameter to
-   ``application/octet-stream``.
+-  For binary secrets such as ``symmetric`` type secrets, set the
+   ``payload_content_type`` attribute to ``application/octet-stream``.
+
+-  For ``certificate`` type secrets, set the ``payload_content_type`` attribute
+   to ``application/pkix-cert``.
 
 ..  note::
 
-      Note
-      The secret resource encrypts and stores client-provided secret
-      information and metadata.  Submitting a **POST** request creates secret metadata.
-      If the payload is provided with the **POST** request, then it is encrypted and stored, and
-      then linked with this metadata. If no payload is included with the
-      **POST** request, it must be provided with a subsequent **PUT** request.
+      The secret resource stores both the metadata describing the secret as
+      well as the encrypted secret data.
+      Submitting a **POST** request creates secret metadata.  If the payload
+      is provided in the json body of the **POST** request, then it is
+      encrypted and stored, and linked with this metadata. If no payload is
+      included with the  **POST** request, it must be provided with a
+      subsequent **PUT** request.
 
-      The following example shows how to store a secret in the format of an
-      AES key by submitting a **POST** request wth the base64-encoded secret
-      payload specified against the secrets resource.
+The following example shows how to store a secret in the format of a
+passphrase by submitting a **POST** request that includes the payload
+in the json body.
 
 .. code::
 
-      $ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json'\
-      -H 'X-Auth-Token: '$AUTH_TOKEN -d\
-        '{
-            "name": "AES key",
-            "expiration": "2020-02-28T19:14:44.180394",
-            "algorithm": "aes",
-            "bit_length": 256,
-            "mode": "cbc",
-            "payload": "gF6+lLoF3ohA9aPRpt+6bQ==",
-            "payload_content_type": "application/octet-stream",
-            "payload_content_encoding": "base64"
-          }' $API_ENDPOINT/v1/secrets
+      $ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' \
+      -H 'X-Auth-Token: '$AUTH_TOKEN -d '
+          {
+              "name": "A secret passphrase",
+              "secret_type": "passphrase",
+              "expiration": "2020-02-28T23:59:59",
+              "payload": "1 very hard to guess pa$$phrase",
+              "payload_content_type": "text/plain"
+          }' $ENDPOINT/v1/secrets
 
 
 If the request is successful, you will receive a response like the
@@ -50,7 +52,7 @@ following:
 
 .. code::
 
-        "{"secret_ref": "https://iad.keep.api.rackspacecloud.com/v1/secrets/578391c7-92fa-484f-8546-3562b170e5"}"
+        {"secret_ref": "https://iad.keep.api.rackspacecloud.com/v1/secrets/578391c7-92fa-484f-8546-3562b170e5"}
 
 
 The example above shows the secretId (578391c7-92fa-484f-8546-3562b170e5), which will be returned in a
