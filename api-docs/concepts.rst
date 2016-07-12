@@ -3,7 +3,7 @@
 Concepts
 ----------
 
-Review the following key concepts and architectural overview to learn how |product name| 
+Review the following key concepts and architectural overview to learn how |product name|
 enables secure life-cycle management for keys and credentials.
 
 
@@ -100,9 +100,9 @@ A secret consists of the following elements:
 
 You can use one of the following methods to store a secret:
 
--  Submit a **POST** request against the secrets resource. Include
-   the secret metadata in the JSON body and include the secret itself
-   in the ``payload`` attribute.
+-  Submit a **POST** request against the secrets resource. Include both
+   the secret metadata and the secret data itself (the payload as it is called
+   in |project name|) in the JSON body.
 
 -  Submit a **POST** request without a ``payload`` attribute against the
    secrets resource and then include the payload in a subsequent **PUT**
@@ -113,11 +113,11 @@ You can use one of the following methods to store a secret:
 ..  note::
         Note
         Submitting a **POST** request creates secret metadata. If the payload is
-        provided with the **POST** request, then it is encrypted and stored, and
-        then linked with this metadata. If no payload is included with the
-        **POST** request, it must be provided with a subsequent **PUT** request.
-        The secret resource encrypts and stores client-provided secret
-        information and metadata.
+        provided inside the JSON body of the  **POST** request, then it is
+        encrypted and stored, and then linked with this metadata. If no payload
+        is included within the **POST** request, then it must be provided with
+        a subsequent **PUT** request.  The secret resource encrypts and stores
+        both, the client-provided secret data (payload) and metadata.
 
 
 .. _containers-concept:
@@ -125,12 +125,13 @@ You can use one of the following methods to store a secret:
 Container
 ~~~~~~~~~~~~~~~~~~
 
-The containers resource is the organizational center piece of |product name| that simplifies secrets management
-in environments that have large numbers of secrets.
+The containers resource is the organizational center piece of |product name|.
+It can simplify secret management in environments that have large numbers of
+secrets.
 
-A container is a logical object that can be used to store secret references that are related by relationship or type. 
+A container is a logical object that can be used to store secret references that are related by relationship or type.
 For example you can create a single container to group a private key, certificate, and bundle for
-an SSL certificate. Containers simplify the task of managing large numbers of secrets resources.
+a TLS certificate. Containers simplify the task of managing large numbers of secrets resources.
 
 |product name| supports 3 types of containers:
   * :ref:`Generic <generic_containers>`
@@ -155,38 +156,38 @@ in the same container reference:
 .. code-block:: json
 
     {
-        "type": "generic",
         "status": "ACTIVE",
-        "name": "Test Environment User Passwords",
+        "updated": "2016-07-12T21:35:24",
+        "name": "My generic container",
         "consumers": [],
-        "container_ref": "https://iad.keep.api.rackspacecloud.com/v1/containers/{container_uuid}",
+        "created": "2016-07-12T21:35:24",
+        "container_ref": "https://iad.keep.api.rackspacecloud.com/v1/containers/c2c09737-1eb7-428c-be6e-d2b4f2ded016",
+        "creator_id": "123456",
         "secret_refs": [
             {
-                "name": "test_admin_user",
-                "secret_ref": "https://iad.keep.api.rackspacecloud.com/v1/secrets/{secret1_uuid}"
+                "secret_ref": "https://iad.keep.api.rackspacecloud.com/v1/secrets/b01f4952-68b2-4baa-a62c-f342b55a044f",
+                "name": "Another Secret"
             },
             {
-                "name": "test_audit_user",
-                "secret_ref": "https://iad.keep.api.rackspacecloud.com/v1/secrets/{secret2_uuid}"
+                "secret_ref": "https://iad.keep.api.rackspacecloud.com/v1/secrets/b5a6496a-633c-4048-a065-50042787835b",
+                "name": "One secret"
             }
         ],
-        "created": "2015-03-30T21:10:45.417835",
-        "updated": "2015-03-30T21:10:45.417835"
+        "type": "generic"
     }
-
 
 .. _certificate_containers:
 
 Certificate Containers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A certificate container is used for storing the following secrets that are relevant to
-certificates:
+A certificate container is used to group X.509 Certificates with other secrets
+that are needed to successfully use the certificate.  For example:
 
   * certificate
   * private_key (optional)
   * private_key_passphrase (optional)
-  * intermediates (optional)
+  * intermediate certificate chain (optional)
 
 .. code-block:: json
 
@@ -220,10 +221,10 @@ certificates:
     }
 
 The payload for the secret referenced as the "certificate" is expected to be a
-PEM formatted x509 certificate.
+PEM formatted X.509 certificate.
 
 The payload for the secret referenced as the "intermediates" is expected to be a
-PEM formatted PKCS7 certificate chain.
+PEM formatted PKCS#7 certificate chain.
 
 
 .. _rsa_containers:
@@ -231,8 +232,8 @@ PEM formatted PKCS7 certificate chain.
 RSA Containers
 ^^^^^^^^^^^^^^^^^^
 
-An RSA container is used for storing RSA public keys, private keys, and private
-key pass phrases.
+An RSA container is used for grouping RSA priavte keys with their private keys,
+and optionally a private key passphrase for RSA keys that are passphrase-protected.
 
 .. code-block:: json
 

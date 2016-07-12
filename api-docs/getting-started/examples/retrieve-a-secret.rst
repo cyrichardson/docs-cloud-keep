@@ -22,7 +22,7 @@ submitting a **GET** request against the endpoint URL with the secret ID specifi
            -H "X-Auth-Token: $AUTH_TOKEN" | python -m json.tool
 
 
-If the call is successful, the response looks like the following example, assuming that your API_ENDPOINT
+If the call is successful, the response looks like the following example, assuming that your ENDPOINT
 is ``https://iad.keep.api.rackspacecloud.com``:
 
 .. code::
