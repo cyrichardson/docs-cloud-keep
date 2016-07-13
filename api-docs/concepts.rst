@@ -130,7 +130,7 @@ It can simplify secret management in environments that have large numbers of
 secrets.
 
 A container is a logical object that can be used to store secret references that are related by relationship or type.
-For example you can create a single container to group a private key, certificate, and bundle for
+For example you can create a single container to group a private key, certificate, and intermediate certificates bundle for
 a TLS certificate. Containers simplify the task of managing large numbers of secrets resources.
 
 |product name| supports 3 types of containers:
@@ -192,32 +192,28 @@ that are needed to successfully use the certificate.  For example:
 .. code-block:: json
 
     {
-        "type": "certificate",
         "status": "ACTIVE",
-        "name": "Example.com Certificates",
+        "updated": "2016-07-13T16:12:56",
+        "name": "www.example.com - certificate bundle",
         "consumers": [],
-        "container_ref": "https://{cloudkeep_host}/v1/containers/{container_uuid}",
+        "created": "2016-07-13T16:12:56",
+        "container_ref": "https://iad.keep.api.rackspacecloud.com/v1/containers/1693ecc5-330d-4774-b9e5-ef991cf174d7",
+        "creator_id": "344029",
         "secret_refs": [
             {
-                "name": "certificate",
-                "secret_ref": "https://{cloudkeep_host}/v1/secrets/{cert_uuid}"
+                "secret_ref": "https://iad.keep.api.rackspacecloud.com/v1/secrets/ce3a6b55-4951-469d-93b1-b20d46500b80",
+                "name": "intermediates"
             },
             {
-                "name": "private_key",
-                "secret_ref": "https://{cloudkeep_host}/v1/secrets/{pk_uuid}"
+                "secret_ref": "https://iad.keep.api.rackspacecloud.com/v1/secrets/93d9052f-c4d0-4e39-8d4a-d997db2819f9",
+                "name": "private_key"
             },
             {
-                "name": "private_key_passphrase",
-                "secret_ref": "https://{cloudkeep_host}/v1/secrets/{pass_uuid}"
-            },
-            {
-                "name": "intermediates",
-                "secret_ref": "https://{cloudkeep_host}/v1/secrets/{inters_uuid}"
+                "secret_ref": "https://iad.keep.api.rackspacecloud.com/v1/secrets/c506c2cf-b2a0-4ac4-b862-59fe6a0dedbc",
+                "name": "certificate"
             }
-
         ],
-        "created": "2015-03-30T21:10:45.417835",
-        "updated": "2015-03-30T21:10:45.417835"
+        "type": "certificate"
     }
 
 The payload for the secret referenced as the "certificate" is expected to be a
@@ -225,6 +221,9 @@ PEM formatted X.509 certificate.
 
 The payload for the secret referenced as the "intermediates" is expected to be a
 PEM formatted PKCS#7 certificate chain.
+
+The payload for the secret referenced as the "private_key" is expected to be a
+PKCS#8 RSA private key.
 
 
 .. _rsa_containers:
@@ -238,30 +237,25 @@ and optionally a private key passphrase for RSA keys that are passphrase-protect
 .. code-block:: json
 
     {
-        "type": "rsa",
         "status": "ACTIVE",
-        "name": "John Smith RSA",
+        "updated": "2016-07-13T18:09:03",
+        "name": "My RSA keypair",
         "consumers": [],
-        "container_ref": "https://{cloudkeep_host}/v1/containers/{container_uuid}",
+        "created": "2016-07-13T18:09:03",
+        "container_ref": "https://iad.keep.api.rackspacecloud.com/v1/containers/01b0c408-910c-4648-8c22-5c9da4bf1b01",
+        "creator_id": "123456",
         "secret_refs": [
             {
-                "name": "private_key",
-                "secret_ref": "https://{cloudkeep_host}/v1/secrets/{pk_uuid}"
+                "secret_ref": "https://iad.keep.api.rackspacecloud.com/v1/secrets/23589c54-2dea-4ab6-8395-cc289d137738",
+                "name": "public_key"
             },
             {
-                "name": "private_key_passphrase",
-                "secret_ref": "https://{cloudkeep_host}/v1/secrets/{pass_uuid}"
-            },
-            {
-                "name": "public_key",
-                "secret_ref": "https://{cloudkeep_host}/v1/secrets/{pubkey_uuid}"
+                "secret_ref": "https://iad.keep.api.rackspacecloud.com/v1/secrets/93d9052f-c4d0-4e39-8d4a-d997db2819f9",
+                "name": "private_key"
             }
-
         ],
-        "created": "2015-03-30T21:10:45.417835",
-        "updated": "2015-03-30T21:10:45.417835"
+        "type": "rsa"
     }
-
 
 .. _quotas-concept:
 
@@ -269,56 +263,23 @@ Quotas
 ~~~~~~~~~~~~~~~~~~
 
 All users authenticated with |product name| can read the effective quota values
-that apply to their project. |product name| identifies the project for a user based on 
-the project scope data included in the authentication token. 
+that apply to their account. |product name| identifies the account for a user based on
+the data included in the authentication token.
 
-Service administrators can read, set, and delete quota configurations for each
-project known to |product name|.  These operations are available to an authenticated user
-that has the service administrator role. This role is defined in the |product name| policy.json configuration file.
+Quotas are enforced for the following |product name| resources: secrets, containers,
+and consumers.  The following table describes the possible values for the quota attribute.
 
-The name for a service administrator role is "keep:service-admin".
-
-Quotas can be enforced for the following |product name| resources: secrets, containers,
-and consumers.  The following table describes the possible values for the quota attribute. 
-
-.. csv-table:: 
+.. csv-table::
    :header: "Value", "Description"
    :widths: 15, 40
 
-   "-1", "Indicates that the project has no limits on the number of resources you can 
+   "Any positive integer", "Defines the maximum number of resources allowed for your account"
+   "0", "Indicates that a resource has been effectively disabled"
+   "-1", "Indicates that the account has no limits on the number of resources you can
    create."
-   "0", "Indicates that a resource has been disabled?"
-   "Any positive integer", "Defines the maximum number of resources allowed for a project"
-   "Not specified or None", "If no value is specified for ``quota``, |product name| uses 
-   the default quota setting, and the quota value is set to ``None``."
 
-  
-.. _default_project_quotas:
-
-Default Quotas
-^^^^^^^^^^^^^^^^^
-
-When no project quotas have been set for a project, the default
-project quotas are enforced for that project.  Default quotas are specified
-in the |product name| configuration file (barbican.conf).  The defaults provided
-in the standard configuration file are as follows.
-
-.. code-block:: none
-
-    # default number of secrets allowed per project
-    quota_secrets = -1
-
-    # default number of containers allowed per project
-    quota_containers = -1
-
-    # default number of consumers allowed per project
-    quota_consumers = -1
-
-
-The default quotas are returned via a **GET** on the **quotas** resource when no
-explicit project quotas have been set for the current project.
-
-
+Please contact your account representative if you would like to raise the quota
+limits on your account.
 
 .. _consumer_concept:
 
@@ -327,8 +288,11 @@ Consumer
 ~~~~~~~~~~~~~~~~~~
 
 A consumer provides a method to register as an interested party for a container.
-You can get a list of consumers for a container by submitting a 
-:ref:`retrieve consumers <get-containers-consumers>` API request 
+For example, when a Load Balancer is using a certificate bundle stored in |product name|
+it will register itself as a consumer of the certificate container.
 
-To prevent unexpected service problems, ensure that you notify all 
-consumers before you delete a container. 
+You can get a list of consumers for a container by submitting a
+:ref:`retrieve consumers <get-containers-consumers>` API request
+
+To prevent unexpected service problems, ensure that you notify all
+consumers before you delete a container.
