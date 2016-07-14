@@ -6,7 +6,7 @@ Update Secret
 
 .. code::
 
-    PUT /{version}/secrets/{secret_id}
+    PUT /v1/secrets/{secret_id}
 
 This method stores the payload for an existing secret that was created without a payload.
 To provide secret information after the secret is created, submit a PUT request to the 
@@ -79,7 +79,8 @@ The following table shows the URI parameters for the request:
 |{secret_id}               |String                   |This parameter specifies |
 |                          |                         |the unique identifier of |
 |                          |                         |a secret that has been   |
-|                          |                         |stored.                  |
+|                          |                         |previously created       |
+|                          |                         |without a payload.       |
 +--------------------------+-------------------------+-------------------------+
 |{secretDataFile}          |Binary                   |A file containing the    |
 |                          |                         |binary data to be stored | 
@@ -97,8 +98,8 @@ This operation does not accept a request body.
 .. code::
 
    curl -X PUT -H 'Content-Type: application/octet-stream' \
-        -H 'X-Auth-Token: $AUTH-TOKEN' \
-        -T {secretDataFile} $ENDPOINT/v1/secrets/a83018d1-e657-4957-9ddd-42a479753e6b
+        -H "X-Auth-Token: $AUTH_TOKEN" \
+        -T {secretDataFile} $ENDPOINT/v1/secrets/{secret_id}
 
 
 ..  note::

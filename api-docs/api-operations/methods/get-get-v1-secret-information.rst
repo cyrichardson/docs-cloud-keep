@@ -6,7 +6,7 @@ Get secret metadata
 
 .. code::
 
-    GET /{version}/secrets/{secret_id}
+    GET /v1/secrets/{secret_id}
 
 This method retrieves the metadata for the specified secret.
 
@@ -39,9 +39,9 @@ This operation does not accept a request body.
 
 .. code::
 
-   curl -H 'Accept: application/json' 
-        -H 'X-Auth-Token: $AUTH-TOKEN'\
-        $ENDPOINT/v1/secrets/secretID/{secretID}
+   curl -H 'Accept: application/json' \
+        -H "X-Auth-Token: $AUTH_TOKEN" \
+        $ENDPOINT/v1/secrets/{secretID}
 
 
 
@@ -50,54 +50,67 @@ Response
 
 The following table shows the response atttributes for this request.
 
-+---------------+---------+-------------------------------------------------------------+
-| Name          | Type    | Description                                                 |
-+===============+=========+=============================================================+
-|status         | integer | Returns the current state of secret resource.               |
-+---------------+---------+-------------------------------------------------------------+
-|secret_ref     | URI     | Returns a HATEOAS url to retrieve information about the     |
-|               |         | the specified secret.                                       |
-+---------------+---------+-------------------------------------------------------------+
-|updated        | date    |Returns the date and time that the consumer was last updated.|
-+---------------+---------+-------------------------------------------------------------+
-|name           | string  |Returns the name assigned to the secret resource when it was |
-|               |         |created.                                                     |
-+---------------+---------+-------------------------------------------------------------+
-|algorithm      | string  |Returns the algorithm type used to generate the secret.      |
-+---------------+---------+-------------------------------------------------------------+
-|created        | date    |Returns the date and time that the secret was created.       |
-+---------------+---------+-------------------------------------------------------------+
-|content_types  | dict    |Returns a dictionary of content type information for the     |
-|               |         |resource. Supported formats are                              |
-|               |         |plain text format (``text/plain``) or binary format          |
-|               |         |(``application/octet-stream``). Content types are            |
-|               |         |specified when the resource is created.                      |
-+---------------+---------+-------------------------------------------------------------+
-|mode           | string  |Returns the type/mode of the algorithm associated with the   |
-|               |         |secret information. This parameter is optional.              |
-+---------------+---------+-------------------------------------------------------------+
-|bit_length     | integer |Returns the bit length of the secret resource if available.  |
-+---------------+---------+-------------------------------------------------------------+
-|expiration     | date    | Returns the expiration date for the secret resource.        |
-+---------------+---------+-------------------------------------------------------------+
++---------------+---------+---------------------------------------------------------------+
+| Name          | Type    | Description                                                   |
++===============+=========+===============================================================+
+| name          | string  | Human readable name for the secret.                           |
++---------------+---------+---------------------------------------------------------------+
+| status        | string  | The secret's status.  Possible values are ``ACTIVE``,         |
+|               |         | ``PENDING``, ``ERROR``.                                       |
++---------------+---------+---------------------------------------------------------------+
+| secret\_ref   | URI     | Unique identifier for the secret. This value is assigned by   |
+|               |         | the API.                                                      |
++---------------+---------+---------------------------------------------------------------+
+| secret\_type  | string  | The secret type. The possible secret types are:               |
+|               |         |                                                               |
+|               |         |     - ``symmetric``                                           |
+|               |         |     - ``public``                                              |
+|               |         |     - ``private``                                             |
+|               |         |     - ``passphrase``                                          |
+|               |         |     - ``certificate``                                         |
+|               |         |     - ``opaque``                                              |
+|               |         |                                                               |
++---------------+---------+---------------------------------------------------------------+
+| creator_id    | integer | User ID of the user who created the secret.                   |
++---------------+---------+---------------------------------------------------------------+
+| created       | date    | UTC time stamp of when the secret was created.                |
++---------------+---------+---------------------------------------------------------------+
+| updated       | date    | UTC time stamp of when the secret was last updated.           |
++---------------+---------+---------------------------------------------------------------+
+| expiration    | date    | The expiration date for the secret in ISO-8601 format. Once   |
+|               |         | the secret has expired, it will no longer be returned by the  |
+|               |         | API.                                                          |
++---------------+---------+---------------------------------------------------------------+
+| content_types | dict    | Media Type(s) associated with this secret.                    |
++---------------+---------+---------------------------------------------------------------+
+| algorithm     | string  | (Deprecated) Metadata describing the algorithm associated     |
+|               |         | with the secret.                                              |
++---------------+---------+---------------------------------------------------------------+
+| mode          | string  | (Deprecated) Metadata describing the mode of the algorithm    |
+|               |         | associated with the secret.                                   |
++---------------+---------+---------------------------------------------------------------+
+| bit_length    | string  | (Deprecated) Metadata describing the bit length of the secret.|
++---------------+---------+---------------------------------------------------------------+
+
 
 
 **Example: Get secret information JSON response**
 
 .. code::
 
-   {
-       "status": "ACTIVE",
-       "secret_ref": "https://iad.keep.api.rackspacecloud.com/v1/secrets/485950f0-37a5-4ba4-b1d6-413f79b849ef",
-       "updated": "2014-05-02T06:29:25.415271",
-       "name": "AES key",
-       "algorithm": "aes",
-       "created": "2014-05-02T06:29:25.415261",
-       "content_types": {
-           "default": "application/octet-stream"
-       },
-       "mode": "cbc",
-       "bit_length": 256,
-       "expiration": "2014-05-28T19:14:44.180394"
-   }
-
+    {
+        "status": "ACTIVE",
+        "secret_type": "private",
+        "updated": "2016-07-13T15:27:04",
+        "name": "My RSA private key",
+        "algorithm": null,
+        "created": "2016-07-12T23:20:42",
+        "secret_ref": "https://iad.keep.api.rackspacecloud.com/v1/secrets/93d9052f-c4d0-4e39-8d4a-d997db2819f9",
+        "content_types": {
+            "default": "application/octet-stream"
+        },
+        "creator_id": "123456",
+        "mode": null,
+        "bit_length": null,
+        "expiration": null
+    }

@@ -6,7 +6,7 @@ Delete a secret
 
 .. code::
 
-    DELETE /{version}/secrets/{secret_id}
+    DELETE /v1/secrets/{secret_id}
 
 
 
@@ -44,12 +44,12 @@ This operation doesn't take a request body.
 
 .. code::
 
-   curl -X DELETE -H 'X-Auth-Token: $AUTH-TOKEN' \
+   curl -X DELETE -H "X-Auth-Token: $AUTH_TOKEN" \
         $ENDPOINT/v1/secrets/{secretID}
 
 
 Response
 """"""""""""""""
 
-The operation returns an HTTP 204 Accepted response code, if successful. 
+The operation returns an HTTP 204 Accepted response code, if successful.
 It does not return a response body.

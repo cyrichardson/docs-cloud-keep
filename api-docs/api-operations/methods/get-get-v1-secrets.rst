@@ -6,14 +6,11 @@ Get Secrets
 
 .. code::
 
-    GET /{version}/secrets
+    GET /v1/secrets
 
-This method retrieves all secrets for a given tenant.
-
-
+This method retrieves all secrets for your account.
 
 The following table shows the possible response codes for this operation:
-
 
 +--------------------------+-------------------------+-------------------------+
 |Response Code             |Name                     |Description              |
@@ -41,27 +38,84 @@ Request
 
 The following table shows the URI parameters for the request:
 
-+--------+---------+------------------------------------------------------------+
-| Name   | Type    | Description                                                |
-+========+=========+============================================================+
-| offset | integer | The starting index within the total list of the secrets    |
-|        |         | that you would like to retrieve.                           |
-+--------+---------+------------------------------------------------------------+
-| limit  | integer | The maximum number of secrets to return (up to 100).       |
-|        |         | The default limit is 10.                                   |
-+--------+---------+------------------------------------------------------------+
++-------------+---------+-----------------------------------------------------------------+
+| Name        | Type    | Description                                                     |
++=============+=========+=================================================================+
+| offset      | integer | The starting index within the total list of the secrets that    |
+|             |         | you would like to retrieve.                                     |
++-------------+---------+-----------------------------------------------------------------+
+| limit       | integer | The maximum number of records to return (up to 100). The        |
+|             |         | default limit is 10.                                            |
++-------------+---------+-----------------------------------------------------------------+
+| name        | string  | Selects all secrets with name similar to this value.            |
++-------------+---------+-----------------------------------------------------------------+
+| alg         | string  | Selects all secrets with algorithm similar to this value.       |
++-------------+---------+-----------------------------------------------------------------+
+| mode        | string  | Selects all secrets with mode similar to this value.            |
++-------------+---------+-----------------------------------------------------------------+
+| bits        | integer | Selects all secrets with bit_length equal to this value.        |
++-------------+---------+-----------------------------------------------------------------+
+| secret_type | string  | Selects all secrets with secret_type equal to this value.       |
++-------------+---------+-----------------------------------------------------------------+
+| acl_only    | boolean | Selects all secrets with an ACL that contains the user.         |
+|             |         | Project scope is ignored.                                       |
++-------------+---------+-----------------------------------------------------------------+
+| created     | string  | Date filter to select all secrets with `created` matching the   |
+|             |         | specified criteria.  See Date Filters below for more detail.    |
++-------------+---------+-----------------------------------------------------------------+
+| updated     | string  | Date filter to select all secrets with `updated` matching the   |
+|             |         | specified criteria. See Date Filters below for more detail.     |
++-------------+---------+-----------------------------------------------------------------+
+| expiration  | string  | Date filter to select all secrets with `expiration` matching    |
+|             |         | the specified criteria. See Date Filters below for more detail. |
++-------------+---------+-----------------------------------------------------------------+
+| sort        | string  | Determines the sorted order of the returned list.  See Sorting  |
+|             |         | below for more detail.                                          |
++-------------+---------+-----------------------------------------------------------------+
 
 This operation does not take a request body.
 
 
-**Example: Delete secret cURL request**
-
+**Example: Get secret list cURL request**
 
 .. code::
 
    curl -H 'Accept: application/json' \
-        -H 'X-Auth-Token: $AUTH-TOKEN' \
-        $ENDPOINT/v1/secrets?offset={offset}&limit={limit}
+        -H "X-Auth-Token: $AUTH_TOKEN" \
+        "$ENDPOINT/v1/secrets?offset=1&limit=3&secret_type=passphrase"
+
+
+Date Filters
+""""""""""""""""
+
+The values for the ``created``, ``updated``, and ``expiration`` parameters are
+comma-separated lists of time stamps in ISO 8601 format.  The time stamps can
+be prefixed with any of these comparison operators: ``gt`` (greater-than),
+``gte`` (greater-than-or-equal), ``lt`` (less-than), ``lte`` (less-than-or-equal).
+
+For example, to get a list of secrets that will expire in January of 2020:
+
+.. code::
+
+   curl -H 'Accept: application/json' \
+        -H "X-Auth-Token: $AUTH_TOKEN" \
+        $ENDPOINT/v1/secrets?expiration=gte:2020-01-01T00:00:00,lt:2020-02-01T00:00:00
+
+
+Sorting
+""""""""""""""""
+
+The value of the ``sort`` parameter is a comma-separated list of sort keys.
+Sort directions can optionally be appended to each key.  If no sort direction
+is specified, the server will use ``asc``.
+
+For example, to sort the list from most recently created to oldest:
+
+.. code::
+
+   curl -H 'Accept: application/json' \
+        -H "X-Auth-Token: $AUTH_TOKEN" \
+        $ENDPOINT/v1/secrets?sort=created:desc
 
 
 Response
@@ -90,47 +144,65 @@ The following table shows the response atttributes for the request:
 |            |         | offset is greater than 0.                              |
 +------------+---------+--------------------------------------------------------+
 
-The following response examples shows the resutls of sending an API request where the 
-offset is 0 and the limit is 2. 
+The following response examples shows the resutls of sending an API request where the
+offset is 0 and the limit is 3.
 
 **Example: Get secrets JSON response**
 
 
 .. code::
 
-   {
-       "secrets": [
-           {
-               "status": "ACTIVE",
-               "secret_ref": "https://iad.keep.api.rackspacecloud.com/v1/secrets/15108db8-4505-4c5b-96b9-a9838951f28f",
-               "updated": "2014-08-25T20:43:01.510569",
-               "name": "secretname",
-               "algorithm": "aes",
-               "created": "2014-08-25T20:43:01.421625",
-               "content_types": {
-                   "default": "application/octet-stream"
-               },
-               "mode": "cbc",
-               "bit_length": 256,
-               "expiration": null
-           },
-           {
-               "status": "ACTIVE",
-               "secret_ref": "https://iad.keep.api.rackspacecloud.com/v1/secrets/485950f0-37a5-4ba4-b1d6-413f79b849ef",
-               "updated": "2014-08-25T21:18:35.821340",
-               "name": "secretname",
-               "algorithm": "aes",
-               "created": "2014-08-25T21:18:35.719952",
-               "content_types": {
-                   "default": "application/octet-stream"
-               },
-               "mode": "cbc",
-               "bit_length": 256,
-               "expiration": null
-           }
-       ],
-       "total": 2,
-       "next": "https://iad.keep.api.rackspacecloud.com/v1/secrets?limit=2&offset=3",
-       "previous": "https://iad.keep.api.rackspacecloud.com/v1/secrets?limit=2&offset=0"
-   }
-
+    {
+        "secrets": [
+            {
+                "status": "ACTIVE",
+                "secret_type": "passphrase",
+                "updated": "2016-07-11T19:28:38",
+                "name": "A secret passphrase",
+                "algorithm": null,
+                "created": "2016-07-11T19:28:38",
+                "secret_ref": "https://iad.keep.api.rackspacecloud.com/v1/secrets/6467b483-5233-4409-a99d-4db5cf86fe6d",
+                "content_types": {
+                    "default": "text/plain"
+                },
+                "creator_id": "123456",
+                "mode": null,
+                "bit_length": null,
+                "expiration": "2020-02-28T23:59:59"
+            },
+            {
+                "status": "ACTIVE",
+                "secret_type": "passphrase",
+                "updated": "2016-07-08T21:51:19",
+                "name": "Database administrator passphrase",
+                "algorithm": null,
+                "created": "2016-07-08T21:51:19",
+                "secret_ref": "https://iad.keep.api.rackspacecloud.com/v1/secrets/ca5bd87f-421a-4ed2-9a22-1874f2a808c0",
+                "content_types": {
+                    "default": "text/plain"
+                },
+                "creator_id": "123456",
+                "mode": null,
+                "bit_length": null,
+                "expiration": "2020-01-31T00:00:00"
+            },
+            {
+                "status": "ACTIVE",
+                "secret_type": "private",
+                "updated": "2016-05-31T17:33:08",
+                "name": null,
+                "algorithm": "rsa",
+                "created": "2016-05-31T17:33:08",
+                "secret_ref": "https://iad.keep.api.rackspacecloud.com/v1/secrets/948b98df-a774-4827-9a73-eac45568c91a",
+                "content_types": {
+                    "default": "text/plain"
+                },
+                "creator_id": "123456",
+                "mode": "cbc",
+                "bit_length": 256,
+                "expiration": null
+            }
+        ],
+        "total": 7,
+        "next": "https://iad.keep.api.rackspacecloud.com/v1/secrets?limit=3&offset=3"
+    }

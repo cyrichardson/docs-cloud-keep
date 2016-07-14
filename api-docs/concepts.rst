@@ -102,7 +102,7 @@ You can use one of the following methods to store a secret:
 
 -  Submit a **POST** request against the secrets resource. Include both
    the secret metadata and the secret data itself (the payload as it is called
-   in |project name|) in the JSON body.
+   in Cloud Keep) in the JSON body.
 
 -  Submit a **POST** request without a ``payload`` attribute against the
    secrets resource and then include the payload in a subsequent **PUT**
@@ -231,7 +231,7 @@ PKCS#8 RSA private key.
 RSA Containers
 ^^^^^^^^^^^^^^^^^^
 
-An RSA container is used for grouping RSA priavte keys with their private keys,
+An RSA container is used for grouping RSA private keys with their public keys,
 and optionally a private key passphrase for RSA keys that are passphrase-protected.
 
 .. code-block:: json
