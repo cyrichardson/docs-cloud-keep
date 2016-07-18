@@ -109,9 +109,9 @@ The following table shows the JSON attributes to be specified in the request:
 |                          |            | ISO-8601 format. ISO-8601            |
 |                          |            | formats dates by using               |
 |                          |            | the following                        |
-|                          |            | representation: yyyy-mm-             |
-|                          |            | ddThh:mm:ss. For                     |
-|                          |            | example, September 27,               |
+|                          |            | representation:                      |
+|                          |            | ``yyyy-mm-ddThh:mm:ss``.             |
+|                          |            | For example, September 27,           |
 |                          |            | 2012 is represented as               |
 |                          |            | ``2012-09-27T00:00:00``. Once the    |
 |                          |            | secret has expired, it is            |

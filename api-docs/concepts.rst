@@ -17,7 +17,8 @@ any data that requires security conscious storage such as a key,
 credential, configuration file, etc.  The typical use case for a secret
 is an encryption key that you wish to store away from prying eyes.
 
-Some examples of a secret may include:
+For example, you can create a secret to store the following types of data:
+
   * Private RSA Key
   * X.509 Certificate
   * Passphrase
@@ -101,23 +102,26 @@ A secret consists of the following elements:
 You can use one of the following methods to store a secret:
 
 -  Submit a **POST** request against the secrets resource. Include both
-   the secret metadata and the secret data itself (the payload as it is called
-   in Cloud Keep) in the JSON body.
+   the secret metadata and the payload in the JSON request body as shown
+   in the :ref:`Store a secret <gsg-store-a-secret>` example.
 
 -  Submit a **POST** request without a ``payload`` attribute against the
    secrets resource and then include the payload in a subsequent **PUT**
    request against the secret that was created by the POST. This mode enables
    you to upload payloads that cannot be included inside the JSON body, such
    as a binary file, to the |product name| system directly for encrypted storage.
+   See the :ref:`Create a secret using two-step storage <gsg-two-step-secret-creation>`
+   example.
 
 ..  note::
-        Note
-        Submitting a **POST** request creates secret metadata. If the payload is
-        provided inside the JSON body of the  **POST** request, then it is
-        encrypted and stored, and then linked with this metadata. If no payload
-        is included within the **POST** request, then it must be provided with
-        a subsequent **PUT** request.  The secret resource encrypts and stores
-        both, the client-provided secret data (payload) and metadata.
+        Submitting a **POST** request creates secret metadata. When the payload is
+        included in the JSON body of the  **POST** request, it is
+        encrypted and stored, and linked with the secret metadata.
+
+        If the payload is not included within the **POST** request, it must be provided in
+        a subsequent **PUT** request.  When the payload arrives, the client-provided
+        secret data is encrypted, stored and linked with the secret metadata created
+        by the previous **POST** request.
 
 
 .. _containers-concept:
@@ -125,22 +129,23 @@ You can use one of the following methods to store a secret:
 Container
 ~~~~~~~~~~~~~~~~~~
 
-The containers resource is the organizational center piece of |product name|.
-It can simplify secret management in environments that have large numbers of
-secrets.
+A container is a logical object to store secret references that are related by
+relationship or type. For example, you can create a single container to group
+a private key, certificate, and intermediate certificate bundle for a TLS
+certificate.
 
-A container is a logical object that can be used to store secret references that are related by relationship or type.
-For example you can create a single container to group a private key, certificate, and intermediate certificates bundle for
-a TLS certificate. Containers simplify the task of managing large numbers of secrets resources.
-
-|product name| supports 3 types of containers:
+|product name| supports the following container types:
   * :ref:`Generic <generic_containers>`
   * :ref:`Certificate <certificate_containers>`
   * :ref:`RSA <rsa_containers>`
 
-Each of these types have explicit restrictions as to what type of secrets should be
-held within. These will be broken down in their respective sections.
+Each type has explicit restrictions about the type of secret data that can be
+stored in the container as described in the following sections:
 
+.. contents::
+
+   :local:
+   :depth: 1
 
 .. _generic_containers:
 
@@ -181,7 +186,7 @@ in the same container reference:
 Certificate Containers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A certificate container is used to group X.509 Certificates with other secrets
+Use certificate containers to group X.509 Certificates with other secrets
 that are needed to successfully use the certificate.  For example:
 
   * certificate
@@ -216,13 +221,13 @@ that are needed to successfully use the certificate.  For example:
         "type": "certificate"
     }
 
-The payload for the secret referenced as the "certificate" is expected to be a
+The payload for the secret referenced as the `certificate` is expected to be a
 PEM formatted X.509 certificate.
 
-The payload for the secret referenced as the "intermediates" is expected to be a
+The payload for the secret referenced as the `intermediates` is expected to be a
 PEM formatted PKCS#7 certificate chain.
 
-The payload for the secret referenced as the "private_key" is expected to be a
+The payload for the secret referenced as the `private_key` is expected to be a
 PKCS#8 RSA private key.
 
 
@@ -231,7 +236,7 @@ PKCS#8 RSA private key.
 RSA Containers
 ^^^^^^^^^^^^^^^^^^
 
-An RSA container is used for grouping RSA private keys with their public keys,
+Use RSA containes to group RSA private keys with their public keys,
 and optionally a private key passphrase for RSA keys that are passphrase-protected.
 
 .. code-block:: json
@@ -288,11 +293,11 @@ Consumer
 ~~~~~~~~~~~~~~~~~~
 
 A consumer provides a method to register as an interested party for a container.
-For example, when a Load Balancer is using a certificate bundle stored in |product name|
-it will register itself as a consumer of the certificate container.
+For example, when a Load Balancer uses a certificate bundle stored in |product name|,
+the load balancer registers itself as a consumer of the certificate container.
 
 You can get a list of consumers for a container by submitting a
 :ref:`retrieve consumers <get-containers-consumers>` API request
 
-To prevent unexpected service problems, ensure that you notify all
+To prevent unexpected service problems, notify all
 consumers before you delete a container.

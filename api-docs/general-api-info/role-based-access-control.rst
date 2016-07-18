@@ -4,8 +4,8 @@ Role Based Access Control
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Like many other services, the |product name| service supports the protection of
-its APIs by enforcing Role Based Access Control rules.  Sub-accounts can be
-granted roles to allow or prevent access to secrets stored in |product name|
+its APIs by enforcing Role Based Access Control rules.  You can grant roles
+to sub-accounts to allow or prevent access to secrets stored in |product name|
 
 The account owner always has full access to all resources stored in |product name|,
 while new sub-accounts will have no access by default.

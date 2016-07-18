@@ -93,7 +93,8 @@ comma-separated lists of time stamps in ISO 8601 format.  The time stamps can
 be prefixed with any of these comparison operators: ``gt`` (greater-than),
 ``gte`` (greater-than-or-equal), ``lt`` (less-than), ``lte`` (less-than-or-equal).
 
-For example, to get a list of secrets that will expire in January of 2020:
+For example, submit the following request to get a list of secrets that expire
+in January 2020:
 
 .. code::
 
@@ -106,10 +107,15 @@ Sorting
 """"""""""""""""
 
 The value of the ``sort`` parameter is a comma-separated list of sort keys.
-Sort directions can optionally be appended to each key.  If no sort direction
-is specified, the server will use ``asc``.
+Supported sort keys include ``created``, ``expiration``, ``mode``, ``name``,
+``secret_type``, ``status``, and ``updated``.
 
-For example, to sort the list from most recently created to oldest:
+Each sort key may also include a direction.  Supported directions
+are ``:asc`` for ascending and ``:desc`` for descending.  The service will
+use ``:asc`` for every key that does not include a direction.
+
+For example, submit the following request to sort the list from the most
+recently created to the oldest:
 
 .. code::
 
@@ -144,8 +150,8 @@ The following table shows the response atttributes for the request:
 |            |         | offset is greater than 0.                              |
 +------------+---------+--------------------------------------------------------+
 
-The following response examples shows the resutls of sending an API request where the
-offset is 0 and the limit is 3.
+The following response examples show the results of sending an API request with
+an offset value of 0 and a limit value of 3.
 
 **Example: Get secrets JSON response**
 

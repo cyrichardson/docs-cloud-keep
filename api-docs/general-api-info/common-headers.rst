@@ -15,7 +15,7 @@ The following table describes the common headers used by the API.
 |                       | all requests sent to the Cloud Keep system.        |
 +-----------------------+----------------------------------------------------+
 | Accept                | Used to specify the media type preferred for the   |
-|                       | response.  If not provided, the service will use a |
+|                       | response.  When not provided, the service uses a   |
 |                       | suitable default.                                  |
 +-----------------------+----------------------------------------------------+
 | Content-Type          | Used to describe the media type of the request     |
