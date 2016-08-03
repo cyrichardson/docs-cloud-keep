@@ -283,11 +283,12 @@ and consumers.  The following table describes the possible values for the quota 
    "-1", "Indicates that the account has no limits on the number of resources you can
    create."
 
-Please contact your account representative if you would like to raise the quota
-limits on your account.
+If you want to raise the quota limits on your account, contact `Rackspace Cloud support`_.
+
+.. _Rackspace Cloud support: https://www.rackspace.com/en-us/support#cloud
+
 
 .. _consumer_concept:
-
 
 Consumer
 ~~~~~~~~~~~~~~~~~~
