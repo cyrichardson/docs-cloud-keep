@@ -13,7 +13,7 @@ The |product name| API supports JSON data serialization request and response for
 ..  note::
 
     All requests to authenticate against and operate the service are
-    performed using SSL over HTTP (HTTPS) on TCP port 443.
+    performed using TLS/SSL over HTTP (HTTPS) on TCP port 443.
 
 .. toctree:: :hidden:
    :maxdepth: 2

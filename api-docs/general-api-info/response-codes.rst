@@ -43,8 +43,8 @@ and descriptions.
 +---------------------+---------------+-----------------------------------------+
 | Unauthorized        | 401           | The request was not processed due to    |
 |                     |               | an authentication failure.  This is     |
-|                     |               | often the result of a bad userid or     |
-|                     |               | password.                               |
+|                     |               | often the result of an invalid          |
+|                     |               | authentication token.                   |
 +---------------------+---------------+-----------------------------------------+
 | Forbidden           | 403           | The request was not processed due to    |
 |                     |               | an authorization failure.  Check that   |
@@ -67,12 +67,7 @@ and descriptions.
     Content-Type: application/json
 
     {
-      "title": "Unsupported limit",
-      "description": "The given limit cannot be negative, and cannot be greater than 50.",
-      "code": 1092,
-      "link": {
-        "rel": "help",
-        "href": "http://docs.example.com/messages#limit",
-        "text": "API documentation for the limit parameter"
-      }
+        "code": 400,
+        "description": "Malformed JSON",
+        "title": "Bad Request"
     }

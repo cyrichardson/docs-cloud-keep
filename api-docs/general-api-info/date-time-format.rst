@@ -3,22 +3,23 @@
 Date and time format
 ~~~~~~~~~~~~~~~~~~~~~
 
-For the display and consumption of date and time values, Rackspace Cloud services
-use a date format that complies with ISO 8601.
+For the display and consumption of date and time values, Rackspace Cloud
+services use a date format that complies with ISO 8601.
 
-The system time is expressed as UTC.
+|product name| assumes that all times are given in UTC, and does not make
+use of UTC offsets for time zones.
 
 **Example: |product name| date and time format**
 
 .. code::
 
-    yyyy-MM-dd'T'HH:mm:ssZ
+    yyyy-MM-ddTHH:mm:ss
 
-For example, the UTC-5 format for May 19, 2016 at 8:07:08 a.m. is
+For example, the UTC format for May 19, 2016 at 8:07:08 a.m. is
 
 .. code::
 
-    2016-05-19T08:07:08-05:00
+    2016-05-19T08:07:08
 
 **Date and time format codes**
 
@@ -37,6 +38,5 @@ For example, the UTC-5 format for May 19, 2016 at 8:07:08 a.m. is
 +------+-----------------------------------------------------------+
 | ss   | Two digit second                                          |
 +------+-----------------------------------------------------------+
-| Z    | RFC 8601 timezone (offset from GMT). If Z is not replaced |
-|      | with the offset from GMT, it indicates a 00:00 offset.    |
+| Z    | (optional) UTC (Zulu) time designation.                   |
 +------+-----------------------------------------------------------+

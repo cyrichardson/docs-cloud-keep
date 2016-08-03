@@ -6,7 +6,7 @@ Create Secret
 
 .. code::
 
-    POST /{version}/secrets
+    POST /v1/secrets
 
 This method creates and stores a secret.
 
@@ -68,156 +68,129 @@ Request
 """"""""""""""""
 
 
-The following table shows the body parameters for the request:
+The following table shows the JSON attributes to be specified in the request:
 
-+-----------------------------+---------------------+--------------------------+
-|Name                         |Type                 |Description               |
-+=============================+=====================+==========================+
-|\ **name**                   |String *(Optional)*  |Specifies the human       |
-|                             |                     |readable name for the     |
-|                             |                     |secret. This parameter is |
-|                             |                     |optional. If no name is   |
-|                             |                     |supplied, the UUID will   |
-|                             |                     |be displayed for this     |
-|                             |                     |parameter on subsequent   |
-|                             |                     |GET calls.                |
-+-----------------------------+---------------------+--------------------------+
-|\ **expiration**             |Integer *(Optional)* |Specifies the expiration  |
-|                             |                     |date for the secret in    |
-|                             |                     |ISO-8601 format. ISO-8601 |
-|                             |                     |formats dates by using    |
-|                             |                     |the following             |
-|                             |                     |representation: yyyy-mm-  |
-|                             |                     |ddThh:mm:ss[.mmm]. For    |
-|                             |                     |example, September 27,    |
-|                             |                     |2012 is represented as    |
-|                             |                     |2012-09-27. Once the      |
-|                             |                     |secret has expired, it is |
-|                             |                     |no longer returned by the |
-|                             |                     |API or agent. This        |
-|                             |                     |parameter is optional. If |
-|                             |                     |this parameter is not     |
-|                             |                     |supplied, the secret has  |
-|                             |                     |no expiration date.       |
-+-----------------------------+---------------------+--------------------------+
-|\ **algorithm**              |String *(Optional)*  |Specifies the algorithm   |
-|                             |                     |type used to generate the |
-|                             |                     |secret. This parameter is |
-|                             |                     |optional. Barbican does   |
-|                             |                     |not validate the          |
-|                             |                     |information provided for  |
-|                             |                     |this parameter because it |
-|                             |                     |is client/application     |
-|                             |                     |specific.                 |
-+-----------------------------+---------------------+--------------------------+
-|\ **bit_length**             |Integer *(Optional)* |Specifies the bit length  |
-|                             |                     |of the secret. Must be a  |
-|                             |                     |positive integer. This    |
-|                             |                     |parameter is optional.    |
-|                             |                     |Barbican does not         |
-|                             |                     |validate the information  |
-|                             |                     |provided for this         |
-|                             |                     |parameter because it is   |
-|                             |                     |client/application        |
-|                             |                     |specific.                 |
-+-----------------------------+---------------------+--------------------------+
-|\ **mode**                   |String *(Optional)*  |Specifies the type/mode   |
-|                             |                     |of the algorithm          |
-|                             |                     |associated with the       |
-|                             |                     |secret information. This  |
-|                             |                     |parameter is optional.    |
-|                             |                     |Barbican does not         |
-|                             |                     |validate the information  |
-|                             |                     |provided for this         |
-|                             |                     |parameter because it is   |
-|                             |                     |client/application        |
-|                             |                     |specific.                 |
-+-----------------------------+---------------------+--------------------------+
-|\ **payload**                |String *(Optional)*  |Specifies the secret's    |
-|                             |                     |unencrypted plain text.   |
-|                             |                     |If this parameter is      |
-|                             |                     |specified, the            |
-|                             |                     |payload_content_type      |
-|                             |                     |parameter must be         |
-|                             |                     |specified as well. If     |
-|                             |                     |this parameter is not     |
-|                             |                     |specified, you can        |
-|                             |                     |provide the payload       |
-|                             |                     |information via a         |
-|                             |                     |subsequent PUT request.   |
-|                             |                     |If the payload is not     |
-|                             |                     |provided, only the secret |
-|                             |                     |metadata will be          |
-|                             |                     |retrievable from Barbican |
-|                             |                     |and any attempt to        |
-|                             |                     |retrieve decrypted data   |
-|                             |                     |for that secret will      |
-|                             |                     |fail. Deferring the       |
-|                             |                     |secret information to a   |
-|                             |                     |PUT request is useful for |
-|                             |                     |secrets that are in       |
-|                             |                     |binary format and are not |
-|                             |                     |suitable for base64       |
-|                             |                     |encoding.                 |
-+-----------------------------+---------------------+--------------------------+
-|\ **payload_content_type**   |String *(Optional)*  |Specifies the type/format |
-|                             |                     |the secret data is        |
-|                             |                     |provided in. This         |
-|                             |                     |parameter is required if  |
-|                             |                     |the payload parameter is  |
-|                             |                     |specified. The following  |
-|                             |                     |values are supported: -   |
-|                             |                     |"text/plain" - This value |
-|                             |                     |is used to store plain    |
-|                             |                     |text secrets. Other       |
-|                             |                     |options are "text/plain;  |
-|                             |                     |charset=utf-8". If the    |
-|                             |                     |charset value is omitted, |
-|                             |                     |UTF-8 will be assumed.    |
-|                             |                     |Note that Barbican        |
-|                             |                     |normalizes some formats   |
-|                             |                     |before storing them as    |
-|                             |                     |secret metadata, for      |
-|                             |                     |example,"text/plain;      |
-|                             |                     |charset=utf-8" is         |
-|                             |                     |converted to              |
-|                             |                     |"text/plain." Retrieved   |
-|                             |                     |metadata may not exactly  |
-|                             |                     |match what was originally |
-|                             |                     |specified in the POST or  |
-|                             |                     |PUT request. When the     |
-|                             |                     |payload_content_type      |
-|                             |                     |parameter is set to       |
-|                             |                     |"text/plain" you cannot   |
-|                             |                     |specify a value for the   |
-|                             |                     |payload_content_encoding  |
-|                             |                     |parameter. -              |
-|                             |                     |"application/octet-       |
-|                             |                     |stream" - This value is   |
-|                             |                     |used to store binary      |
-|                             |                     |secrets from a base64     |
-|                             |                     |encoded payload. If this  |
-|                             |                     |value is used, you must   |
-|                             |                     |also include the          |
-|                             |                     |payload_content_encoding  |
-|                             |                     |parameter.                |
-+-----------------------------+---------------------+--------------------------+
-|\                            |String *(Optional)*  |Specifies the encoding    |
-|**payload_content_encoding** |                     |format used to provide    |
-|                             |                     |the payload data.         |
-|                             |                     |Barbican may translate    |
-|                             |                     |and store the secret data |
-|                             |                     |into another format. This |
-|                             |                     |parameter is required if  |
-|                             |                     |the payload_content_type  |
-|                             |                     |parameter is set to       |
-|                             |                     |"application/octet-       |
-|                             |                     |stream." The only         |
-|                             |                     |supported value for this  |
-|                             |                     |parameter is "base64,"    |
-|                             |                     |which specifies base64-   |
-|                             |                     |encoded payloads.         |
-+-----------------------------+---------------------+--------------------------+
++--------------------------+------------+--------------------------------------+
+|Name                      |Type        |Description                           |
++==========================+============+======================================+
+| name                     | string     | Specifies the human                  |
+|                          | (optional) | readable name for the                |
+|                          |            | secret. This parameter is            |
+|                          |            | optional.                            |
++--------------------------+------------+--------------------------------------+
+| secret_type              | string     | Specifies the type of                |
+|                          |            | secret being stored.                 |
+|                          |            | Possible secret types                |
+|                          |            | are:                                 |
+|                          |            |                                      |
+|                          |            |     - ``symmetric``: Used for        |
+|                          |            |       storing byte arrays such as    |
+|                          |            |       keys suitable for symmetric    |
+|                          |            |       encryption.                    |
+|                          |            |     - ``public``: Used for storing   |
+|                          |            |       the public key of an           |
+|                          |            |       asymmetric keypair.            |
+|                          |            |     - ``private``: Used for storing  |
+|                          |            |       the private key of an          |
+|                          |            |       asymmetric keypair.            |
+|                          |            |     - ``passphrase``: Used for       |
+|                          |            |       storing plain text             |
+|                          |            |       passphrases.                   |
+|                          |            |     - ``certificate``: Used for      |
+|                          |            |       storing cryptographic          |
+|                          |            |       certificates such as X.509     |
+|                          |            |       certificates.                  |
+|                          |            |     - ``opaque`` (default): Used for |
+|                          |            |       storing unformatted binary     |
+|                          |            |       data                           |   
++--------------------------+------------+--------------------------------------+
+| expiration               | date       | Specifies the expiration             |
+|                          | (optional) | date for the secret in               |
+|                          |            | ISO-8601 format. ISO-8601            |
+|                          |            | formats dates by using               |
+|                          |            | the following                        |
+|                          |            | representation:                      |
+|                          |            | ``yyyy-mm-ddThh:mm:ss``.             |
+|                          |            | For example, September 27,           |
+|                          |            | 2012 is represented as               |
+|                          |            | ``2012-09-27T00:00:00``. Once the    |
+|                          |            | secret has expired, it is            |
+|                          |            | no longer returned by the            |
+|                          |            | API or agent. This                   |
+|                          |            | parameter is optional. If            |
+|                          |            | this parameter is not                |
+|                          |            | supplied, the secret has             |
+|                          |            | no expiration date.                  |
++--------------------------+------------+--------------------------------------+
+| payload                  | string     | Specifies the secret's               |
+|                          | (optional) | unencrypted plain text (secret data) |
+|                          |            | If this parameter is                 |
+|                          |            | specified, the                       |
+|                          |            | payload_content_type                 |
+|                          |            | parameter must be                    |
+|                          |            | specified as well. If                |
+|                          |            | this parameter is not                |
+|                          |            | specified, you can                   |
+|                          |            | provide the payload                  |
+|                          |            | information via a                    |
+|                          |            | subsequent PUT request.              |
+|                          |            | If the payload is not                |
+|                          |            | provided, only the secret            |
+|                          |            | metadata will be                     |
+|                          |            | retrievable from Barbican            |
+|                          |            | and any attempt to                   |
+|                          |            | retrieve decrypted data              |
+|                          |            | for that secret will                 |
+|                          |            | fail. Deferring the                  |
+|                          |            | secret information to a              |
+|                          |            | PUT request is useful for            |
+|                          |            | secrets that are in                  |
+|                          |            | binary format and are not            |
+|                          |            | suitable for base64                  |
+|                          |            | encoding.                            |
++--------------------------+------------+--------------------------------------+
+| payload_content_type     | string     | Specifies the media type (format) of |
+|                          | (optional) | the secret data itself.  This        |
+|                          |            | parameter is required if             |
+|                          |            | the payload parameter is             |
+|                          |            | specified. The following             |
+|                          |            | values are supported:                |
+|                          |            |                                      |
+|                          |            | - ``text/plain`` - This value is     |
+|                          |            |   used for *passphrase* type secrets |
+|                          |            | - ``application/octet-stream`` -     |
+|                          |            |   This value is used for binary data |
+|                          |            |   such as *symmetric* and *opaque*   |
+|                          |            |   type secrets.                      |
+|                          |            | - ``application/pkix-cert`` - This   |
+|                          |            |   value is used for "certificate"    |
+|                          |            |   type secrets.                      |
++--------------------------+------------+--------------------------------------+
+| payload_content_encoding | string     | Some data might not be suitable to   |
+|                          | (optional) | include inside a JSON request.  For  |
+|                          |            | example, the contents of a           |
+|                          |            | certificate file include newline     |
+|                          |            | characters which are not allowed in  |
+|                          |            | a JSON request.                      |
+|                          |            | To work around this limitation       |
+|                          |            | of the JSON format you               |
+|                          |            | may optionally base64 encode the     |
+|                          |            | secret data since base64 encoding    |
+|                          |            | produces a string that contains      |
+|                          |            | valid JSON characters.               |
+|                          |            | This attribute is used to specify    |
+|                          |            | that the data string included in the |
+|                          |            | ``payload`` attribute is the bas64   |
+|                          |            | encoded representation of the actual |
+|                          |            | payload by setting the value to      |
+|                          |            | ``base64``.  When set, the Cloud     |
+|                          |            | Keep system will base64 decode the   |
+|                          |            | string in the payload attribute      |
+|                          |            | before encrypting it for storage.    |
+|                          |            | When retrieving the secret in future |
+|                          |            | requests, the payload will be the    |
+|                          |            | decoded data.                        |
++--------------------------+------------+--------------------------------------+
 
 
 **Example:Create Secret: JSON request**
@@ -225,17 +198,15 @@ The following table shows the body parameters for the request:
 
 .. code::
 
-   curl -X POST $ENDPOINT/v1/secrets -H 'Content-Type: application/json'\
-        -H 'Accept: application/json -H 'X-Auth-Token: $AUTH-TOKEN' -d \
+   curl -X POST -H 'Content-Type: application/json' \
+        -H 'Accept: application/json' -H "X-Auth-Token: $AUTH_TOKEN" -d \
         '{
-          "name": "key",
-          "expiration": "2014-09-01T19:14:44.180394",
-          "algorithm": "aes",
-          "bit_length": 256,
-          "mode": "cbc",
-          "payload": "secretsecretsecret",
-          "payload_content_type": "text/plain"
-         }'
+            "name": "Rocket launch codes",
+            "secret_type": "passphrase",
+            "payload": "secretsecretsecret",
+            "payload_content_type": "text/plain",
+            "expiration": "2020-01-31T23:59:59"
+         }' $ENDPOINT/v1/secrets 
 
 
 Response
