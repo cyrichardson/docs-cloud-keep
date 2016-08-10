@@ -143,9 +143,9 @@ Each type has explicit restrictions about the type of secret data that can be
 stored in the container as described in the following sections:
 
 .. contents::
-
    :local:
    :depth: 1
+
 
 .. _generic_containers:
 
