@@ -9,7 +9,7 @@ This Getting Started Guide shows how to send requests by using cURL.
      You can also use Rackspace Cloud API services by using the following methods:
 
      -  If you are developing applications or automation, try using the
-        `OpenStack python-barbicanclient`_ library.
+        `OpenStack Barbican Python client`_ library.
 
      -  For API development, testing and workflow management in a graphical environment, try
         interacting with the API by using an application such as
@@ -22,5 +22,5 @@ This Getting Started Guide shows how to send requests by using cURL.
 .. _Postman: http://www.getpostman.com
 .. _RESTClient for Firefox: https://addons.mozilla.org/en-US/firefox/addon/restclient
 .. _Cloud Control Panel: https://mycloud.rackspace.com
-.. _OpenStack python-barbicanclient: http://docs.openstack.org/developer/python-barbicanclient/
+.. _OpenStack Barbican Python client: http://docs.openstack.org/developer/python-barbicanclient/
 
