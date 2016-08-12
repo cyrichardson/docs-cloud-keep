@@ -49,10 +49,10 @@ has been added to |product name|:
         "expiration": "2020-01-31T00:00:00"
     }
 
-A secret consists of the following elements:
+A secret has the following attributes:
 
 +---------------+---------------------------------------------------------------+
-| Element       | Description                                                   |
+| Attribute     | Description                                                   |
 +===============+===============================================================+
 | name          | Human readable name for the secret.                           |
 +---------------+---------------------------------------------------------------+

@@ -49,12 +49,6 @@ The following table shows the URI parameters for the request:
 +-------------+---------+-----------------------------------------------------------------+
 | name        | string  | Selects all secrets with name similar to this value.            |
 +-------------+---------+-----------------------------------------------------------------+
-| alg         | string  | Selects all secrets with algorithm similar to this value.       |
-+-------------+---------+-----------------------------------------------------------------+
-| mode        | string  | Selects all secrets with mode similar to this value.            |
-+-------------+---------+-----------------------------------------------------------------+
-| bits        | integer | Selects all secrets with bit_length equal to this value.        |
-+-------------+---------+-----------------------------------------------------------------+
 | secret_type | string  | Selects all secrets with secret_type equal to this value.       |
 +-------------+---------+-----------------------------------------------------------------+
 | acl_only    | boolean | Selects all secrets with an ACL that contains the user.         |
@@ -71,6 +65,15 @@ The following table shows the URI parameters for the request:
 +-------------+---------+-----------------------------------------------------------------+
 | sort        | string  | Determines the sorted order of the returned list.  See Sorting  |
 |             |         | below for more detail.                                          |
++-------------+---------+-----------------------------------------------------------------+
+| alg         | string  | (Deprecated) Selects all secrets with their algorithm metadata  |
+|             |         | attribute similar to this value.                                |
++-------------+---------+-----------------------------------------------------------------+
+| mode        | string  | (Deprecated) Selects all secrets with their mode metadata       |
+|             |         | attribute similar to this value.                                |
++-------------+---------+-----------------------------------------------------------------+
+| bits        | integer | (Deprecated) Selects all secrets with their bit_length metadata |
+|             |         | attribute equal to this value.                                  |
 +-------------+---------+-----------------------------------------------------------------+
 
 This operation does not take a request body.
