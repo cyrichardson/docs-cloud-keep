@@ -1,16 +1,18 @@
-.. _service-access-endpoints:
-
  .. code-block:: json
-    :emphasize-lines: 5
 
             {
-                "name": "cloudKeep",
-                "endpoints": [
-                    {
-                        "region": "IAD",
-                        "tenantId": "123456",
-                        "publicURL": "https://iad.keep.api.rackspacecloud.com"
-                    }
-                ],
-                "type": "key-manager"
+            "endpoints":[
+               {
+                  "tenantId":"123456",
+                  "publicURL":"https://global.cdn.api.rackspacecloud.com/v1.0/123456”,
+                  "region":"IAD"
+               },
+               {
+                  "tenantId":"123456",
+                  "publicURL":"https://global.cdn.api.rackspacecloud.com/v1.0/123456",
+                  "region":"LON"
+               }
+            ],
+            "name":"rackCDN",
+            "type":"rax:cdn"
             }

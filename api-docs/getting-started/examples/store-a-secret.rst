@@ -2,7 +2,7 @@
 .. _gsg-store-a-secret:
 
 Store a secret
-~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~
 
 
 You can store a secret by submitting a **POST** request against the
@@ -17,8 +17,8 @@ You must also specify the media type of secret payload in the
 -  For binary secrets such as ``symmetric`` type secrets, set the
    ``payload_content_type`` attribute to ``application/octet-stream``.
 
--  For ``certificate`` type secrets, set the ``payload_content_type`` attribute
-   to ``application/pkix-cert``.
+-  For ``certificate`` type secrets, set the ``payload_content_type``
+   attribute to ``application/pkix-cert``.
 
 ..  note::
 
@@ -55,10 +55,12 @@ following:
         {"secret_ref": "https://iad.keep.api.rackspacecloud.com/v1/secrets/578391c7-92fa-484f-8546-3562b170e5"}
 
 
-The example above shows the secretId (578391c7-92fa-484f-8546-3562b170e5), which will be returned in a
-successful response from the endpoint https://iad.keep.api.rackspacecloud.com.
+The example above shows the secretId (578391c7-92fa-484f-8546-3562b170e5),
+which will be returned in a successful response from the endpoint
+``https://iad.keep.api.rackspacecloud.com``.
 
-For subsequent API calls requiring a secret ID, you should set an environment variable as follows:
+For subsequent API calls requiring a secret ID, you should set an environment
+variable as follows:
 
 .. code::
 

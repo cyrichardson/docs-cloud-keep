@@ -1,17 +1,19 @@
 .. _gsg-retrieve-list-of-stored-secrets:
 
 Retrieve a list of stored secrets
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Perform a **GET** request on the secrets resource to retrieve a list of
 :ref:`secrets <secrets-concept>` that belong to your tenant.
 
-By default, the API request returns the first 10 secrets associated with the tenant. You
-can use the *limit* and *offset* request parameters to limit the maximum number of secrets
-returned in a single request and to set the starting point for the list.
+By default, the API request returns the first 10 secrets associated with the
+tenant. You
+can use the *limit* and *offset* request parameters to limit the maximum
+number of secrets returned in a single request and to set the starting point
+for the list.
 
-The following example specifies ``limit`` and ``offset`` values to return five secrets, starting
-with the first. 
+The following example specifies ``limit`` and ``offset`` values to return five
+secrets, starting with the first.
 
 
 **Example: Retrieve list of secrets request**
@@ -26,8 +28,8 @@ with the first.
 
 
 
-If the operation is successful, the response returns a list of secrets as shown in the
-following example.
+If the operation is successful, the response returns a list of secrets as
+shown in the following example.
 
 .. note::
 

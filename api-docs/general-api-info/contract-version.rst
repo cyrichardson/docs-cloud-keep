@@ -1,7 +1,7 @@
 .. _barbican-dg-contract-version:
 
 Rackspace Cloud Keep contract version
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The |product name| version defines the contract and build
 information for the API.
@@ -19,4 +19,5 @@ given time and are not guaranteed to be compatible with one another.
   https://iad.keep.api.rackspacecloud.com/v1/secrets
 
 ..  note::
+
     This document pertains to contract version 1.0.

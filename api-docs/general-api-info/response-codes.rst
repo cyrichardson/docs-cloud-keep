@@ -1,16 +1,21 @@
-.. _Barbican-dg-response-codes:
+.. _response-codes:
 
+==============
 Response codes
-~~~~~~~~~~~~~~~~
+==============
 
-The |product name| REST API returns an HTTP response code that denotes the success
-or failure of the call.
+The |product name| REST API returns an HTTP response code that denotes the
+type of response.
 
 -  Successful response codes are returned only if all configured
    providers were successful in processing the request.
 
 -  Error response codes are accompanied by an ``application/json``
    response body that contains the error messages.
+
+This API uses `standard HTTP 1.1 response codes`_.
+
+.. _standard HTTP 1.1 response codes: http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
 
 The following table lists possible responses with their associated codes
 and descriptions.
@@ -59,7 +64,7 @@ and descriptions.
 +---------------------+---------------+-----------------------------------------+
 
  
-**Example: Error message example**
+**Example: Error message**
 
 .. code::
 

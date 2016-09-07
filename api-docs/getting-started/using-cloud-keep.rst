@@ -1,7 +1,8 @@
 .. using-cloud-keep:
 
+=========================
 Create and manage secrets
----------------------------------------------- 
+=========================
 
 You can use the examples in this section to create and manage secrets
 by using |product name| API operations. Example requests are provided in
@@ -27,4 +28,3 @@ For more information about all Cloud Keep operations, see the
 .. include:: examples/retrieve-a-secret.rst
 .. include:: examples/retrieve-list-of-secrets.rst
 .. include:: examples/two-step-secret-creation.rst
-

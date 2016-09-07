@@ -2,7 +2,7 @@
 
 
 Create a secret using two-step storage 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can use a two-step secret storage process when secret data cannot be
 easily provided inside the JSON data in a one-step secret storage.
@@ -54,9 +54,9 @@ easily provided inside the JSON data in a one-step secret storage.
              -H 'X-Auth-Token: '$AUTH_TOKEN \
              -T ./secret_key_file $ENDPOINT/v1/secrets/$SECRET_ID
 
-#. Cloud Keep encrypts and stores the contents of the secret key file, associates
-   it with the previously created metadata, and responds with an empty
-   ``204 No Content`` message as shown in the following example:
+#. Cloud Keep encrypts and stores the contents of the secret key file,
+   associates it with the previously created metadata, and responds with an
+   empty ``204 No Content`` message as shown in the following example:
 
    .. code::
 
@@ -70,4 +70,4 @@ easily provided inside the JSON data in a one-step secret storage.
         Server: Jetty(9.2.z-SNAPSHOT)
 
 Now you can use a **GET** request to retrieve the secret, as explained
-in :ref:`Retrieve a secret<gsg-retrieve-a-secret>`
+in :ref:`Retrieve a secret <gsg-retrieve-a-secret>`.
