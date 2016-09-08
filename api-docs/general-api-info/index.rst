@@ -24,8 +24,6 @@ formats.
 
    service-access
    contract-version
-   role-based-access-control
-   service-access
    request-response-types
    limits
    common-headers

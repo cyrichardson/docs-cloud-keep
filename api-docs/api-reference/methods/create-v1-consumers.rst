@@ -10,7 +10,8 @@ Create a consumer
 
 This operation creates a consumer for the specified container.
 
-The following table shows the possible response codes for this operation:
+The following table shows the possible response codes for this operation.
+
 +------+-----------------------------------------------------------------------------+
 | Code | Description                                                                 |
 +======+=============================================================================+

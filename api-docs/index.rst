@@ -15,9 +15,8 @@ community-led open-source platform.
 
 .. note::
 
-   |product name| is available on a limited availability basis until March
-   2017. For details, see
-   :ref:`Limited Availability Program <limited-availability-program>`.
+   |product name| is offered to customers on a limited availability basis.
+   For details, see :ref:`Limited Availability program <limited-availability-program>`.
 
 Interactions with |product name| occur programmatically via a REST API. Using
 the API, you can securely store and retrieve credentials systematically using
@@ -53,7 +52,7 @@ using the |apiservice|:
 - :ref:`Release notes <release-notes-collection>`
 
 .. toctree:: :hidden:
-   :maxdepth: 2
+   :maxdepth: 3
 
    Cloud Keep v1.0 <self>
    limited-availability

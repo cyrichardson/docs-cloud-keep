@@ -157,7 +157,7 @@ The following table shows the response attributes for the request:
 The following response examples show the results of sending an API request with
 an offset value of 0 and a limit value of 3.
 
-**Example: Retrieve secrets JSON response**
+**Example: Retrieve secrets, JSON response**
 
 
 .. code::

@@ -1,7 +1,7 @@
 .. _limited-availability-program:
 
 ============================
-Limited Availability Program
+Limited Availability program
 ============================
 
 |product name| is available to customers through a Limited Availability (LA)
@@ -18,4 +18,4 @@ it available in other regions and support integration with other services.
 
 To learn more and sign up, visit the `Cloud Keep Signup page`_.
 
-.. _Cloud Keep Signup page: https://go.rackspace.com/cloud-keep.html
+.. _Cloud Keep Signup page: http://go.rackspace.com/dedicated-servers-cloud-keep.html
