@@ -9,7 +9,8 @@ Update configured project quotas
     PUT /{version}/project-quotas/{project_id}
 
 
-Create or update the configured project quotas for the project with the specified project ID.
+Create or update the configured project quotas for the project with the
+specified project ID.
 
 The following table shows the possible response codes for this operation:
 
@@ -26,7 +27,7 @@ The following table shows the possible response codes for this operation:
 Request
 -------
 
-The following table shows the URI parameters for the request:
+The following table shows the URI parameters for the request.
 
 +--------------------------+-------------------------+-------------------------+
 |Name                      |Type                     |Description              |
@@ -58,8 +59,8 @@ The following table shows the body parameters for the request:
 +----------------+---------+----------------------------------------------+
 
 You only need to specify the values that you want to override.  For example, if
-you are only interested in changing the ``secrets`` quota then your project-quotas
-dict should only contain an entry for ``secrets``:
+you are only interested in changing the ``secrets`` quota then your
+project-quotas dict should only contain an entry for ``secrets``:
 
 .. code::
 

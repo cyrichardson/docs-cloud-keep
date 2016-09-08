@@ -7,16 +7,16 @@ Create Order
 
     POST /{version}/{tenantId}/orders
 
-This method creates an order.
+This operation creates an order.
 
-This method creates a new order.
+This operation creates a new order.
 
 
 The following table shows the possible response codes for this operation:
 
 
 +--------------------------+-------------------------+-------------------------+
-|Response Code             |Name                     |Description              |
+|Response code             |Name                     |Description              |
 +==========================+=========================+=========================+
 |201                       |Success                  |This status code is      |
 |                          |                         |returned when the order  |
@@ -48,7 +48,7 @@ Request
 -------
 
 
-The following table shows the URI parameters for the request:
+The following table shows the URI parameters for the request.
 
 +--------------------------+-------------------------+-------------------------+
 |Name                      |Type                     |Description              |

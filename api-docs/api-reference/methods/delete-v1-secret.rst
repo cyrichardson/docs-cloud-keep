@@ -8,7 +8,7 @@ Delete a secret
 
     DELETE /v1/secrets/{secret_id}
 
-Deletes the specified secret.
+This operation deletes the specified secret.
 
 The following table shows the possible response codes for this operation:
 
@@ -28,15 +28,15 @@ Request
 
 The following table shows the URI parameter for the request:
 
-+----------------------------+---------+---------------------------------+------------+
-| Parameter name             | Type    | Description                     | Default    |
-+============================+=========+=================================+============+
-| secretID                   | string  | The UUID for the secret         | None       |
-+----------------------------+---------+---------------------------------+------------+
++----------------------------+---------+---------------------------------+
+| Parameter name             | Type    | Description                     |
++============================+=========+=================================+
+| secretID                   | string  | The UUID for the secret         |
++----------------------------+---------+---------------------------------+
 
-This operation doesn't take a request body.
+This operation does not accept a request body.
 
-**Example: Delete secret cURL request**
+**Example: Delete a secret, cURL request**
 
 
 .. code::

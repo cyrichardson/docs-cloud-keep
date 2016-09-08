@@ -8,7 +8,9 @@
 
 |product name| is a key management service backed by a Hardware Security Module
 (HSM) to provide FIPS certified secret storage, encryption, and decryption of
-keys and credentials. The product is based on OpenStack Barbican, a
+keys and credentials. The product enables secure life-cycle management of keys
+and credentials, called *secrets*, on behalf of customers. |product name|
+is based on the OpenStack Key Manager service (code named Barbican), a
 community-led open-source platform.
 
 .. note::
@@ -17,7 +19,7 @@ community-led open-source platform.
    2017. For details, see
    :ref:`Limited Availability Program <limited-availability-program>`.
 
-Interactions with |product name| occur programmatically via the API. Using
+Interactions with |product name| occur programmatically via a REST API. Using
 the API, you can securely store and retrieve credentials systematically using
 the following resources:
 

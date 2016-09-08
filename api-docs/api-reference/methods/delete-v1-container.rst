@@ -2,13 +2,13 @@
 .. _delete-container:
 
 Delete a container
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
 
 .. code::
 
     DELETE /{version}/containers/{container_id}
 
-Deletes a container.
+This operation deletes a container.
 
 .. note::
     To prevent unexpected service issues, ensure that you notify all
@@ -33,18 +33,18 @@ The following table shows the possible response codes for this operation:
 Request
 -------
 
-The following table shows the URI parameters for the request:
+The following table shows the URI parameters for the request.
 
-+----------------------------+---------+---------------------------------+------------+
-| Parameter name             | Type    | Description                     | Default    |
-+============================+=========+=================================+============+
-|containerID                 | string  | The UUID for the container      | None       |
-+----------------------------+---------+---------------------------------+------------+
++----------------------------+---------+---------------------------------+
+| Parameter name             | Type    | Description                     |
++============================+=========+=================================+
+|containerID                 | string  | The UUID for the container      |
++----------------------------+---------+---------------------------------+
 
 This operation does not require a response body.
 
 
-**Example: Delete container cURL request**
+**Example: Delete a container, cURL request**
 
 
 .. code::

@@ -30,8 +30,8 @@ Save your API key
 .. important::
       Protect your API key. Do not expose the value in code samples, screen
       captures, or insecure client-server communications. Also, ensure that
-      the value is not
-      included in source code that is stored in public repositories.
+      the value is not included in source code that is stored in public
+      repositories.
 
 Save your account number
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -40,4 +40,3 @@ Save your account number
    section.
 
 #. Copy and save the account number.
-

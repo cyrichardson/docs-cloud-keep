@@ -1,27 +1,26 @@
 
 .. _post-secret:
 
-Create Secret
-~~~~~~~~~~~~~
+Create a secret
+~~~~~~~~~~~~~~~
 
 .. code::
 
     POST /v1/secrets
 
-This method creates and stores a secret.
+This operation creates and stores a secret.
 
 ..  note::
-    The POST request always creates and stores secret metadata. If a payload is provided
-    with the POST request, it is encrypted and stored, and then linked with this metadata.
-    If no payload is provided in the POST request, it must be provided in a subsequent
-    PUT request.
+    The **POST** request always creates and stores secret metadata. If a
+    payload is provided with the **POST** request, it is encrypted and stored,
+    and then linked with this metadata. If no payload is provided  the POST request,
+    it must be provided in a subsequent **PUT** request.
 
 
-The following table shows possible response codes for this operation:
-
+The following table shows possible response codes for this operation.
 
 +--------------------------+-------------------------+-------------------------+
-|Response Code             |Name                     |Description              |
+|Response code             |Name                     |Description              |
 +==========================+=========================+=========================+
 |201                       |Success                  |This status code is      |
 |                          |                         |returned when the secret |
@@ -30,7 +29,7 @@ The following table shows possible response codes for this operation:
 +--------------------------+-------------------------+-------------------------+
 |400                       |Error                    |This error code is       |
 |                          |                         |returned if the          |
-|                          |                         |"payload" parameter is   |
+|                          |                         |``payload`` parameter is |
 |                          |                         |empty. This response     |
 |                          |                         |indicates that the       |
 |                          |                         |'payload' JSON attribute |
@@ -40,7 +39,7 @@ The following table shows possible response codes for this operation:
 |400                       |Error                    |This error code is       |
 |                          |                         |returned if the secret   |
 |                          |                         |has invalid data. This   |
-|                          |                         |response may include     |
+|                          |                         |response might include   |
 |                          |                         |schema violations such   |
 |                          |                         |as mime-type not         |
 |                          |                         |specified.               |
@@ -68,13 +67,13 @@ Request
 -------
 
 
-The following table shows the JSON attributes to be specified in the request:
+The following table shows the body parameters for the request.
 
 +--------------------------+------------+--------------------------------------+
 |Name                      |Type        |Description                           |
 +==========================+============+======================================+
-| name                     | string     | Specifies the human                  |
-|                          | (optional) | readable name for the                |
+| name                     | string     | (Optional) Specifies the human       |
+|                          |            | readable name for the                |
 |                          |            | secret. This parameter is            |
 |                          |            | optional.                            |
 +--------------------------+------------+--------------------------------------+
@@ -104,16 +103,16 @@ The following table shows the JSON attributes to be specified in the request:
 |                          |            |       storing unformatted binary     |
 |                          |            |       data                           |
 +--------------------------+------------+--------------------------------------+
-| expiration               | date       | Specifies the expiration             |
-|                          | (optional) | date for the secret in               |
+| expiration               | date       | *(Optional)* Specifies the           |
+|                          |            | expiration date for the secret in    |
 |                          |            | ISO-8601 format. ISO-8601            |
 |                          |            | formats dates by using               |
 |                          |            | the following                        |
 |                          |            | representation:                      |
 |                          |            | ``yyyy-mm-ddThh:mm:ss``.             |
 |                          |            | For example, September 27,           |
-|                          |            | 2012 is represented as               |
-|                          |            | ``2012-09-27T00:00:00``. Once the    |
+|                          |            | 2016 is represented as               |
+|                          |            | ``2016-09-27T00:00:00``. After the   |
 |                          |            | secret has expired, it is            |
 |                          |            | no longer returned by the            |
 |                          |            | API or agent. This                   |
@@ -122,36 +121,30 @@ The following table shows the JSON attributes to be specified in the request:
 |                          |            | supplied, the secret has             |
 |                          |            | no expiration date.                  |
 +--------------------------+------------+--------------------------------------+
-| payload                  | string     | Specifies the secret's               |
-|                          | (optional) | unencrypted plain text (secret data) |
-|                          |            | If this parameter is                 |
-|                          |            | specified, the                       |
-|                          |            | payload_content_type                 |
-|                          |            | parameter must be                    |
-|                          |            | specified as well. If                |
-|                          |            | this parameter is not                |
-|                          |            | specified, you can                   |
-|                          |            | provide the payload                  |
-|                          |            | information via a                    |
-|                          |            | subsequent PUT request.              |
-|                          |            | If the payload is not                |
-|                          |            | provided, only the secret            |
-|                          |            | metadata will be                     |
-|                          |            | retrievable from Barbican            |
-|                          |            | and any attempt to                   |
-|                          |            | retrieve decrypted data              |
-|                          |            | for that secret will                 |
-|                          |            | fail. Deferring the                  |
-|                          |            | secret information to a              |
-|                          |            | PUT request is useful for            |
-|                          |            | secrets that are in                  |
-|                          |            | binary format and are not            |
-|                          |            | suitable for base64                  |
+| payload                  | string     | *(Optional)* Specifies the secret's  |
+|                          |            | unencrypted plain text (secret data) |
+|                          |            | If this parameter is specified, the  |
+|                          |            | ``payload_content_type`` parameter   |
+|                          |            | must also be specified.              |
+|                          |            | If this parameter is not specified   |
+|                          |            | you can provide the payload          |
+|                          |            | information via a subsequent **PUT** |
+|                          |            | request.                             |
+|                          |            |                                      |
+|                          |            | If the payload is not provided, only |
+|                          |            | metadata will be retrievable from    |
+|                          |            | |product name| and any attempt to    |
+|                          |            | retrieve decrypted data for that     |
+|                          |            | secret will fail. Deferring the      |
+|                          |            | secret information to a **PUT**      |
+|                          |            | PUT request is useful for  secrets   |
+|                          |            | secrets that are in binary format    |
+|                          |            | and are not suitable for base 64     |
 |                          |            | encoding.                            |
 +--------------------------+------------+--------------------------------------+
-| payload_content_type     | string     | Specifies the media type (format) of |
-|                          | (optional) | the secret data itself.  This        |
-|                          |            | parameter is required if             |
+| payload_content_type     | string     | *(Optional)* Specifies the media type|
+|                          |            | format of the secret data itself.    |
+|                          |            | This parameter is required if        |
 |                          |            | the payload parameter is             |
 |                          |            | specified. The following             |
 |                          |            | values are supported:                |
@@ -166,34 +159,35 @@ The following table shows the JSON attributes to be specified in the request:
 |                          |            |   value is used for "certificate"    |
 |                          |            |   type secrets.                      |
 +--------------------------+------------+--------------------------------------+
-| payload_content_encoding | string     | Some data might not be suitable to   |
-|                          | (optional) | include inside a JSON request.  For  |
-|                          |            | example, the contents of a           |
-|                          |            | certificate file include newline     |
+| payload_content_encoding | string     | *(Optional)* Some data might not be  |
+|                          | (optional) | suitable to include inside a JSON    |
+|                          |            | request. For example, the contents of|
+|                          |            | of a certificate file include newline|
 |                          |            | characters which are not allowed in  |
 |                          |            | a JSON request.                      |
+|                          |            |                                      |
 |                          |            | To work around this limitation       |
 |                          |            | of the JSON format you               |
-|                          |            | may optionally base64 encode the     |
-|                          |            | secret data since base64 encoding    |
+|                          |            | can optionally base64 encode the     |
+|                          |            | secret data because base64 encoding  |
 |                          |            | produces a string that contains      |
 |                          |            | valid JSON characters.               |
-|                          |            | This attribute is used to specify    |
-|                          |            | that the data string included in the |
-|                          |            | ``payload`` attribute is the bas64   |
-|                          |            | encoded representation of the actual |
-|                          |            | payload by setting the value to      |
-|                          |            | ``base64``.  When set, the Cloud     |
-|                          |            | Keep system will base64 decode the   |
-|                          |            | string in the payload attribute      |
-|                          |            | before encrypting it for storage.    |
-|                          |            | When retrieving the secret in future |
-|                          |            | requests, the payload will be the    |
-|                          |            | decoded data.                        |
+|                          |            |                                      |
+|                          |            | Specifies the encoding format used   |
+|                          |            | to provide the ``payload`` data.     |
+|                          |            | Cloud Keep might translate and store |
+|                          |            | the secret data in another format.   |
+|                          |            | This parameter is required if the    |
+|                          |            | ``payload_content_type`` parameter   |
+|                          |            | is set to ``application/octet-       |
+|                          |            | ``application/octet-stream``. The    |
+|                          |            | only supported value for this        |
+|                          |            | paraemeter is ``base64``, which      |
+|                          |            | specifies base64- encoded payloads.  |
 +--------------------------+------------+--------------------------------------+
 
 
-**Example:Create Secret: JSON request**
+**Example: Create a secret, cURL request**
 
 
 .. code::
@@ -212,20 +206,20 @@ The following table shows the JSON attributes to be specified in the request:
 Response
 --------
 
-The following table shows the response attribute for this request.
+The following table shows the response attribute.
 
 +---------------+---------+-------------------------------------------------------------+
 | Name          | Type    | Description                                                 |
 +===============+=========+=============================================================+
-|secret_ref     | URI     | Returns a HATEOAS url to retrieve information about the     |
+|secret_ref     | URI     | Returns a HATEOAS URL to retrieve information about the     |
 |               |         | the specified secret. The reference URL concatenates the    |
-|               |         | URI for the 'retrieve secrets` API operation and the        |
-|               |         | and the system-generated ``secretID`` assigned automatically|
-|               |         | when the secret is created. In the example, the *secretID*  |
+|               |         | URI for the retrieve secrets API operation and the          |
+|               |         | and the system-generated secret ID assigned automatically   |
+|               |         | when the secret is created. In this example, the secret ID  |
 |               |         | value is ``485950f0-37a5-4ba4-b1d6-413f79b849ef``.          |
 +---------------+---------+-------------------------------------------------------------+
 
-**Example: Create Secret JSON response**
+**Example: Create a secret, JSON response**
 
 
 .. code::

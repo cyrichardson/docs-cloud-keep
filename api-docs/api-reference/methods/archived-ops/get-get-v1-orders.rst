@@ -7,7 +7,7 @@ Get Orders
 
     GET /{version}/{tenantId}/orders
 
-This method lists all orders for a specified tenant. Performing a GET on the secrets 
+This operation lists all orders for a specified tenant. Performing a GET on the secrets 
 resource with no UUID retrieves a batch of the most recent orders per the requesting 
 tenant. 				
 
@@ -16,7 +16,7 @@ The retrieved list of orders is ordered by oldest to newest created date.
 The following table shows the possible response codes for this operation:
 
 +--------------------------+-------------------------+-------------------------+
-|Response Code             |Name                     |Description              |
+|Response code             |Name                     |Description              |
 +==========================+=========================+=========================+
 |200                       |Success                  |This status code is      |
 |                          |                         |returned when the orders |
@@ -29,7 +29,7 @@ Request
 -------
 
 
-The following table shows the URI parameters for the request:
+The following table shows the URI parameters for the request.
 
 +--------------------------+-------------------------+-------------------------+
 |Name                      |Type                     |Description              |

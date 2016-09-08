@@ -1,19 +1,19 @@
 
 .. _get-secret-information:
 
-Get secret metadata
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Retrieve secret metadata
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code::
 
     GET /v1/secrets/{secret_id}
 
-This method retrieves the metadata for the specified secret.
+This operation retrieves the metadata for the specified secret.
 
 The following table shows possible response codes for this operation:
 
 +--------------------------+-------------------------+-------------------------+
-|Response Code             |Name                     |Description              |
+|Response code             |Name                     |Description              |
 +==========================+=========================+=========================+
 |200                       |Success                  |This status code is      |
 |                          |                         |returned when the secret |
@@ -22,19 +22,24 @@ The following table shows possible response codes for this operation:
 +--------------------------+-------------------------+-------------------------+
 |404                       |Not Found                |This error code is       |
 |                          |                         |returned when the secret |
-|                          |                         |id is invalid.           |
+|                          |                         |ID is invalid.           |
 +--------------------------+-------------------------+-------------------------+
 
 
 Request
 -------
 
+he following table shows the URI parameters for this request.
+
++---------------+---------+----------------------------------------------------+
+| Name          | Type    | Description                                        |
++===============+=========+====================================================+
+| {secretID}    | string  | Human readable name for the secret.                |
++---------------+---------+----------------------------------------------------+
+
 This operation does not accept a request body.
 
-
-
-**Example: Get secret metadata cURL requestt**
-
+**Example: Retrieve secret metadata, cURL request**
 
 .. code::
 
@@ -42,23 +47,22 @@ This operation does not accept a request body.
         -H "X-Auth-Token: $AUTH_TOKEN" \
         $ENDPOINT/v1/secrets/{secretID}
 
-
-
 Response
 --------
 
-The following table shows the response atttributes for this request.
+The following table shows the response attributes.
 
 +---------------+---------+---------------------------------------------------------------+
 | Name          | Type    | Description                                                   |
 +===============+=========+===============================================================+
-| name          | string  | Human readable name for the secret.                           |
+| name          | string  | Human readable name for the secret assigned when the secret   |
+|               |         | was created.                                                  |
 +---------------+---------+---------------------------------------------------------------+
-| status        | string  | The secret's status.  Possible values are ``ACTIVE``,         |
-|               |         | ``PENDING``, ``ERROR``.                                       |
+| status        | string  | Returns the current state of the secret resource. Possible    |
+|               |         | values are ``ACTIVE``, ``PENDING``, ``ERROR``.                |
 +---------------+---------+---------------------------------------------------------------+
-| secret\_ref   | URI     | Unique identifier for the secret. This value is assigned by   |
-|               |         | the API.                                                      |
+| secret\_ref   | URI     | A HATEOS URL to retrieve information about the specified      |
+|               |         | secret. This value is assigned by the API.                    |
 +---------------+---------+---------------------------------------------------------------+
 | secret\_type  | string  | The secret type. The possible secret types are:               |
 |               |         |                                                               |
@@ -80,7 +84,10 @@ The following table shows the response atttributes for this request.
 |               |         | the secret has expired, it will no longer be returned by the  |
 |               |         | API.                                                          |
 +---------------+---------+---------------------------------------------------------------+
-| content_types | dict    | Media Type(s) associated with this secret.                    |
+| content_types | dict    | Dictionary of content type information for the resource.      |
+|               |         | Supported formats are plain text format (text/plain) and      |
+|               |         | binary format (application/octet-stream). Content types are   |
+|               |         | specified when the resource is created.                       |
 +---------------+---------+---------------------------------------------------------------+
 | algorithm     | string  | (Deprecated) Metadata describing the algorithm associated     |
 |               |         | with the secret.                                              |
@@ -93,7 +100,7 @@ The following table shows the response atttributes for this request.
 
 
 
-**Example: Get secret information JSON response**
+**Example: Retrieve secret metadata, JSON response**
 
 .. code::
 

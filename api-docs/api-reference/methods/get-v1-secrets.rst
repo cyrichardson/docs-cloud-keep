@@ -1,19 +1,19 @@
 
 .. _get-secrets:
 
-Get Secrets
-~~~~~~~~~~~
+Retrieve secrets
+~~~~~~~~~~~~~~~~
 
 .. code::
 
     GET /v1/secrets
 
-This method retrieves all secrets for your account.
+This operation retrieves all of the secrets for your account.
 
 The following table shows the possible response codes for this operation:
 
 +--------------------------+-------------------------+-------------------------+
-|Response Code             |Name                     |Description              |
+|Response code             |Name                     |Description              |
 +==========================+=========================+=========================+
 |200                       |OK                       |This status code is      |
 |                          |                         |returned when the        |
@@ -29,14 +29,15 @@ The following table shows the possible response codes for this operation:
 |403                       |Forbidden                |This status code is      |
 |                          |                         |returned when the        |
 |                          |                         |user does not have the   |
-|                          |                         |correct RBAC role(s).    |
+|                          |                         |correct RBAC role or     |
+|                          |                         |roles.                   |
 +--------------------------+-------------------------+-------------------------+
 
 
 Request
 -------
 
-The following table shows the URI parameters for the request:
+The following table shows the URI parameters for the request.
 
 +-------------+---------+-----------------------------------------------------------------+
 | Name        | Type    | Description                                                     |
@@ -76,10 +77,10 @@ The following table shows the URI parameters for the request:
 |             |         | attribute equal to this value.                                  |
 +-------------+---------+-----------------------------------------------------------------+
 
-This operation does not take a request body.
+This operation does not accept a request body.
 
 
-**Example: Get secret list cURL request**
+**Example: Retrieve secrets, cURL request**
 
 .. code::
 
@@ -131,32 +132,32 @@ Response
 --------
 
 
-The following table shows the response atttributes for the request:
+The following table shows the response attributes for the request:
 
 +------------+---------+--------------------------------------------------------+
 | Name       | Type    | Description                                            |
 +============+=========+========================================================+
-| secrets    | list    | Contains a list of dictionaries filled with secret     |
+| secrets    | list    | Contains a list of dictionaries filled with secrets    |
 |            |         | data                                                   |
 +------------+---------+--------------------------------------------------------+
 | total      | integer | The total number of secrets available to the user      |
 +------------+---------+--------------------------------------------------------+
-| next       | string  | A HATEOAS url to retrieve the next set of secrets      |
+| next       | string  | A HATEOAS URL to retrieve the next set of secrets      |
 |            |         | based on the offset and limit parameters. This         |
-|            |         | attribute is only available when the total number of   |
-|            |         | secrets is greater than offset and limit parameter     |
-|            |         | combined.                                              |
+|            |         | attribute is available only when the total number of   |
+|            |         | secrets is greater than the values of the ``offset``   |
+|            |         | and ``limit`` parameters combined.                     |
 +------------+---------+--------------------------------------------------------+
-| previous   | string  | A HATEOAS url to retrieve the previous set of          |
+| previous   | string  | A HATEOAS URL to retrieve the previous set of          |
 |            |         | secrets based on the offset and limit parameters.      |
-|            |         | This attribute is only available when the request      |
+|            |         | This attribute is available only when the request      |
 |            |         | offset is greater than 0.                              |
 +------------+---------+--------------------------------------------------------+
 
 The following response examples show the results of sending an API request with
 an offset value of 0 and a limit value of 3.
 
-**Example: Get secrets JSON response**
+**Example: Retrieve secrets JSON response**
 
 
 .. code::

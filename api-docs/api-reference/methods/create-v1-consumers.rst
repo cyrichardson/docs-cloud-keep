@@ -8,7 +8,7 @@ Create a consumer
 
     POST /{version}/containers/{container_id}/consumers
 
-Creates a consumer for the specified container.
+This operation creates a consumer for the specified container.
 
 The following table shows the possible response codes for this operation:
 +------+-----------------------------------------------------------------------------+
@@ -29,29 +29,26 @@ Request
 
 The following table shows the URI parameters for this request.
 
-+-------------------+---------+--------------------------------------------+------------+
-|Parameter name     |Type     |Description                                 |Default     |
-+===================+=========+============================================+============+
-|containerID        | string  | The UUID for the container                 | None       |
-+-------------------+---------+--------------------------------------------+------------+
++-------------------+---------+--------------------------------------------+
+|Parameter name     |Type     |Description                                 |
++===================+=========+============================================+
+|container_id       | string  | The UUID for the container                 |
++-------------------+---------+--------------------------------------------+
 
 
-There are no URL parameters for this request.
+The following table shows the body parameters for the request.
+
++-------------------+---------+--------------------------------------------+
+|Parameter name     |Type     |Description                                 |
++===================+=========+============================================+
+|name               | string  | The name of the consumer set by the user.  |
++-------------------+---------+--------------------------------------------+
+|URL                | string  | The URL for the user or service using the  |
+|                   |         | container.                                 |
++-------------------+---------+--------------------------------------------+
 
 
-The following table shows the body parameters for the request:
-
-+-------------------+---------+--------------------------------------------+------------+
-|Parameter name     |Type     |Description                                 |Default     |
-+===================+=========+============================================+============+
-|name               | string  | The name of the consumer set by the user.  | None       |
-+-------------------+---------+--------------------------------------------+------------+
-|URL                | string  | The url for the user or service using the  | None       |
-|                   |         | container.                                 |            |
-+-------------------+---------+--------------------------------------------+------------+
-
-
-**Example: Create consumer cURL request**
+**Example: Create a consumer, cURL request**
 
 
 .. code::
@@ -62,13 +59,13 @@ The following table shows the body parameters for the request:
                  "name": "your consumer name",
                   "URL": "{consumerURL}"
               }' \
-           $ENDPOINT/v1/containers/{containerID}/consumers
+           $ENDPOINT/v1/containers/{container_id}/consumers
 
 
 Response
 --------
 
-The following table shows the response attribute for this request.
+The following table shows the response attributes.
 
 +-------------+---------+---------------------------------------------------------------+
 | Name        | Type    | Description                                                   |
@@ -91,7 +88,7 @@ The following table shows the response attribute for this request.
 +-------------+---------+---------------------------------------------------------------+
 
 
-**Example: Create Consumer JSON response**
+**Example: Create a consumer, JSON response**
 
 
 .. code::

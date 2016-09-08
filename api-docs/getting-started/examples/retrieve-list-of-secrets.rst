@@ -4,13 +4,12 @@ Retrieve a list of stored secrets
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Perform a **GET** request on the secrets resource to retrieve a list of
-:ref:`secrets <secrets-concept>` that belong to your tenant.
+secrets that belong to your tenant.
 
 By default, the API request returns the first 10 secrets associated with the
-tenant. You
-can use the *limit* and *offset* request parameters to limit the maximum
-number of secrets returned in a single request and to set the starting point
-for the list.
+tenant. You can use the *limit* and *offset* request parameters to specify the
+maximum number of secrets returned in a single request and to set the starting
+point for the list.
 
 The following example specifies ``limit`` and ``offset`` values to return five
 secrets, starting with the first.
@@ -21,11 +20,9 @@ secrets, starting with the first.
 .. code::
 
     $ curl -X GET $ENDPOINT/v1/secrets?limit=5\&offset=0 \
-         -H "Accept: application/json" \
-         -H "X-Auth-Token: $AUTH_TOKEN" \
-         -H "Content-Type: application/json" \
-         | python -m json.tool
-
+           -H "Accept: application/json" \
+           -H "X-Auth-Token: $AUTH_TOKEN" \
+           -H "Content-Type: application/json" | python -m json.tool
 
 
 If the operation is successful, the response returns a list of secrets as

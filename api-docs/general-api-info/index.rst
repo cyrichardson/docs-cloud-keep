@@ -1,11 +1,11 @@
 .. _general-api-info:
 
 =======================
-General API Information
+General API information
 =======================
 
 The |product name| API is defined as a RESTful HTTP service that uses all
-aspects of the HTTP protocol, including methods, URIs, media/content types,
+aspects of the HTTP protocol, including methods, URIs, media and content types,
 and response codes. Review the topics in this section to learn more about
 these components and how to access and use the API.
 

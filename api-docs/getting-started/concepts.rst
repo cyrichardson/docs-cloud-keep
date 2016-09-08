@@ -13,19 +13,19 @@ Review the following key concepts and architectural overview to learn how
 Secrets
 ~~~~~~~
 
-A secret is a singular item that is stored within |product name|. It is
+A *secret* is a single item that is stored within |product name|. A secret is
 any data that requires security conscious storage such as a key,
 credential, configuration file, etc.  The typical use case for a secret
-is an encryption key that you wish to store away from prying eyes.
+is an encryption key that you want to keep safe.
 
-For example, you can create a secret to store the following types of data:
+Following are some examples of a secret:
 
   * Private RSA Key
   * X.509 Certificate
   * Passphrase
   * SSH Key
 
-The secret schema represents the actual secret or key that is presented
+The secret schema represents the actual data that is presented
 to the |product name| service.  Secrets themselves can be any format.
 
 The following example shows the specification for a secret passphrase that
@@ -63,15 +63,15 @@ A secret has the following attributes:
 | secret\_ref   | Unique identifier for the secret. This value is assigned by   |
 |               | the API.                                                      |
 +---------------+---------------------------------------------------------------+
-| secret\_type  | The secret type. The possible secret types are:               |
+| secret\_type  | The secret type. The possible secret types are as follows:    |
 |               |                                                               |
 |               |     - ``symmetric``: Used for storing byte arrays such as     |
 |               |       keys suitable for symmetric encryption.                 |
 |               |     - ``public``: Used for storing the public key of an       |
-|               |       asymmetric keypair.                                     |
+|               |       asymmetric key pair.                                    |
 |               |     - ``private``: Used for storing the private key of an     |
-|               |       asymmetric keypair.                                     |
-|               |     - ``passphrase``: Used for storing plain text             |
+|               |       asymmetric key pair.                                    |
+|               |     - ``passphrase``: Used for storing plain-text             |
 |               |       passphrases.                                            |
 |               |     - ``certificate``: Used for storing cryptographic         |
 |               |       certificates such as X.509 certificates.                |
@@ -84,8 +84,8 @@ A secret has the following attributes:
 +---------------+---------------------------------------------------------------+
 | updated       | UTC time stamp of when the secret was last updated.           |
 +---------------+---------------------------------------------------------------+
-| expiration    | The expiration date for the secret in ISO-8601 format. Once   |
-|               | the secret has expired, it will no longer be returned by the  |
+| expiration    | The expiration date for the secret in ISO-8601 format. After  |
+|               | the secret has expired, it is no longer be returned by the    |
 |               | API.                                                          |
 +---------------+---------------------------------------------------------------+
 | content_types | Media Type(s) associated with this secret.                    |
@@ -110,20 +110,10 @@ You can use one of the following methods to store a secret:
    secrets resource and then include the payload in a subsequent **PUT**
    request against the secret that was created by the POST. This mode enables
    you to upload payloads that cannot be included inside the JSON body, such
-   as a binary file, to the |product name| system directly for encrypted storage.
-   See the
-   :ref:`Create a secret using two-step storage <gsg-two-step-secret-creation>`
-   example.
-
-..  note::
-        Submitting a **POST** request creates secret metadata. When the
-        payload is included in the JSON body of the  **POST** request, it is
-        encrypted and stored, and linked with the secret metadata.
-
-        If the payload is not included within the **POST** request, it must be
-        provided in a subsequent **PUT** request.  When the payload arrives,
-        the client-provided secret data is encrypted, stored and linked with
-        the secret metadata created by the previous **POST** request.
+   as a binary file, to the |product name| system directly for encrypted
+   storage. See the
+   :ref:`Create and store a secret by using two requests
+   <gsg-two-step-secret-creation>` example.
 
 
 .. _containers-concept:
@@ -131,32 +121,28 @@ You can use one of the following methods to store a secret:
 Container
 ~~~~~~~~~
 
-A container is a logical object to store secret references that are related by
-relationship or type. For example, you can create a single container to group
-a private key, certificate, and intermediate certificate bundle for a TLS
-certificate.
+A *container* is a logical object that you can use to store reference links to
+secret resources that are related by relationship or type. For example, you can
+create a single container to group secrets for a private key, certificate, and
+intermediate certificate bundle for a TLS certificate.
 
-|product name| supports the following container types:
+|product name| supports the following types of containers:
 
 .. contents::
    :local:
    :depth: 1
 
-Each type has explicit restrictions about the type of secret data that can be
-stored in the container.
-
-
 .. _generic_containers:
 
-Generic Containers
+Generic containers
 ------------------
 
-A generic container is used for any type of container that a user may wish to
-create. There are no restrictions on the type or amount of secrets that can be
-held within a container.
+A generic container is used to hold any type or number of secrets. There are no
+restrictions on the type or number of secrets that can be held within a
+generic container.
 
-An example of a use case for a generic container would be having multiple
-passwords stored in the same container reference:
+An example of a use case for a generic container is storing multiple
+passwords in the same container reference, as shown in the following example:
 
 .. code-block:: json
 
@@ -183,11 +169,12 @@ passwords stored in the same container reference:
 
 .. _certificate_containers:
 
-Certificate Containers
+Certificate containers
 ----------------------
 
-Use certificate containers to group X.509 Certificates with other secrets
-that are needed to successfully use the certificate.  For example:
+A certificate container is used to store X.509 Certificates with other secrets
+that are needed to successfully use the certificate.  Other secrets can be
+any of the following types:
 
   * certificate
   * private_key (optional)
@@ -221,23 +208,23 @@ that are needed to successfully use the certificate.  For example:
         "type": "certificate"
     }
 
-The payload for the secret referenced as the `certificate` is expected to be a
-PEM formatted X.509 certificate.
+The payload for the secret referenced as the ```certificate`` is expected to
+be a PEM formatted X.509 certificate.
 
-The payload for the secret referenced as the `intermediates` is expected to be a
-PEM formatted PKCS#7 certificate chain.
+The payload for the secret referenced as the ```intermediates`` is expected to
+be a PEM formatted PKCS#7 certificate chain.
 
-The payload for the secret referenced as the `private_key` is expected to be a
-PKCS#8 RSA private key.
+The payload for the secret referenced as the ```private_key`` is expected to
+be a PKCS#8 RSA private key.
 
 
 .. _rsa_containers:
 
-RSA Containers
+RSA containers
 --------------
 
-Use RSA containes to group RSA private keys with their public keys,
-and optionally a private key passphrase for RSA keys that are passphrase-protected.
+An RSA containers is used to store RSA public keys, and their associated
+private keys, and private key passphrases.
 
 .. code-block:: json
 
@@ -295,13 +282,11 @@ If you want to raise the quota limits on your account, contact
 Consumer
 ~~~~~~~~
 
-A consumer provides a method to register as an interested party for a
-container. For example, when a Load Balancer uses a certificate bundle stored
-in |product name|, the load balancer registers itself as a consumer of the
-certificate container.
+A *consumer* is registered as an interested party for a container. For example,
+when a Load Balancer uses a certificate bundle stored in |product name|, the
+load balancer registers itself as a consumer of the certificate container. You
+can view all of the registered consumers of a container by submitting a
+:ref:`retrieve consumers <get-containers-consumers>` API request.
 
-You can get a list of consumers for a container by submitting a
-:ref:`retrieve consumers <get-containers-consumers>` API request
-
-To prevent unexpected service problems, notify all
-consumers before you delete a container.
+To prevent unexpected service problems, notify all consumers before you delete
+a container.

@@ -4,9 +4,9 @@
 Consumers
 =========
 
-The consumer resource provides a method to register as an interested party for
-a container. You can use the following Consumers API operations to view and
-manage registered consumers.
+The consumers resource provides a method to register as an interested party
+for a container. You can use the following Consumers API operations to view
+and manage registered consumers.
 
 .. contents::
 	 :local:

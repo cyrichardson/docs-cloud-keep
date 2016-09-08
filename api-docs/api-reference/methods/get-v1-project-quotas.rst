@@ -1,8 +1,8 @@
 
 .. _get-project-quotas:
 
-Get project quotas
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Retrieve project quotas
+~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code::
 
@@ -30,7 +30,7 @@ Request
 This request does not accept URI or body parameters.
 
 
-**Example: Get project quotas cURL request**
+**Example: Retrieve project quotas, cURL request**
 
 
 .. code::
@@ -79,7 +79,7 @@ Effective quota values are interpreted as follows:
 |       | created for the current project.                                            |
 +-------+-----------------------------------------------------------------------------+
 
-**Example: Get project quotas HTTP header and JSON response**
+**Example: Retrieve project quotas, JSON response**
 
 
 .. code::
