@@ -1,29 +1,34 @@
 .. _gsg-retrieve-a-secret:
 
 Retrieve a secret
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
 After you have created and stored a secret, you can submit a **GET**
 request to retrieve either the secret metadata or the actual decrypted
 secret, depending on the URL that is used in the
 **GET** request.
 
-- To retrieve only the secret metadata, submit the request to the ``/v1/secrets/$SECRET_ID`` resource.
-- To retrieve the decrypted secret, submit the request to the ``/v1/secrets/$SECRET_ID/payload`` resource.
-
-**Example: Retrieve secret metadata request**
+- To retrieve only the secret metadata, submit the request to the
+  ``/v1/secrets/$SECRET_ID`` resource.
+- To retrieve the decrypted secret, submit the request to the
+  ``/v1/secrets/$SECRET_ID/payload`` resource.
 
 The following example retrieves the secret metadata by
-submitting a **GET** request against the endpoint URL with the secret ID specified.
+submitting a **GET** request against the endpoint URL with the secret
+ID specified.
+
+**Example: Retrieve secret metadata, request**
 
 .. code::
 
-      $ curl -X GET $ENDPOINT/v1/secrets/$SECRET_ID  \
+    $ curl -X GET $ENDPOINT/v1/secrets/$SECRET_ID  \
            -H "X-Auth-Token: $AUTH_TOKEN" | python -m json.tool
 
+If the call is successful, the response looks like the following example,
+assuming that your ENDPOINT is ``https://iad.keep.api.rackspacecloud.com``:
 
-If the call is successful, the response looks like the following example, assuming that your ENDPOINT
-is ``https://iad.keep.api.rackspacecloud.com``:
+
+**Example: Retrieve secret metadata, response**
 
 .. code::
 
@@ -44,17 +49,18 @@ is ``https://iad.keep.api.rackspacecloud.com``:
         "expiration": "2020-02-28T23:59:59"
     }
 
-**Example: Retrieve decrypted secret request**
+The following example shows how to retrieve the secret payload by submitting a
+**GET** request against the endpoint URL with the secret ID specified.
 
-The following example shows how to retrieve the secret payload by
-submitting a **GET** request against the endpoint URL with the secret ID specified.
+**Example: Retrieve decrypted secret request**
 
 .. code::
 
-      $ curl -X GET $ENDPOINT/v1/secrets/$SECRET_ID/payload \
-           -H "X-Auth-Token: $AUTH_TOKEN"
+   $ curl -X GET $ENDPOINT/v1/secrets/$SECRET_ID/payload \
+          -H "X-Auth-Token: $AUTH_TOKEN"
 
-If the call is successful, you receive a response containing the decrypted secret.
+If the call is successful, you receive a response that contains the decrypted
+secret.
 
 .. code::
 

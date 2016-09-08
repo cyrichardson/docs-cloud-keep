@@ -1,30 +1,65 @@
-
 .. _index:
 
-=============================================================
-Rackspace Cloud Keep API 1.0
-=============================================================
+=====================================
+|product name| API |contract version|
+=====================================
 
 *Last updated:* |today|
 
-Use the following links to jump directly to user and reference information for 
-using the |apiservice|. 
+|product name| is a key management service backed by a Hardware Security Module
+(HSM) to provide FIPS certified secret storage, encryption, and decryption of
+keys and credentials. The product enables secure life-cycle management of keys
+and credentials, called *secrets*, on behalf of customers. |product name|
+is based on the OpenStack Key Manager service (code named Barbican), a
+community-led open-source platform.
 
-* :ref:`Getting Started Guide<getting-started>`
-* :ref:`Developer Guide<developer-guide>`
-* :ref:`API Reference<api-reference>`
+.. note::
+
+   |product name| is offered to customers on a limited availability basis.
+   For details, see :ref:`Limited Availability program <limited-availability-program>`.
+
+Interactions with |product name| occur programmatically via a REST API. Using
+the API, you can securely store and retrieve credentials systematically using
+the following resources:
+
+-  Secrets
+
+-  Containers
+
+-  Quotas
+
+-  Consumers
+
+This guide is intended to assist software developers who want to develop
+applications by using the REST application programming interface (API) for
+the |product name| service.
+
+To use the information provided here, you should have a general understanding
+of the service and have access to an installation of it. You should also be
+familiar with the following technologies:
+
+*  RESTful web services
+*  HTTP/1.1
+*  JSON data serialization format
+
+
+Use the following links to go directly to user and reference information for
+using the |apiservice|:
+
+- :ref:`Getting started <getting-started-guide>`
+- :ref:`General API information <general-api-info>`
+- :ref:`API reference <api-reference>`
+- :ref:`Release notes <release-notes-collection>`
 
 .. toctree:: :hidden:
-   :maxdepth: 2
+   :maxdepth: 3
 
    Cloud Keep v1.0 <self>
-   API Status <http://www.rackspacestatus.com/>
-   About the API <overview/index>
-   getting-started
+   limited-availability
    getting-started/index
-   developer-guide
-   concepts
    general-api-info/index
-   api-reference
-   api-operations/index
+   api-reference/index
+   release-notes/index
+   service-updates
+   additional-resources
    copyright

@@ -1,42 +1,52 @@
-.. _barbican-dg-date-time-format:
+.. _date-time-format:
 
+====================
 Date and time format
-~~~~~~~~~~~~~~~~~~~~~
+====================
 
-For the display and consumption of date and time values, Rackspace Cloud
-services use a date format that complies with ISO 8601.
+The service uses an ISO 8601 compliant date format for the
+display and consumption of date and time values. The system time is
+expressed as UTC.
 
-|product name| assumes that all times are given in UTC, and does not make
-use of UTC offsets for time zones.
+.. _datetime-loadbalance:
 
-**Example: |product name| date and time format**
-
-.. code::
-
-    yyyy-MM-ddTHH:mm:ss
-
-For example, the UTC format for May 19, 2016 at 8:07:08 a.m. is
+**Service date and time format**
 
 .. code::
 
-    2016-05-19T08:07:08
+    YYYY-MM-DD'T'hh:mm:ssZ
 
-**Date and time format codes**
+For example, the UTC-5 format for May 19, 2016 at 8:07:08 AM, GMT-5 is as
+follows:
 
-+------+-----------------------------------------------------------+
-| yyyy | Four digit year                                           |
-+======+===========================================================+
-| MM   | Two digit month                                           |
-+------+-----------------------------------------------------------+
-| DD   | Two digit day                                             |
-+------+-----------------------------------------------------------+
-| T    | Separator for date/time                                   |
-+------+-----------------------------------------------------------+
-| HH   | Two digit hour (00-23)                                    |
-+------+-----------------------------------------------------------+
-| mm   | Two digit minute                                          |
-+------+-----------------------------------------------------------+
-| ss   | Two digit second                                          |
-+------+-----------------------------------------------------------+
-| Z    | (optional) UTC (Zulu) time designation.                   |
-+------+-----------------------------------------------------------+
+.. code::
+
+    2016-05-19T08:07:08-05:00
+
+The following table describes the date and time format codes.
+
+.. _datetime-codes:
+
+.. list-table:: **Date and time format codes**
+   :widths: 20 50
+   :header-rows: 1
+
+   * - Code
+     - Description
+   * - YYYY
+     - Four-digit year
+   * - MM
+     - Two-digit month
+   * - DD
+     - Two-digit day
+   * - T
+     - Separator for the date and time
+   * - hh
+     - Two-digit hour (00-23)
+   * - mm
+     - Two-digit minute
+   * - ss
+     - Two-digit second
+   * - Z
+     - RFC 822 time zone (offset from GMT) If Z is not replaced with the
+       offset from UTC, it indicates a 00:00 offset.
