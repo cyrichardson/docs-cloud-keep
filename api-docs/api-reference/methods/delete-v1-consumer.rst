@@ -9,8 +9,9 @@ Delete a consumer
     DELETE /{version}/{container_ref}/consumers/{consumer_id}
 
 
-Deletes the specified consumer for the specified container.
+This operation deletes the specified consumer for the specified container.
 
+The following table shows the possible response codes for this operation.
 
 +------+-----------------------------------------------------------------------------+
 | Code | Description                                                                 |
@@ -26,28 +27,31 @@ Deletes the specified consumer for the specified container.
 Request
 -------
 
-The following table shows the URI parameters for the request:
+The following table shows the URI parameters for the request.
 
-+----------------------------+---------+---------------------------------+------------+
-| Parameter name             | Type    | Description                     | Default    |
-+============================+=========+=================================+============+
-|containerID                 | string  | The UUID for the container      | None       |
-+----------------------------+---------+---------------------------------+------------+
-|consumerID                  | string  | The UUID for the consumer       | None       |
-+----------------------------+---------+---------------------------------+------------+
++----------------------------+---------+---------------------------------+
+| Parameter name             | Type    | Description                     |
++============================+=========+=================================+
+|container_id                | string  | The UUID for the container      |
++----------------------------+---------+---------------------------------+
+|consumer_id                 | string  | The UUID for the consumer       |
++----------------------------+---------+---------------------------------+
 
 The following table shows the body parameters for the request:
 
-+-------------------+---------+--------------------------------------------+------------+
-| Parameter name    | Type    | Description                                | Default    |
-+===================+=========+============================================+============+
-|name               | string  | The name of the consumer set by the user.  | None       |
-+-------------------+---------+--------------------------------------------+------------+
-|URL                | string  | The url for the user or service using the  | None       |
-|                   |         | container.                                 |            |
-+-------------------+---------+--------------------------------------------+------------+
++-------------------+---------+--------------------------------------------+
+| Parameter name    | Type    | Description                                |
++===================+=========+============================================+
+|name               | string  | The name of the consumer set by the user.  |
+|                   |         | The name must match the name that was used |
+|                   |         | when the consumer was created.             |
++-------------------+---------+--------------------------------------------+
+|URL                | string  | The URL for the user or service using the  |
+|                   |         | container. The URL must match the URL that |
+|                   |         | was used when the consumer was created.    |
++-------------------+---------+--------------------------------------------+
 
-**Example: Delete consumer cURL request**
+**Example: Delete a consumer, cURL request**
 
 .. code::
 

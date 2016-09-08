@@ -1,17 +1,19 @@
 
 .. _get-project-quota-records:
 
-Get Project quota records
-~~~~~~~~~~~~~~~~~~~~~~~~~
+Retrieve project quotas
+~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code::
 
   GET /{version}/project-quotas
 
-Gets a list of configured project quota records.  Paging is supported using
-the optional parameters offset and limit.
+This operation lists the effective quotas for the project of the requester.
+The project ID of the requester is derived from the authentication token
+provided in the ``X-Auth-Token`` header. You can page the results by
+specifying values for the offset and limit parameters.
 
-The following table shows the possible response codes for this operation:
+The following table shows the possible response codes for this operation.
 
 +------+-----------------------------------------------------------------------------+
 | Code | Description                                                                 |
@@ -24,9 +26,10 @@ The following table shows the possible response codes for this operation:
 
 Request
 -------
-There are no URI parameters for this operation.
 
-The following table shows the body parameters for the request:
+The following table shows the optional URI parameters for the request. You
+need only specify these parameters if you want to using paging to list the
+quotas in the response.
 
 +--------+---------+----------------------------------------------------------------+
 | Name   | Type    | Description                                                    |
@@ -38,7 +41,7 @@ The following table shows the body parameters for the request:
 +--------+---------+----------------------------------------------------------------+
 
 
-**Example: Get project quotas cURL request**
+**Example: Retrieve project quotas, cURL request**
 
 
 .. code::
@@ -85,17 +88,16 @@ The following table shows the response attributes for the request.
 |                 |         | offset and limit parameter combined.                      |
 +-----------------+---------+-----------------------------------------------------------+
 |previous         | string  | A HATEOAS url to retrieve the previous set of quotas based|
-|                 |         | on the offset and limit parameters. This attribute is onl |
-|                 |         | available when the request offset is greater than 0.      |
+|                 |         | on the offset and limit parameters. This attribute is     |
+|                 |         | available only when the request offset is greater than 0. |
 +-----------------+---------+-----------------------------------------------------------+
 
-
-Configured project quota values are interpreted as follows:
+Effective quota values are interpreted as follows:
 
 +-------+-----------------------------------------------------------------------------+
 | Value | Description                                                                 |
 +=======+=============================================================================+
-|  -1   | A negative value indicates the resource is unconstrained by a quota.        |
+|  -1   | A negative value that indicates the resource is unconstrained by a quota.   |
 +-------+-----------------------------------------------------------------------------+
 |   0   | A zero value indicates that the resource is disabled.                       |
 +-------+-----------------------------------------------------------------------------+
@@ -107,7 +109,7 @@ Configured project quota values are interpreted as follows:
 +-------+-----------------------------------------------------------------------------+
 
 
-**Example: Get project quotas JSON response**
+**Example: Retrieve project quotas, JSON response**
 
 
 .. code::

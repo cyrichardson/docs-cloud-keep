@@ -63,14 +63,14 @@ The cURL examples in this guide use the following command-line options.
 
          .. code::
 
-                Content-Type: application/json
+            Content-Type: application/json
 
        - ``X-Auth-Token``: Required. Specifies the authentication
-         token.
+          token.
 
 
        - ``X-Auth-Project-Id``: Optional. Specifies the project ID,
-         which can be your account number or another value.
+          which can be your account number or another value.
 
 
        - ``Accept``: Optional. Specifies the format of the response
@@ -81,7 +81,7 @@ The cURL examples in this guide use the following command-line options.
 
          .. code::
 
-              Accept: application/json
+            Accept: application/json
 
    * - **-i**
      - Includes the HTTP header in the output.

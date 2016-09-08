@@ -1,31 +1,31 @@
 
 .. _put-secret:
 
-Update Secret
-~~~~~~~~~~~~~
+Update a secret
+~~~~~~~~~~~~~~~
 
 .. code::
 
     PUT /v1/secrets/{secret_id}
 
-This method stores the payload for an existing secret that was created without
-a payload. To provide secret information after the secret is created, submit a
-PUT request to the  URI that contains the secret ID of the secret you want to
-update. The PUT request should  include the payload, as well as the
-appropriate Content-Type and Content-Encoding definitions.
+This operation stores the payload for an existing secret that was created
+without a payload. To provide secret information after the secret is created,
+submit a PUT request to the  URI that contains the secret ID of the secret
+that you want to update. The **PUT** request should include the payload and
+the appropriate ``Content-Type`` and ``Content-Encoding`` definitions.
 
 
 .. note::
 
-   You can only make PUT request once after a POST operation that does not
-   include a payload. Also note that you cannot modify any other attributes
-   for a secret resource by using the PUT operation.
+   You can send a **PUT** request only once after a **POST** operation that
+   does not include a payload. Also, you cannot modify any other
+   attributes for a secret resource by using the PUT operation.
 
 
-The following table shows the possible response codes for this operation:
+The following table shows the possible response codes for this operation.
 
 +--------------------------+-------------------------+-------------------------+
-|Response Code             |Name                     |Description              |
+|Response code             |Name                     |Description              |
 +==========================+=========================+=========================+
 |204                       |No Content               |This status code is      |
 |                          |                         |returned when the secret |
@@ -35,14 +35,14 @@ The following table shows the possible response codes for this operation:
 |400                       |Error                    |This error code is       |
 |                          |                         |returned when no crypto  |
 |                          |                         |plugin supports the      |
-|                          |                         |payload_content_type     |
-|                          |                         |requested in the Content-|
-|                          |                         |Type header.             |
+|                          |                         |payload content type     |
+|                          |                         |requested in the         |
+|                          |                         |``Content-Type`` header. |
 +--------------------------+-------------------------+-------------------------+
 |400                       |Error                    |This error code is       |
 |                          |                         |returned when no value   |
 |                          |                         |was provided for the     |
-|                          |                         |"payload" parameter.     |
+|                          |                         |``payload`` parameter.   |
 +--------------------------+-------------------------+-------------------------+
 |404                       |Error                    |This error code is       |
 |                          |                         |returned when the        |
@@ -59,7 +59,7 @@ The following table shows the possible response codes for this operation:
 |413                       |Error                    |This error code is       |
 |                          |                         |returned when the secret |
 |                          |                         |specified in the         |
-|                          |                         |"payload" parameter is   |
+|                          |                         |``payload`` parameter is |
 |                          |                         |too large. The current   |
 |                          |                         |size limit is 10,000     |
 |                          |                         |bytes.                   |
@@ -69,26 +69,25 @@ The following table shows the possible response codes for this operation:
 Request
 -------
 
-The following table shows the URI parameters for the request:
+The following table shows the URI parameters for the request.
 
 +--------------------------+-------------------------+-------------------------+
 |Name                      |Type                     |Description              |
 +==========================+=========================+=========================+
-|{secret_id}               |String                   |This parameter specifies |
+| secret_id}               |string                   |This parameter specifies |
 |                          |                         |the unique identifier of |
 |                          |                         |a secret that has been   |
 |                          |                         |previously created       |
 |                          |                         |without a payload.       |
 +--------------------------+-------------------------+-------------------------+
-|{secretDataFile}          |Binary                   |A file containing the    |
+|secretDataFile            |binary                   |A file that contains the |
 |                          |                         |binary data to be stored |
 |                          |                         |as the secret payload.   |
 +--------------------------+-------------------------+-------------------------+
 
 This operation does not accept a request body.
 
-**Example: Update secret cURL request**
-
+**Example: Update a secret, cURL request**
 
 .. code::
 

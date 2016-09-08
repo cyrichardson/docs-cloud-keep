@@ -4,10 +4,10 @@
 Containers
 ==========
 
-A :ref:`container <containers-concept>` is a logical object that can be used
+A :ref:`container <containers-concept>` is a logical object that you can use
 to store reference links to secrets resources that are related by relationship
-or type. For example you can create a single container to group  private key,
-certificate,  and bundle for an SSL certificate.
+or type. For example you can create a single container to group secrets for a
+private key, certificate, and bundle for an SSL certificate.
 
 You can use the following Containers API operations to create and manage
 groups of related secrets for |product name| projects.

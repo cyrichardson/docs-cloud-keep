@@ -1,12 +1,12 @@
-.. _auth-response-example: 
+.. _auth-response-example:
 
-.. code:: 
+.. code::
 
 	{
 		"access": {
 			"token": {
 				"id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-				"expires": "2014-11-24T22:05:39.115Z", 
+				"expires": "2014-11-24T22:05:39.115Z",
 				"tenant": {
 					"id": "110011",
 					"name": "110011"
@@ -17,39 +17,26 @@
 			 },
 			"serviceCatalog": [
 				{
-					"name": "cloudDatabases",
+					"name": "cloudKeep",
 					"endpoints": [
 						{
-						"publicURL": "https://syd.databases.api.rackspacecloud.com/v1.0/110011",
-						"region": "SYD",
-						"tenantId": "110011"
+							"publicURL":"https://iad.keep.rackspacecloud.com/v1.0/123456”,
+							"region":"IAD",
+							"tenantId":"123456",
 						},
 						{
-							"publicURL": "https://dfw.databases.api.rackspacecloud.com/v1.0/110011",
-							"region": "DFW",
-							"tenantId": "110011"
+							"publicURL":"https://ord.keep.rackspacecloud.com/v1.0/123456”,
+							"region":"ORD",
+							"tenantId":"123456",
 						},
 						{
-							"publicURL": "https://ord.databases.api.rackspacecloud.com/v1.0/110011",
-							"region": "ORD",
-							"tenantId": "110011"
-						},
-						{
-							"publicURL": "https://iad.databases.api.rackspacecloud.com/v1.0/110011",
-							"region": "IAD",
-							"tenantId": "110011"
-						},
-						{
-							"publicURL": "https://hkg.databases.api.rackspacecloud.com/v1.0/110011",
-							"region": "HKG",
-							"tenantId": "110011"
+							"publicURL":"https://lon.keep.api.rackspacecloud.com/v1.0/123456",
+							"region":"LON",
+							"tenantId":"123456",
 						}
 					],
-					"type": "rax:database"
+					"type": "rax:keep"
 				},
-		 
-				...        
-		 
 				{
 					"name": "cloudDNS",
 					"endpoints": [
@@ -69,12 +56,12 @@
 							"tenantId": "110011"
 						}
 					],
-			 
+
 					"type": "rax:cdn"
 				}
 			],
 			"user": {
-				"id": "123456", 
+				"id": "123456",
 				"roles": [
 					{
 						"description": "A Role that allows a user access to keystone Service methods",

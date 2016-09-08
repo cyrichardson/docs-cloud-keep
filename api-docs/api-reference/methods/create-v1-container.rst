@@ -8,27 +8,25 @@ Create a container
 
     POST /{version}/containers
 
-Creates a container.
-
-There are three different types of containers that can be created: generic,
-rsa, and certificate.
+This operation creates a container.You can create the following types of
+containers: generic, RSA, and certificate.
 
 **Generic**
-   This type of container holds any number of references to secrets. Each
-   secret reference is accompanied by a name. Unlike other container types,
-   no specific restrictions are enforced on the contents name attribute.
+   This type of container holds references to any type or number of secrets.
+   Each secret reference is accompanied by a name. Unlike other container
+   types, no specific restrictions are enforced on the ``name`` attribute.
 
 **RSA**
-   This type of container is designed to hold references to only three
-   different secrets. These secrets are enforced by the their accompanied
-   names: ``public_key``, ``private_key``, and ``private_key_passphrase``.
+   This type of container is used to hold references to only the following
+   types of secrets, which are enforced by the their names:
+   ``public_key``, ``private_key``, and ``private_key_passphrase``.
 
 **Certificate**
-   This type of container is designed to hold a reference to a certificate and
-   optionally private_key, private_key_passphrase, and intermediates.
+   This type of container is used to hold a reference to a certificate and
+   optionally private key, private key passphrase, and intermediates.
 
 
-The following table shows the possible response codes for this operation:
+The following table shows the possible response codes for this operation.
 
 +------+-----------------------------------------------------------------------------+
 | Code | Description                                                                 |
@@ -52,25 +50,26 @@ The following table shows the body parameters for the request:
 +----------------+--------+--------------------------------------------------------+
 | Name           | Type   | Description                                            |
 +================+========+========================================================+
-|**type**        | string | Type of container. Options: ``generic``, ``rsa``, and  |
-|                |        | ``certificate``.                                       |
+|**type**        | string | Type of container. Possible values are  ``generic``,   |
+|                |        | ``rsa``, and ``certificate``.                          |
 +----------------+--------+--------------------------------------------------------+
-|**name**        | string | (optional) Human readable name for identifying your    |
-|                |        | container                                              |
+|**name**        | string | *(Optional)* Human readable name for identifying your  |
+|                |        | container.                                             |
 +----------------+--------+--------------------------------------------------------+
-|**secret_refs** | list   | A list of dictionaries containing references to secrets|
+|**secret_refs** | list   | A list of dictionaries that contain references to      |
+|                |        | secrets.                                               |
 +----------------+--------+--------------------------------------------------------+
 |secret_refs.\   | string |The name assigned to the secret resource when it was    |
 |**name**        |        |created.                                                |
 +----------------+--------+--------------------------------------------------------+
-|secret_refs.\   | URI    | A HATEOAS url to retrieve information about the        |
+|secret_refs.\   | URI    | A HATEOAS URL to retrieve information about the        |
 |**secret_ref**  |        | specified secret.                                      |
 +----------------+--------+--------------------------------------------------------+
 |**secretID**    | string | The UUID for the secret to be added to the container.  |
 +----------------+--------+--------------------------------------------------------+
 
 
-**Example: Create Container cURL request**
+**Example: Create a container, cURL request**
 
 
 .. code::
@@ -91,21 +90,21 @@ The following table shows the body parameters for the request:
 Response
 --------
 
-The following table shows the response atttributes for this request.
+The following table shows the response attributes.
 
 +-------------------+---------+----------------------------------------------------+
 | Parameter name    | Type    | Description                                        |
 +===================+=========+====================================================+
-|**container_ref**  | URI     |Returns a HATEOS url to retrieve information        |
+|**container_ref**  | URI     |Returns a HATEOS URL to retrieve information        |
 |                   |         |about the container resource.                       |
 +-------------------+---------+----------------------------------------------------+
 |containerID        | string  | The UUID value assigned to the container.          |
-|                   |         | In the example shown below                         |
-|                   |         | ``containerID=/6ad67bc0-17fd-45ce-b84a-a9be44fe06``|
+|                   |         | In the follwoing example, the container ID is      |
+|                   |         | ``6ad67bc0-17fd-45ce-b84a-a9be44fe06``.            |
 +-------------------+---------+----------------------------------------------------+
 
 
-**Example: Create Container JSON response**
+**Example: Create a container, JSON response**
 
 
 .. code::

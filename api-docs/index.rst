@@ -8,16 +8,17 @@
 
 |product name| is a key management service backed by a Hardware Security Module
 (HSM) to provide FIPS certified secret storage, encryption, and decryption of
-keys and credentials. The product is based on OpenStack Barbican, a
+keys and credentials. The product enables secure life-cycle management of keys
+and credentials, called *secrets*, on behalf of customers. |product name|
+is based on the OpenStack Key Manager service (code named Barbican), a
 community-led open-source platform.
 
 .. note::
 
-   |product name| is available on a limited availability basis until March
-   2017. For details, see
-   :ref:`Limited Availability Program <limited-availability-program>`.
+   |product name| is offered to customers on a limited availability basis.
+   For details, see :ref:`Limited Availability program <limited-availability-program>`.
 
-Interactions with |product name| occur programmatically via the API. Using
+Interactions with |product name| occur programmatically via a REST API. Using
 the API, you can securely store and retrieve credentials systematically using
 the following resources:
 
@@ -51,7 +52,7 @@ using the |apiservice|:
 - :ref:`Release notes <release-notes-collection>`
 
 .. toctree:: :hidden:
-   :maxdepth: 2
+   :maxdepth: 3
 
    Cloud Keep v1.0 <self>
    limited-availability

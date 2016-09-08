@@ -6,10 +6,10 @@ Request and response types
 The |product name| API supports JSON data serialization
 formats.
 
-**Response Format**
+**Response format**
 
 +----------+---------------------+----------------------+---------+
-| Format   | Accept Header       | Query Extension      | Default |
+| Format   | Accept header       | Query extension      | Default |
 +==========+=====================+======================+=========+
 | JSON     | application/json    | .json                | Yes     |
 +----------+---------------------+----------------------+---------+

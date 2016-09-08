@@ -7,16 +7,16 @@ Get Order Information
 
     GET /{version}/{tenantId}/orders/{order_id}
 
-This method retrieves information about a specified order.
+This operation retrieves information about a specified order.
 
-This method retrieves information for the specified order including g a link to the 
+This operation retrieves information for the specified order including g a link to the 
 secret that was stored as a result of the order (if available).
 
 
 The following table shows the possible response codes for this operation:
 
 +--------------------------+-------------------------+-------------------------+
-|Response Code             |Name                     |Description              |
+|Response code             |Name                     |Description              |
 +==========================+=========================+=========================+
 |200                       |Success                  |This status code is      |
 |                          |                         |returned when the order  |
@@ -35,7 +35,7 @@ The following table shows the possible response codes for this operation:
 Request
 -------
 
-The following table shows the URI parameters for the request:
+The following table shows the URI parameters for the request.
 
 +--------------------------+-------------------------+-------------------------+
 |Name                      |Type                     |Description              |

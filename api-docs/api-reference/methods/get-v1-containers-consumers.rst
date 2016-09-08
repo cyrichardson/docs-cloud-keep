@@ -1,22 +1,22 @@
 
 .. _get-containers-consumers:
 
-Get a container's consumers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Retrieve consumers for a container
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 .. code::
 
     GET /{version}/containers/{container_ref}/consumers
 
 
-Lists a container's consumers.
-
-The list of consumers can be filtered by the parameters passed in via the URL.
+This operation lists the consumers for a container. The list of consumers can
+be filtered by the parameters passed in via the URL.
 
 The following table shows the possible response codes for this operation:
 
 
 +--------------------------+-------------------------+-------------------------+
-|Response Code             |Name                     |Description              |
+|Response code             |Name                     |Description              |
 +==========================+=========================+=========================+
 |200                       |OK                       |This status code is      |
 |                          |                         |returned when the        |
@@ -26,13 +26,14 @@ The following table shows the possible response codes for this operation:
 +--------------------------+-------------------------+-------------------------+
 |401                       |Unauthorized             |This status code is      |
 |                          |                         |returned when the        |
-|                          |                         |user was not succesfully |
+|                          |                         |user was not successfully|
 |                          |                         |authenticated.           |
 +--------------------------+-------------------------+-------------------------+
 |403                       |Forbidden                |This status code is      |
 |                          |                         |returned when the        |
 |                          |                         |user does not have the   |
-|                          |                         |correct RBAC role(s).    |
+|                          |                         |correct RBAC role        |
+|                          |                         |or roles.                |
 +--------------------------+-------------------------+-------------------------+
 
 
@@ -40,22 +41,22 @@ Request
 -------
 
 
-The following table shows the URI parameters for the request:
+The following table shows the URI parameters for the request.
 
 +--------------+------------+------------------------------------------------------------+
 | Name         | Type       | Description                                                |
 +==============+============+============================================================+
-|{containerID} |integer     | The UUID for the container you would like to retrieve.     |
+| containerID  |integer     | The UUID for the container you would like to retrieve.     |
 +--------------+------------+------------------------------------------------------------+
-|{offset}      |integer     | The starting index within the total list of the consumers  |
-|              |*(Optional)*| that you would like to retrieve.                           |
+| offset       |integer     | *(Optional)* The starting index within the total list of   |
+|              |            | the consumers that you would like to retrieve.             |
 +--------------+------------+------------------------------------------------------------+
-|{limit}       |integer     | The maximum number of records to return (up to 100). The   |
-|              |*(Optional)*| default limit is 10.                                       |
+| limit        |integer     | *(Optional)* The maximum number of records to return (up   |
+|              |*(Optional)*| 100). The default limit is 10.                             |
 +--------------+------------+------------------------------------------------------------+
 
 
-**Example: Get consumers for a container cURL request**
+**Example: Retrieve consumers for a container, cURL request**
 
 
 .. code::
@@ -75,10 +76,10 @@ The following table shows the response attributes for this request.
 |**total**    | integer | Returns the number of consumers in the specified container.   |
 +-------------+---------+---------------------------------------------------------------+
 |**consumers**| dict    | Returns a dictionary of consumer information for the specified|
-|             |         | consumers resource.                                           |
+|             |         | container.                                                    |
 +-------------+---------+---------------------------------------------------------------+
-|consumers.\  | string  | Returns the current state for the specified consumer          |
-|**status**   |         |                                                               |    
+|consumers.\  | string  | Returns the current state of the specified consumer           |
+|**status**   |         |                                                               |
 +-------------+---------+---------------------------------------------------------------+
 |consumers.\  | string  | Returns the URL for the user or service using the container.  |
 |**URL**      |         | for the containers resource.                                  |
@@ -92,18 +93,18 @@ The following table shows the response attributes for this request.
 |consumers.\  | date    | The date and time that the consumer was created.              |
 |**created**  |         | consumers resource.                                           |
 +-------------+---------+---------------------------------------------------------------+
-|consumers.\  | URI     | A HATEOAS url to retrieve the next set of consumers based on  |
-|**next**     |         | the offset and limit parameters. This attribute is only       |
-|             |         | available when the total number of consumers is greater than  |
-|             |         | offset and limit parameter combined.                          |
+|consumers.\  | URI     | A HATEOAS URL to retrieve the next set of consumers based on  |
+|**next**     |         | the offset and limit parameters. This attribute is available  |
+|             |         | only when the total number of consumers is greater than the   |
+|             |         | offset and limit parameter values combined.                   |
 +-------------+---------+---------------------------------------------------------------+
-|consumers.\  | string  | A HATEOAS url to retrieve the previous set of consumers based |
-|**previous** |         | on the offset and limit parameters. This attribute is only    |
-|             |         | available when the request offset is greater than 0.          |
+|consumers.\  | string  | A HATEOAS URL to retrieve the previous set of consumers based |
+|**previous** |         | on the offset and limit parameters. This attribute is         |
+|             |         | available only when the request offset is greater than 0.     |
 +-------------+---------+---------------------------------------------------------------+
 
 
-**Example: Get consumers for a specified container JSON response**
+**Example: Retrieve consumers for a specified container, JSON response**
 
 
 .. code::
@@ -135,7 +136,7 @@ The following table shows the response attributes for this request.
         ]
       }
 
-**Example: Get consumers for container with offset and limit parameters JSON response**
+**Example: Retrieve consumers for container with offset and limit parameters, JSON response**
 
 .. code::
 
@@ -153,4 +154,3 @@ The following table shows the response attributes for this request.
         ],
         "previous": "https://iad.keep.api.rackspacecloud.com/v1/containers/6ad67bc0-17fd-45ce-b84a-a9be44fe069b/consumers?limit=1&offset=0"
      }
-

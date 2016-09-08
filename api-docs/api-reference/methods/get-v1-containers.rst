@@ -1,20 +1,20 @@
 
 .. _get-containers:
 
-Get Containers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Retrieve containers
+~~~~~~~~~~~~~~~~~~~
+
 .. code::
 
     GET /{version}/containers
 
-Returns a list of a project's containers.
-
+This operation retrieves a list of the containers in a project.
 Returned containers are ordered by creation date; oldest to newest.
 
 The following table shows the possible response codes for this operation:
 
 +--------------------------+-------------------------+-------------------------+
-|Response Code             |Name                     |Description              |
+|Response code             |Name                     |Description              |
 +==========================+=========================+=========================+
 |200                       |OK                       |This status code is      |
 |                          |                         |returned when the        |
@@ -24,27 +24,27 @@ The following table shows the possible response codes for this operation:
 +--------------------------+-------------------------+-------------------------+
 |401                       |Unauthorized             |This status code is      |
 |                          |                         |returned when the        |
-|                          |                         |user was not succesfully |
+|                          |                         |user was not successfully|
 |                          |                         |authenticated.           |
 +--------------------------+-------------------------+-------------------------+
 |403                       |Forbidden                |This status code is      |
 |                          |                         |returned when the        |
 |                          |                         |user does not have the   |
-|                          |                         |correct RBAC role(s).    |
+|                          |                         |correct RBAC role or     |
+|                          |                         |roles.                   |
 +--------------------------+-------------------------+-------------------------+
 
 
 Request
 -------
 
-
-The following table shows the URI parameters for the request:
+The following table shows the URI parameters for the request.
 
 +--------+---------+------------------------------------------------------------+
 | Name   | Type    | Description                                                |
 +========+=========+============================================================+
 | offset | integer | The starting index within the total list of the containers |
-|        |         | that you would like to retrieve.                           |
+|        |         | that you want to retrieve.                                 |
 +--------+---------+------------------------------------------------------------+
 | limit  | integer | The maximum number of containers to return (up to 100).    |
 |        |         | The default limit is 10.                                   |
@@ -54,7 +54,7 @@ The following table shows the URI parameters for the request:
 This operation does not accept a request body.
 
 
-**Example: Get containers cURL request**
+**Example: Retrieve containers, cURL request**
 
 
 .. code::
@@ -67,7 +67,7 @@ This operation does not accept a request body.
 Response
 --------
 
-The following table shows the response atttributes for the request:
+The following table shows the response attributes.
 
 +------------+---------+--------------------------------------------------------+
 | Name       | Type    | Description                                            |
@@ -77,20 +77,20 @@ The following table shows the response atttributes for the request:
 +------------+---------+--------------------------------------------------------+
 |total       | integer | The total number of containers available to the user   |
 +------------+---------+--------------------------------------------------------+
-|next        | string  | A HATEOAS url to retrieve the next set of containers   |
+|next        | string  | A HATEOAS URL to retrieve the next set of containers   |
 |            |         | based on the offset and limit parameters. This         |
-|            |         | attribute is only available when the total number of   |
-|            |         | containers is greater than offset and limit parameter  |
-|            |         | combined.                                              |
+|            |         | attribute is available only when the total number of   |
+|            |         | containers is greater than the offset and limit        |
+|            |         | parameter values combined.                             |
 +------------+---------+--------------------------------------------------------+
 |previous    | string  | A HATEOAS url to retrieve the previous set of          |
 |            |         | containers based on the offset and limit parameters.   |
-|            |         | This attribute is only available when the request      |
+|            |         | This attribute is available only when the request      |
 |            |         | offset is greater than 0.                              |
 +------------+---------+--------------------------------------------------------+
 
 
-**Example: Get containers JSON response**
+**Example: Retrieve containers, JSON response**
 
 
 .. code::
@@ -115,4 +115,3 @@ The following table shows the response atttributes for the request:
         ],
         "total": 1
       }
-

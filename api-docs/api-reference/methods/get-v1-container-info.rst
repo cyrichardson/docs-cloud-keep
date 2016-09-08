@@ -1,17 +1,16 @@
 
 .. _get-container-information:
 
-Get Container Information
+Retrieve container information
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 .. code::
 
     GET /{version}/containers/{container_id}
 
-This method retrieves information about a specified container.
+This operation retrieves information about the specified container.
 
-
-The following table shows the possible response codes for this operation:
-
+The following table shows the possible response codes for this operation.
 
 +------+-----------------------------------------------------------------------------+
 | Code | Description                                                                 |
@@ -28,52 +27,51 @@ Request
 -------
 
 
-The following table shows the URI parameters for the request:
+The following table shows the URI parameters for the request.
 
 +--------------------------+-------------------------+-------------------------+
 |Name                      |Type                     |Description              |
 +==========================+=========================+=========================+
-|{container_id}            |String *(Required)*      |This parameter specifies |
+|container_id              |string                   |*(Required)* This        |
+|                          |                         |parameter specifies      |
 |                          |                         |the unique identifier of |
 |                          |                         |a container that has     |
 |                          |                         |been stored.             |
 +--------------------------+-------------------------+-------------------------+
 
-
-
 This operation does not accept a request body.
 
 
-**Example: Get Container Information cURL request**
+**Example: Retrieve container information, cURL request**
 
 
 .. code::
 
-      curl -H 'Accept: application/json' -H 'X-Auth-Token:$AUTH-TOKEN' \
-         $ENDPOINT/v1/containers/{containerID}
+      curl -H 'Accept: application/json'
+           -H 'X-Auth-Token:$AUTH-TOKEN' \
+           $ENDPOINT/v1/containers/{container_id}
 
 
 
 Response
 --------
 
-The following table shows the response atttributes for this request.
+The following table shows the response attributes.
 
 +-----------------+-----------+----------------------------------------------------------+
 | Name            | Type      | Description                                              |
 +=================+===========+==========================================================+
-|**type**         | string    |Indicates the container type: *generic*, *rsa*, or        |
-|                 |           |*certificate*.                                            |
+|**type**         | string    |Indicates the container type: generic, rsa, or certficate.|
 +-----------------+-----------+----------------------------------------------------------+
-|**status**       | string    |Returns the current state for the specified container.    |
+|**status**       | string    |Returns the current state of the container.               |
 +-----------------+-----------+----------------------------------------------------------+
-|**name**         | string    |The name assigned to the specified container when it was  |     
+|**name**         | string    |The name assigned to the specified container when it was  |
 |                 |           |created.                                                  |
 +-----------------+-----------+----------------------------------------------------------+
 |**consumers**    | dict      |Returns a list of dictionaries with information about the |
-|                 |           |consumers included in the specified container.            | 
+|                 |           |consumers included in the specified container.            |
 +-----------------+-----------+----------------------------------------------------------+
-|**container_ref**| URI       |A HATEOS url to retrieve information about the specified  |
+|**container_ref**| URI       |A HATEOS URL to retrieve information about the container. |
 +-----------------+-----------+----------------------------------------------------------+
 |secret_refs      | dict      |Returns a dictionary with information about the secrets   |
 |                 |           |included in the container.                                |
@@ -81,7 +79,7 @@ The following table shows the response atttributes for this request.
 |secret_refs.\    | string    |The name assigned to the secret resource when it was      |
 |**name**         |           |created.                                                  |
 +-----------------+-----------+----------------------------------------------------------+
-|secret_refs.\    | URI       | A HATEOAS url to retrieve information about the specified|
+|secret_refs.\    | URI       | A HATEOAS URL to retrieve information about the specified|
 |**secret_ref**   |           | secret.                                                  |
 +-----------------+-----------+----------------------------------------------------------+
 |**created**      | date      | The date and time that the container was created.        |
@@ -90,7 +88,7 @@ The following table shows the response atttributes for this request.
 +-----------------+----------+-----------------------------------------------------------+
 
 
-**Example: Get container information JSON response**
+**Example: Retrieve container information, JSON response**
 
 
 .. code::

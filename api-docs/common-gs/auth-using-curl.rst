@@ -59,7 +59,8 @@ token ID
     The ``expires`` attribute indicates the date and time that the token will
     expire, unless it is revoked before the expiration. To get a new token,
     submit another authentication request. For more information, see
-    :rax-devdocs:`Manage authentication tokens and token expiration <cloud-identity/v2/getting-started/manage-auth-tokens//#manage-authentication-tokens>`.
+    :rax-devdocs:`Manage authentication tokens and token expiration
+    <cloud-identity/v2/getting-started/manage-auth-tokens//#manage-authentication-tokens>`.
 
 tenant ID
     The tenant ID provides your account number. For most Rackspace Cloud
@@ -92,10 +93,16 @@ the following error message descriptions to determine next steps.
 
      401 Unable to authenticate user with credentials provided.
 
+- If you see the following message, verify that your user has the correct
+  service catalog entries and roles to access the service. If necessary,
+  contact your Rackspace Cloud Administrator or Rackspace Support to verify
+  authorization.
+
 ..  note::
-       For additional information about authentication errors, see the
-       :rax-devdocs:`Identity API reference documentation
-       <cloud-identity/v2/general-api-info/http-status-codes/>`.
+
+    For additional information about authentication errors, see the
+    :rax-devdocs:`Identity API reference documentation
+    <cloud-identity/v2/general-api-info/http-status-codes/>`.
 
 .. _configure-environment-variables:
 
@@ -145,7 +152,7 @@ request, prefix the variable name with a ``$``, for example ``$ENDPOINT``.
    ``publicURL`` value for the |apiservice|, version, and region that you want
    to access.
 
-   This example shows the endpoints available for the |apiservice|.
+   The following example shows the endpoints available for the |apiservice|.
 
    .. include:: ../common-gs/samples/service-catalog-endpoint.rst
 
@@ -156,11 +163,12 @@ request, prefix the variable name with a ``$``, for example ``$ENDPOINT``.
 
 
 #. Export the URL to an environment variable, as shown in the following
-   example:
+   example. Replace ``publicURL`` with the ``publicURL`` value listed in the
+   service catalog.
 
    .. code::
 
-        $ export API_ENDPOINT="publicURL"
+      $ export API_ENDPOINT="publicURL"
 
 
    Replace ``publicURL`` with the ``publicURL`` value listed in the service
