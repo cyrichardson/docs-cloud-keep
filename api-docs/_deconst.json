@@ -1,8 +1,8 @@
 {
-  "contentIDBase": "https://github.com/rackerlabs/docs-barbican/",
-  "githubUrl": "https://github.com/rackerlabs/docs-barbican/",
+  "contentIDBase": "https://github.com/rackerlabs/docs-cloud-keep/",
+  "githubUrl": "https://github.com/rackerlabs/docs-cloud-keep/",
   "githubBranch": "master",
   "meta": {
-    "preferGithubIssues": false
+    "preferGithubIssues": true
   }
 }
