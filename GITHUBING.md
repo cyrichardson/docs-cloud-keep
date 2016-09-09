@@ -1,13 +1,10 @@
 # GitHub workflow :octocat:
 
-To contribute content to this repository (repo), use the GitHub workflow described here. 
-To follow the entire contribution process, go to 
+To contribute content to this repository (repo), use the GitHub workflow described here. To follow the entire contribution process, go to
 [CONTRIBUTING.md](CONTRIBUTING.md).
 
-**Note:** This workflow shows how to make changes to the repo from the command line by 
-using git commands. If you do not want to use the command line, you can use GitHub Desktop 
-or another GitHub GUI instead to accomplish the steps. 
-  
+**Note:** This workflow shows how to make changes to the repo from the command line by using git commands. You can also use GitHub Desktop or another GitHub GUI to complete the steps.
+
 
 ## Prerequisite
 
@@ -21,93 +18,101 @@ or another GitHub GUI instead to accomplish the steps.
 
     ```bash
 
-    git clone git@github.com:my-github-username/docs-barbican.git
+    git clone git@github.com:my-github-username/docs-cloud-keep.git
 
     ```
 
 3. Track the upstream repo
-    
+
     ```bash
     cd getcarina.com
-    git remote add --track master upstream git@github.com:rackerlabs/docs-barbican.git
-    
+    git remote add --track master upstream git@github.com:rackerlabs/docs-cloud-keep.git
+
     ```
     Start new changes with the following steps.
 
 4.  Bring your branch up-to-date with upstream
-   
+
     ```bash
     git checkout master
     git pull --rebase upstream master
     ```
 
-5. Create a branch for changes. For details about this part of the workflow, see 
-   [Understanding the GitHub Flow](https://guides.github.com/introduction/flow/index.html) 
-   guide.
-    
+5. Create a branch for changes. For details about this part of the workflow,
+   see [Understanding the GitHub Flow](https://guides.github.com/introduction/flow/index.html) guide.
+
     ```
     bash
     git checkout -b <name-of-branch>
     ```
 
-6. In the new branch, make changes to existing files and add new files, as needed. 
+6. In the new branch, make changes to existing files and add new files, as
+   needed.
+
    ```bash
     git add .
     ```
-7. Add all files relevant to the change 
-   
-   ```
+
+7. Add all files relevant to the change.
+
+   ```bash
    git add .
    ```
+   **Note:** This is a potentially dangerous command. Consider adding each
+   changed file separately, or verify that you really wanted to add every changed file before you commit.
 
 8. Commit the changed files.
+
     ```bash
     git commit -m "The reason for my change"
     ```
 
-9. Push your branch to your fork
+9. Push your branch to your fork.
+
     ```bash
     git push -u origin <name-of-branch>
     ```
 
 10. Create a pull request (PR) to the upstream repo for your branch
 
-    a. Go to https://github.com/rackerlabs/docs-cloud-identity
+    a. Go to https://github.com/rackerlabs/docs-cloud-keep
 
     b. Click on the Create pull request button
 
-    c. If this PR is related to an outstanding 
-      [GitHub issue](https://github.com/rackerlabs/docs-barbican/issues), include a link to that GitHub issue in the comment
+    c. If this PR is related to an outstanding
+      [GitHub issue](https://github.com/rackerlabs/docs-cloud-keep/issues), include a link to that GitHub issue in the comment
 
-11. The Information Development team will review your pull request. 
+11. The Information Development team will review your pull request. The
+    Information Development team will review your pull request. If you don't
+    get a response within a reasonable time frame, ping us on Slack or [e-mail us](mailto:devdocs@rackspace.com).
 
-12. If necessary, incorporate changes from the review, make updates to your PR by adding 
-    more commits.
-    
+12. If necessary, incorporate changes from the review, make updates to your PR
+    by adding more commits.
+
     ```bash
     git add .
     git commit -m "The reason for my update"
     git push
     ```
-13. Repeat step 12 as needed. 
+13. Repeat step 12 as needed.
 
 14. Resolve conflicts, if necessary.
 
-    During your review process, someone might have already updated and merged a file that 
-    you are in the process of changing. . Such a conflict means that you can’t merge your 
-    PR. To resolve the conflict, perform the following steps. 
-    
-    a. Bring your branch up-to-date with the upstream repo by running the following 
-       commands from your branch:
-       
+    During your review process, someone might have already updated and merged a file that you are in the process of changing. . Such a conflict means that you can’t merge your PR. To resolve the conflict, perform the following steps.
+
+    a. Bring your branch up-to-date with the upstream repo by running the
+       following commands from your branch:
+
        ```
         git fetch upstream
         git rebase upstream/master
        ```
-    
-    b. Follow the steps to [resolve a merge conflict from the command line](https://help.github.com/articles/resolving-a-merge-conflict-from-the-command-line/).
 
-15. When content is approved, and you have resolved any conflicts, the Information Development team will merge your pull request. 
+    b. Follow the steps to
+       [resolve a merge conflict from the command line](https://help.github.com/articles/resolving-a-merge-conflict-from-the-command-line/).
+
+15. When content is approved, and you have resolved any conflicts, the
+    Information Development team will merge your pull request. 
 
 16. Update your repo
 
@@ -119,15 +124,15 @@ or another GitHub GUI instead to accomplish the steps.
 
 ## Tip
 
-To see repository status in your prompt and to activate auto-completion, 
+To see repository status in your prompt and to activate auto-completion,
 perform the following steps:
 
-1. Download 
-[git-prompt.sh](https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh) 
+1. Download
+[git-prompt.sh](https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh)
 and save it in your home directory as .git-prompt.sh
-   
-1. Download 
-[git-completion.bash](https://github.com/git/git/blob/master/contrib/completion/git-completion.bash) 
+
+1. Download
+[git-completion.bash](https://github.com/git/git/blob/master/contrib/completion/git-completion.bash)
 and save it in your home directory as .git-completion.bash
 
 1. Add the following to your .bash_profile in your home directory
