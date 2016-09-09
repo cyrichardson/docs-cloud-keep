@@ -115,7 +115,7 @@ Use these instructions to install and run the Sphinx documentation generator to 
 To build the documentation project, run the following commands:
 
     cd api-docs
-    make clean singlehtml
+    make clean html
 
 These commands generate a single page HTML document with a navigation bar on the right.
 
@@ -123,4 +123,4 @@ These commands generate a single page HTML document with a navigation bar on the
 
 To open the generated project, run the following command:
 
-    open _build/singlehtml/index.html
+    open _build/html/index.html
