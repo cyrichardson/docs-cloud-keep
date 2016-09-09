@@ -4,15 +4,15 @@
 
 This repository contains the source files that generate the following Cloud Keep API documentation:
 
-* [Getting Started Guide](https://developer.rackspace.com/docs/cloud-keep/v1/getting-started)
-* [Release notes] Guide](https://developer.rackspace.com/docs/cloud-keep/v1/release-notes/)
+* [Getting started](https://developer.rackspace.com/docs/cloud-keep/v1/getting-started)
+* [Release notes](https://developer.rackspace.com/docs/cloud-keep/v1/release-notes/)
 * [API Reference](https://developer.rackspace.com/docs/cloud-keep/v1/api-reference/)
 
 When you commit changes to the master branch of this repository, the
 [Strider CI/CD build job](https://build.developer.rackspace.com/rackerlabs/docs-barbican/)
 builds the documentation. Successful builds are deployed to production.
 
-For additional information about Rackspace documentation, see the [Docuumentation Team FAQ](
+For additional information about Rackspace documentation, see the [Documentation Team FAQ](
 http://rackerlabs.github.io/docs-rackspace/contributor-collateral/publiccloud-docteam-FAQ.html).
 
 ### Support and feedback
