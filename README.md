@@ -1,4 +1,4 @@
-[![build badge](https://build.developer.rackspace.com/rackerlabs/docs-cloud-keep/badge?branch=master)](https://build.developer.rackspace.com/rackerlabs/docs-cloud-keep/)
+DEPRECATED:  The Cloud Keep API service is no longer available.
 
 # Rackspace Cloud Keep API documentation
 
