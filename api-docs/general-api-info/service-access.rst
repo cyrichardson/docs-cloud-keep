@@ -30,7 +30,7 @@ environments.
 .. tip::
    If you do not know your account ID or which data center you are
    working in, you can find that information in your Cloud Control Panel at
-   `mycloud.rackspace.com. <http://mycloud.rackspace.com>`__
+   `mycloud.rackspace.com. <http://login.rackspace.com>`__
 
 .. list-table:: **Regionalized service endpoints**
    :widths: 10 40
