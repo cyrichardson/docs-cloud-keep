@@ -12,7 +12,7 @@ The following table describes the common headers used by the API.
 | Header                | Description                                        |
 +=======================+====================================================+
 | X-Auth-Token          | Used to provide the authentication token issued by |
-|                       | the Rackspace Identity System.  It is required for |
+|                       | the Identity service.  It is required for          |
 |                       | all requests sent to the Cloud Keep system.        |
 +-----------------------+----------------------------------------------------+
 | Accept                | Media type. Initially, only text and binary types  |
